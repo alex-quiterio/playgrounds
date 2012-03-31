@@ -1,6 +1,5 @@
 CC=gcc
 CFLAGS=-c -Wall
-LDFLAGS=
 SOURCES=main.c List.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=TestList
