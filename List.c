@@ -28,21 +28,10 @@ addElement(int value, void* currentlist) {
      }
 }
 
-List*
-createList() {
+void 
+removeElement(int value, void* currentlist) {
 
-    List * newList;
-    
-    newList = (List*) malloc(sizeof(List));
-    newList->head = NULL;
-    newList->tail = NULL;
-    newList->size = 0;
-    newList->addItem = &addElement;
-    return newList;
-}
-
-void removeElement(int value, List* list) {
-    
+    List *list = (List*) currentlist;   
     item* previous = list->head;
     item* after = list->head;
     list->size -=1;
@@ -62,15 +51,9 @@ void removeElement(int value, List* list) {
 }
 
 void
-printFirst(List *list) {
+printElements(void *currentlist) {
 
-    printf("The first value of list: %d\n", list->head->number);
-    return;
-}
-
-
-void
-printAllElements(List *list) {
+    List *list = (List*) currentlist;
     
     item* currentPosition = list->head;
     int index = 0;
@@ -85,3 +68,19 @@ printAllElements(List *list) {
     
     printf("%d]\n", currentPosition->number);
 }
+
+List*
+createList() {
+
+    List * newList;
+    
+    newList = (List*) malloc(sizeof(List));
+    newList->head = NULL;
+    newList->tail = NULL;
+    newList->size = 0;
+    newList->addItem = &addElement;
+    newList->removeItem =&removeElement;
+    newList->printList = &printElements;
+    return newList;
+}
+

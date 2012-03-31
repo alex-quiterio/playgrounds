@@ -17,14 +17,12 @@ typedef struct List {
     struct node* head;
     struct node* tail;
     void (*addItem)(int a, void* b);
+    void (*removeItem)(int a, void* b);
+    void (*printList)(void* b);
 } List;
 
 typedef struct node item;
 
 /* Functions */
-
 List * createList();
-void removeElement(int i, List* list);
-void printFirst(List* list);
-void printAllElements(List *list);
 #endif

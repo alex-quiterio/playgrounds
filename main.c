@@ -16,10 +16,10 @@ main(int argc, char** argv) {
         list->addItem(index, list);
     }
     
-    printAllElements(list); 
-    removeElement(0, list);
-    removeElement(4, list);
-    printAllElements(list);
+    list->printList(list); 
+    list->removeItem(0,list);
+    list->removeItem(4,list);
+    list->printList(list);
     printf("Done it :)\n");
     return 1;
 }
