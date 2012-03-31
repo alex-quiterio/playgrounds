@@ -11,20 +11,19 @@ struct node {
     struct node    * next;
 };
 
-struct list {
+typedef struct List {
 
+    int size;
     struct node* head;
     struct node* tail;
-    int size;
-};
+    void (*addItem)(int a, void* b);
+} List;
 
 typedef struct node item;
-typedef struct list List;
 
 /* Functions */
 
 List * createList();
-void addElement(int i, List* list);
 void removeElement(int i, List* list);
 void printFirst(List* list);
 void printAllElements(List *list);

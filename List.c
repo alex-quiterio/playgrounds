@@ -1,22 +1,14 @@
 #include"List.h"
 
-List*
-createList() {
-
-    List * newList;
-    
-    newList = (List*) malloc(sizeof(List));
-    newList->head = NULL;
-    newList->tail = NULL;
-    newList->size = 0;
-    return newList;
-}
+// Global variable
 
 void 
-addElement(int value, List* list) {
+addElement(int value, void* currentlist) {
 
     item* buffer;
-
+    
+    List* list = (List*) currentlist;
+    
     list->size +=1;
 
     buffer = (item*) malloc(sizeof(item));
@@ -34,6 +26,19 @@ addElement(int value, List* list) {
         list->head = buffer;
         list->tail = buffer;
      }
+}
+
+List*
+createList() {
+
+    List * newList;
+    
+    newList = (List*) malloc(sizeof(List));
+    newList->head = NULL;
+    newList->tail = NULL;
+    newList->size = 0;
+    newList->addItem = &addElement;
+    return newList;
 }
 
 void removeElement(int value, List* list) {
@@ -59,7 +64,7 @@ void removeElement(int value, List* list) {
 void
 printFirst(List *list) {
 
-    printf("This is the first value of my list: %d\n", list->head->number);
+    printf("The first value of list: %d\n", list->head->number);
     return;
 }
 
@@ -70,10 +75,13 @@ printAllElements(List *list) {
     item* currentPosition = list->head;
     int index = 0;
     
-    while(currentPosition != NULL) {
+    printf("[");
+    while(currentPosition->next != NULL) {
     
-        printf("[index]%d <--> [value]%d\n", index, currentPosition->number);
+        printf("%d, ", currentPosition->number);
         currentPosition = currentPosition->next;
         index +=1;
     }
+    
+    printf("%d]\n", currentPosition->number);
 }
