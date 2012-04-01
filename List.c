@@ -1,7 +1,5 @@
 #include"List.h"
 
-// Global variable
-
 void 
 addElement(int value, void* currentlist) {
 
