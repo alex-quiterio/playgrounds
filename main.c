@@ -13,13 +13,13 @@ main(int argc, char** argv) {
     printf("Insert Elements on a Double Linked List\n"); 
     
     for(index = 0; index < MAX_ELEMENTS; index++) {
-        list->addItem(index, list);
+        list->add(index, list);
     }
     
-    list->printList(list); 
-    list->removeItem(0,list);
-    list->removeItem(4,list);
-    list->printList(list);
+    list->print(list); 
+    list->remove(0,list);
+    list->remove(4,list);
+    list->print(list);
     printf("Done it :)\n");
     return 1;
 }

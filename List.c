@@ -48,8 +48,21 @@ removeElement(int value, void* currentlist) {
     free(after);
 }
 
+int
+getElement(int value, void* currentlist) {
+
+  List* list = (List*) currentlist;
+  item* node = list->head;
+
+  while(node->number != value) {
+    node = node->next;
+  }
+
+  return (int)node->number;
+}
+
 void
-printElements(void *currentlist) {
+printElements(void* currentlist) {
 
     List *list = (List*) currentlist;
     
@@ -76,9 +89,10 @@ createList() {
     newList->head = NULL;
     newList->tail = NULL;
     newList->size = 0;
-    newList->addItem = &addElement;
-    newList->removeItem =&removeElement;
-    newList->printList = &printElements;
+    newList->add = &addElement;
+    newList->remove =&removeElement;
+    newList->print = &printElements;
+    newList->get = &getElement;
     return newList;
 }
 

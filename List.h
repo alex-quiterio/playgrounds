@@ -16,9 +16,10 @@ typedef struct List {
     int size;
     struct node* head;
     struct node* tail;
-    void (*addItem)(int a, void* b);
-    void (*removeItem)(int a, void* b);
-    void (*printList)(void* b);
+    void (*add)(int a, void* list);
+    void (*remove)(int a, void* list);
+    void (*print)(void* list);
+    int (*get)(int value, void* list);
 } List;
 
 typedef struct node item;
