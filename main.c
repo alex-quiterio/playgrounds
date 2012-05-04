@@ -20,6 +20,7 @@ main(int argc, char** argv) {
     list->remove(0,list);
     list->remove(4,list);
     list->print(list);
+    removeList(list);
     printf("Done it :)\n");
     return 1;
 }

@@ -96,3 +96,16 @@ createList() {
     return newList;
 }
 
+void 
+removeList(List* list) {
+
+    item* currentPosition = list->head;
+    item* freePosition = NULL;
+    while(currentPosition != NULL) {
+        freePosition = currentPosition;
+        currentPosition = currentPosition->next;
+        free(freePosition);
+    }
+    free(list);
+}
+

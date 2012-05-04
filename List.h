@@ -26,4 +26,5 @@ typedef struct node item;
 
 /* Functions */
 List * createList();
+void removeList(List* list);
 #endif
