@@ -49,13 +49,15 @@ removeElement(int value, void* currentlist) {
 }
 
 int
-getElement(int value, void* currentlist) {
+getElement(int pos, void* currentlist) {
 
   List* list = (List*) currentlist;
   item* node = list->head;
+  int position = 1;
 
-  while(node->number != value) {
+  while(pos != position) {
     node = node->next;
+    position++;
   }
 
   return (int)node->number;
