@@ -63,10 +63,14 @@ getRule(line) char line[];
     int length;
     char* check;
     check = fgets(line, sizeof(line)*MAX_SYMBOLS_PER_RULE, stdin);
+    if(check == NULL) {
+      exit(-1);
+    }
     length = strlen(line) - 1;
     if(length == 2) {
         line[2] = NULL_SYMBOL;
     }
+    
 }
 
 /**
@@ -99,11 +103,19 @@ readRules()
     }
 }
 
+/**
+ * getSequence: get the new sequence of stdin
+ * @param line, the line which we use as buffer
+ * @return void
+ */
 void 
 getSequence(char line[])
 {
     char* check;
     check = fgets(line, sizeof(line)*MAX_BINARY_SEQUENCE, stdin);
+    if(check == NULL) {
+      exit(-1);
+    }
 }
 
 /**
