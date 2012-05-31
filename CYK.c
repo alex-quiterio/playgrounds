@@ -1,6 +1,6 @@
 /* 
  * File:   CYK.c
- * Author: alexandre, ist164714
+ * Author: alexandre
  */
 #include <stdio.h>
 
