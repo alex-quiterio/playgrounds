@@ -1,0 +1,24 @@
+require 'rake/clean'
+require 'rake/testtask'
+require_relative 'backtracking_algorithm'
+
+require_relative 'n-queens/nqueens'
+require_relative 'sudoku/sudoku'
+
+namespace :backtrack do
+
+	def backtrack(problem)
+		BacktrackingAlgorithm.new(problem).run
+	end
+
+	task :nqueens, :queens do |t, args|
+		problem = NQueens.new(args[:queens].to_i)
+		backtrack(problem)
+	end
+
+	task :sudoku, :file_name do |t, args|
+		fail "Provide a puzzle name plz" if args.file_name.nil?
+		problem = Sudoku.new("sudoku/puzzles/#{args[:file_name]}.sud")
+		backtrack(problem)
+	end
+end
