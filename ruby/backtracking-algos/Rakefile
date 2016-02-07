@@ -1,3 +1,4 @@
+require 'pry'
 require 'rake/clean'
 require 'rake/testtask'
 require_relative 'backtracking_algorithm'
@@ -12,6 +13,7 @@ namespace :backtrack do
   end
 
   task :nqueens, :queens do |t, args|
+    binding.pry
     problem = NQueens.new(args[:queens].to_i)
     backtrack(problem)
   end

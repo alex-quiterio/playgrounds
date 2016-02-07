@@ -1,0 +1,22 @@
+require 'pry'
+require 'rake/clean'
+require 'rake/testtask'
+require_relative 'n-queens/n_queens'
+
+namespace :generational do
+  desc "N-Queens solved by Generational Algorithm"
+  task :nqueens, :size, :maxgen do |t, args|
+    size = 10
+    maxgen = 10
+    solver = NQueens.new(size: size, max_generations: maxgen)
+    population = solver.run
+    best_match = solver.best(population)
+    size.times do |i|
+      size.times do |j|
+        print '|'
+        print((best_match[:gene][i] == j) ? 'Q' : ' ')
+        print((j == size - 1) ? "|\n" : '')
+      end
+    end
+  end
+end
