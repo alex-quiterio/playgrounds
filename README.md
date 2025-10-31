@@ -2,8 +2,8 @@
 
 [![Tests](https://github.com/alex-quiterio/playgrounds/actions/workflows/tests.yml/badge.svg)](https://github.com/alex-quiterio/playgrounds/actions/workflows/tests.yml)
 
-Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp.
-Each one runs on its own and has its own tests.
+Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp, plus
+[Advent of Code](#advent-of-code) solutions in six languages. Each one runs on its own and has its own tests.
 
 ## Exercises
 
@@ -19,9 +19,52 @@ Each one runs on its own and has its own tests.
 | [`prolog/oscares.pl`](prolog/oscares.pl) | Prolog | Queries over a film/Oscars database, a social-network search, and a tiny Portuguese question parser |
 | [`lisp/y_game.lisp`](lisp/y_game.lisp) | Common Lisp | The game of Y on a ring board, with a minimax / alpha-beta computer player |
 
-### Advent of Code
+## Advent of Code
 
-[`advent-of-code`](advent-of-code) holds solutions to [Advent of Code](https://adventofcode.com), one folder per year and per day, in any language. Each day is an executable `run` that is checked against the puzzle's examples. See [its README](advent-of-code/README.md) for the workflow.
+[`advent-of-code/`](advent-of-code) holds solutions to [Advent of Code](https://adventofcode.com), the December puzzle calendar. Each year picks its language (2022 uses two), and every answer counted below was accepted on adventofcode.com.
+
+| Year | Language | Solved | Stars |
+| --- | --- | --- | --- |
+| [2025](advent-of-code/2025) | Common Lisp | all 12 days | ⭐ 24 / 24 |
+| [2024](advent-of-code/2024) | Go | all 25 days | ⭐ 50 / 50 |
+| [2023](advent-of-code/2023) | Ruby | all 25 days | ⭐ 50 / 50 |
+| [2022](advent-of-code/2022) | C and Perl | days 1-10 | ⭐ 20 / 50 |
+| [2021](advent-of-code/2021) | Clojure | day 1 | ⭐ 2 / 50 |
+| [2020](advent-of-code/2020) | Clojure | day 1 | ⭐ 2 / 50 |
+| [2019](advent-of-code/2019) | Clojure | day 1 | ⭐ 2 / 50 |
+
+**150 stars** in the repository so far. Each year's README has a ✅ per part, filled in from the Advent of Code calendar.
+
+### Quick start
+
+```sh
+cd advent-of-code
+bin/check                          # every solved day against its examples
+bin/check 2024 17                  # one day
+./2023/day05/run 2023/day05/example.txt
+```
+
+### How a day works
+
+Every day is a folder such as `2024/day17/`, with one rule: an executable `run` takes an input file and prints the **part 1 answer on line 1** and the **part 2 answer on line 2**. That keeps each year free to use any language. `run` might call `go run`, `ruby`, `sbcl --script`, `clojure -M`, `perl`, or compile C first.
+
+- `example.txt` / `example.expected` hold the examples and answers from the puzzle text. Extra examples are `example-2`, `example-3` and so on.
+- `bin/check` runs every solution against those examples. It also re-checks your real input against `input.expected` once an answer has been accepted.
+- Extra runners such as `run-perl` are checked too. 2022 days 9 and 10 are solved in both C and Perl.
+- Puzzle text and puzzle inputs are **not committed**: [Advent of Code asks](https://adventofcode.com/about) that they aren't shared. `bin/fetch-puzzle` and `bin/fetch-input` save them locally (gitignored).
+
+The tooling in [`advent-of-code/bin`](advent-of-code/bin) covers the whole loop: `new-year` and `new-day` scaffold, `fetch-puzzle` / `fetch-year` / `fetch-input` download, `submit` sends an answer, and `progress` updates the ✅ marks. The full workflow is in the [Advent of Code README](advent-of-code/README.md).
+
+### A few favourites
+
+| Puzzle | Idea |
+| --- | --- |
+| [2025 day 10](advent-of-code/2025/day10/solution.lisp), Factory | Minimum button presses as a parity recursion: press a subset once to fix the parity, halve the rest, repeat |
+| [2024 day 17](advent-of-code/2024/day17/main.go), Chronospatial Computer | Builds the self-printing input three bits at a time, from the last output back |
+| [2024 day 24](advent-of-code/2024/day24/main.go), Crossed Wires | Finds the swapped wires by checking each gate against the rules of a ripple-carry adder |
+| [2023 day 10](advent-of-code/2023/day10/solution.rb), Pipe Maze | Tiles inside the loop from the shoelace formula plus Pick's theorem, with no flood fill |
+| [2023 day 24](advent-of-code/2023/day24/solution.rb), Never Tell Me The Odds | The rock's throw as six linear equations, solved exactly with rationals |
+| [2022 day 10](advent-of-code/2022/day10/solution.c), Cathode-Ray Tube | Draws the CRT, then reads the letters back as text |
 
 ## Requirements
 
@@ -32,6 +75,8 @@ Each one runs on its own and has its own tests.
 | Ruby | Ruby 3.4+ (`minitest` and `rake` ship with it) | `brew install ruby` | `ruby` |
 | Prolog | SWI-Prolog | `brew install swi-prolog` | `swi-prolog-nox` |
 | Common Lisp | SBCL | `brew install sbcl` | `sbcl` |
+| Perl (Advent of Code 2022) | Perl 5 | preinstalled | preinstalled |
+| Clojure (Advent of Code 2019-2021) | Clojure CLI | `brew install clojure` | [clojure.org install script](https://clojure.org/guides/install_clojure) |
 
 ## Running the tests
 
