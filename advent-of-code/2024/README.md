@@ -4,16 +4,16 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2024` from `advent-
 
 | Day | Puzzle | Language | Part 1 | Part 2 |
 | --- | --- | --- | --- | --- |
-| 1 | [Historian Hysteria](https://adventofcode.com/2024/day/1) | Go |  |  |
-| 2 | [Red-Nosed Reports](https://adventofcode.com/2024/day/2) | Go |  |  |
-| 3 | [Mull It Over](https://adventofcode.com/2024/day/3) | Go |  |  |
-| 4 | [Ceres Search](https://adventofcode.com/2024/day/4) | Go |  |  |
-| 5 | [Print Queue](https://adventofcode.com/2024/day/5) | Go |  |  |
-| 6 | [Guard Gallivant](https://adventofcode.com/2024/day/6) | Go |  |  |
-| 7 | [Bridge Repair](https://adventofcode.com/2024/day/7) | Go |  |  |
-| 8 | [Resonant Collinearity](https://adventofcode.com/2024/day/8) | Go |  |  |
-| 9 | [Disk Fragmenter](https://adventofcode.com/2024/day/9) | Go |  |  |
-| 10 | [Hoof It](https://adventofcode.com/2024/day/10) | Go |  |  |
+| 1 | [Historian Hysteria](https://adventofcode.com/2024/day/1) | Go | ✅ | ✅ |
+| 2 | [Red-Nosed Reports](https://adventofcode.com/2024/day/2) | Go | ✅ | ✅ |
+| 3 | [Mull It Over](https://adventofcode.com/2024/day/3) | Go | ✅ | ✅ |
+| 4 | [Ceres Search](https://adventofcode.com/2024/day/4) | Go | ✅ | ✅ |
+| 5 | [Print Queue](https://adventofcode.com/2024/day/5) | Go | ✅ | ✅ |
+| 6 | [Guard Gallivant](https://adventofcode.com/2024/day/6) | Go | ✅ | ✅ |
+| 7 | [Bridge Repair](https://adventofcode.com/2024/day/7) | Go | ✅ | ✅ |
+| 8 | [Resonant Collinearity](https://adventofcode.com/2024/day/8) | Go | ✅ |  |
+| 9 | [Disk Fragmenter](https://adventofcode.com/2024/day/9) | Go | ✅ |  |
+| 10 | [Hoof It](https://adventofcode.com/2024/day/10) | Go | ✅ |  |
 | 11 | [Plutonian Pebbles](https://adventofcode.com/2024/day/11) |  |  |  |
 | 12 | [Garden Groups](https://adventofcode.com/2024/day/12) |  |  |  |
 | 13 | [Claw Contraption](https://adventofcode.com/2024/day/13) |  |  |  |
