@@ -25,7 +25,7 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2023` from `advent-
 | 19 | [Aplenty](https://adventofcode.com/2023/day/19) | Ruby | ✅ | ✅ |
 | 20 | [Pulse Propagation](https://adventofcode.com/2023/day/20) | Ruby | ✅ | ✅ |
 | 21 | [Step Counter](https://adventofcode.com/2023/day/21) | Ruby |  |  |
-| 22 | [Sand Slabs](https://adventofcode.com/2023/day/22) |  |  |  |
+| 22 | [Sand Slabs](https://adventofcode.com/2023/day/22) | Ruby |  |  |
 | 23 | [A Long Walk](https://adventofcode.com/2023/day/23) |  |  |  |
 | 24 | [Never Tell Me The Odds](https://adventofcode.com/2023/day/24) |  |  |  |
 | 25 | [Snowverload](https://adventofcode.com/2023/day/25) |  |  |  |
