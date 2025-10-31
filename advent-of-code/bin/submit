@@ -55,6 +55,11 @@ case "$message" in
         echo "$year day $day part $part: $answer is right"
         "$bin/progress" "$year"
         ;;
+    *"answer too recently"*)
+        wait="$(printf '%s' "$message" | sed -n 's/.*You have \(.*\) left to wait.*/\1/p')"
+        echo "$year day $day part $part: throttled, try again in ${wait:-a minute} (nothing was submitted)"
+        exit 3
+        ;;
     *"already complete it"*)
         echo "$year day $day part $part: already solved (answer not checked)"
         "$bin/progress" "$year"
