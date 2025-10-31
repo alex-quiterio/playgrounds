@@ -16,7 +16,7 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2023` from `advent-
 | 10 | [Pipe Maze](https://adventofcode.com/2023/day/10) | Ruby | ✅ | ✅ |
 | 11 | [Cosmic Expansion](https://adventofcode.com/2023/day/11) | Ruby |  |  |
 | 12 | [Hot Springs](https://adventofcode.com/2023/day/12) | Ruby |  |  |
-| 13 | [Point of Incidence](https://adventofcode.com/2023/day/13) |  |  |  |
+| 13 | [Point of Incidence](https://adventofcode.com/2023/day/13) | Ruby |  |  |
 | 14 | [Parabolic Reflector Dish](https://adventofcode.com/2023/day/14) |  |  |  |
 | 15 | [Lens Library](https://adventofcode.com/2023/day/15) |  |  |  |
 | 16 | [The Floor Will Be Lava](https://adventofcode.com/2023/day/16) |  |  |  |
