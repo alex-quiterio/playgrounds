@@ -13,7 +13,7 @@ advent-of-code/
 │   ├── submit         # submit an answer and record it when accepted
 │   ├── progress       # mark solved parts with ✅ in YEAR/README.md
 │   └── check          # run every solution against its examples
-├── 2022/  2023/  2024/
+├── 2019/ … 2024/
 └── 2025/
     └── day01/
         ├── README.md          # puzzle link and notes
@@ -55,7 +55,7 @@ bin/check 2027                 # every day of 2027; bin/check 2027 1 for one day
 
 Once an answer is accepted, it lives in `input.expected`. `bin/check` will then also re-check your real input, which is useful when you refactor.
 
-From the repository root, `make test-aoc` runs `bin/check` for every year. CI runs the same command against the examples only, because inputs are never committed. CI runs on `ubuntu-latest`, which comes with Python, Ruby and Node, and the job also installs Go (for 2024) and SBCL (for 2025). If a day needs anything else, add a setup step to the `advent-of-code` job in [`.github/workflows/tests.yml`](../.github/workflows/tests.yml).
+From the repository root, `make test-aoc` runs `bin/check` for every year. CI runs the same command against the examples only, because inputs are never committed. CI runs on `ubuntu-latest`, which comes with Python, Ruby and Node, and the job also installs Go (for 2024), SBCL (for 2025) and the Clojure CLI (for 2019-2021). If a day needs anything else, add a setup step to the `advent-of-code` job in [`.github/workflows/tests.yml`](../.github/workflows/tests.yml).
 
 ## Puzzle text
 
@@ -71,6 +71,9 @@ Advent of Code [asks](https://adventofcode.com/about) that puzzle inputs and puz
 
 | Year | Progress |
 | --- | --- |
+| [2019](2019) | Clojure: day 1 |
+| [2020](2020) | Clojure: day 1 |
+| [2021](2021) | Clojure: day 1 |
 | [2022](2022) | C (days 1-3, 7-10) and Perl (days 4-6, 9-10), 20 stars |
 | [2023](2023) | Ruby: all 25 days, 50 stars |
 | [2024](2024) | Go: all 25 days, 50 stars |
