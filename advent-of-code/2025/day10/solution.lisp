@@ -40,14 +40,18 @@ twice a smaller instance of the same problem."
         (memo (make-hash-table :test #'equal)))
     (labels ((solve (target)
                (cond ((every #'zerop target) 0)
-                     ((gethash target memo))
+                     ((nth-value 1 (gethash target memo)) (gethash target memo))
                      (t (setf (gethash target memo)
-                              (loop for (presses . effect) in combos
-                                    when (every (lambda (e tg) (and (<= e tg) (evenp (- tg e)))) effect target)
-                                      minimize (let ((rest (solve (mapcar (lambda (e tg) (/ (- tg e) 2)) effect target))))
-                                                 (if rest (+ presses (* 2 rest)) most-positive-fixnum))
-                                        into best
-                                    finally (return (and best (< best most-positive-fixnum) best))))))))
+                              ;; NIL when no subset matches: that branch has no solution.
+                              (let ((best nil))
+                                (loop for (presses . effect) in combos
+                                      when (every (lambda (e tg) (and (<= e tg) (evenp (- tg e)))) effect target)
+                                        do (let ((half (solve (mapcar (lambda (e tg) (/ (- tg e) 2)) effect target))))
+                                             (when half
+                                               (let ((total (+ presses (* 2 half))))
+                                                 (when (or (null best) (< total best))
+                                                   (setf best total))))))
+                                best))))))
       (solve targets))))
 
 (let ((machines (loop for line in (read-lines (input-path))
