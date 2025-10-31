@@ -1,7 +1,8 @@
 #!/bin/sh
 # Runs every day's solution against its examples and compares the answers.
 #
-# For each YEAR/dayNN folder that has an executable `run`:
+# For each YEAR/dayNN folder that has an executable `run` (and any extra
+# runners named run-*, such as a second language's version of the same day):
 #   - every example*.txt with a matching example*.expected is checked
 #   - input.txt is checked too when you saved your answers in input.expected
 # `run` is called from the day's folder as `./run FILE`. It must print the
@@ -28,14 +29,16 @@ check_case() {
     dir="$1"
     input="$2"
     expected="$3"
+    runner="$4"
     name="$(basename "$(dirname "$dir")")/$(basename "$dir") $(basename "$input")"
+    [ "$runner" = run ] || name="$name ($runner)"
     lines=$(grep -c '' "$expected")
     if [ "$lines" -eq 0 ]; then
         skip=$((skip + 1))
         echo "skip $name (no expected answer yet)"
         return
     fi
-    if actual="$(cd "$dir" && ./run "$(basename "$input")" | head -n "$lines")" \
+    if actual="$(cd "$dir" && "./$runner" "$(basename "$input")" 2>/dev/null | head -n "$lines")" \
         && [ "$actual" = "$(cat "$expected")" ]; then
         pass=$((pass + 1))
         echo "ok   $name"
@@ -55,11 +58,14 @@ for dir in $pattern; do
         echo "skip $(basename "$(dirname "$dir")")/$(basename "$dir") (no executable run)"
         continue
     fi
-    for input in "$dir"/example*.txt "$dir"/input.txt; do
-        [ -f "$input" ] || continue
-        expected="${input%.txt}.expected"
-        [ -f "$expected" ] || continue
-        check_case "$dir" "$input" "$expected"
+    for runner in "$dir"/run "$dir"/run-*; do
+        [ -x "$runner" ] || continue
+        for input in "$dir"/example*.txt "$dir"/input.txt; do
+            [ -f "$input" ] || continue
+            expected="${input%.txt}.expected"
+            [ -f "$expected" ] || continue
+            check_case "$dir" "$input" "$expected" "$(basename "$runner")"
+        done
     done
 done
 
