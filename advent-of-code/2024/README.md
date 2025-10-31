@@ -23,7 +23,7 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2024` from `advent-
 | 17 | [Chronospatial Computer](https://adventofcode.com/2024/day/17) | Go |  |  |
 | 18 | [RAM Run](https://adventofcode.com/2024/day/18) | Go |  |  |
 | 19 | [Linen Layout](https://adventofcode.com/2024/day/19) | Go |  |  |
-| 20 | [Race Condition](https://adventofcode.com/2024/day/20) |  |  |  |
+| 20 | [Race Condition](https://adventofcode.com/2024/day/20) | Go |  |  |
 | 21 | [Keypad Conundrum](https://adventofcode.com/2024/day/21) |  |  |  |
 | 22 | [Monkey Market](https://adventofcode.com/2024/day/22) |  |  |  |
 | 23 | [LAN Party](https://adventofcode.com/2024/day/23) |  |  |  |
