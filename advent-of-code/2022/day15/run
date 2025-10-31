@@ -1,0 +1,7 @@
+#!/bin/sh
+# Usage: ./run INPUT. Compiles solution.c (when it changed) and runs it.
+dir="$(dirname "$0")"
+if [ ! -x "$dir/solution" ] || [ "$dir/solution.c" -nt "$dir/solution" ]; then
+    cc -std=c11 -O2 -Wall -Wextra -o "$dir/solution" "$dir/solution.c" || exit 1
+fi
+exec "$dir/solution" "$@"
