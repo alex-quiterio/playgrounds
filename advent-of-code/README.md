@@ -27,7 +27,7 @@ advent-of-code/
 
 ## A day's contract
 
-`run` is any executable: a script with a shebang, or a small wrapper such as `exec go run . "$@"`. The checker calls it from the day's folder:
+`run` is any executable: a script with a shebang, or a small wrapper such as `exec go run . "$@"`. A day can also have extra runners named `run-*`, for example `run-perl` for a second language's version. `bin/check` checks every runner against the same answers. The checker calls it from the day's folder:
 
 ```sh
 ./run example.txt
@@ -71,7 +71,7 @@ Advent of Code [asks](https://adventofcode.com/about) that puzzle inputs and puz
 
 | Year | Progress |
 | --- | --- |
-| [2022](2022) | C (days 1-3, 7-10) and Perl (days 4-6), 12 stars |
+| [2022](2022) | C (days 1-3, 7-10) and Perl (days 4-6, 9-10), 20 stars |
 | [2023](2023) | Ruby: all 25 days, 50 stars |
 | [2024](2024) | Go: all 25 days, 50 stars |
 | [2025](2025) | Common Lisp: all 12 days, 24 stars |
