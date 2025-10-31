@@ -13,8 +13,8 @@ advent-of-code/
 │   ├── submit         # submit an answer and record it when accepted
 │   ├── progress       # mark solved parts with ✅ in YEAR/README.md
 │   └── check          # run every solution against its examples
-├── 2024/  2025/
-└── 2026/
+├── 2024/
+└── 2025/
     └── day01/
         ├── README.md          # puzzle link and notes
         ├── puzzle.md          # puzzle text (gitignored)
@@ -41,13 +41,14 @@ It must print the **part 1 answer on line 1** and the **part 2 answer on line 2*
 
 ```sh
 cd advent-of-code
-bin/new-day 1                  # creates 2026/day01 (the year defaults to the current one)
+bin/new-year 2027              # a new edition: writes 2027/README.md with its progress table
+bin/new-day 1 2027             # creates 2027/day01 (the year defaults to the current one)
 # paste the example into example.txt and its answer into example.expected
 # write ./run
 export AOC_SESSION=...         # the "session" cookie from adventofcode.com
-bin/fetch-input 1              # saves 2026/day01/input.txt
-./2026/day01/run 2026/day01/input.txt
-bin/check 2026                 # every day of 2026; bin/check 2026 1 for one day
+bin/fetch-input 1 2027         # saves 2027/day01/input.txt
+./2027/day01/run 2027/day01/input.txt
+bin/check 2027                 # every day of 2027; bin/check 2027 1 for one day
 ```
 
 `bin/submit DAY YEAR PART` runs `./run input.txt` and submits that part's answer (or pass the answer as a fourth argument). When it is accepted, it is saved in `input.expected` and the year's table is updated. `bin/progress YEAR` refreshes the ✅ marks on its own. With a session it reads the stars from your calendar, so days solved elsewhere count too. Without one it uses `input.expected`.
@@ -72,6 +73,5 @@ Advent of Code [asks](https://adventofcode.com/about) that puzzle inputs and puz
 | --- | --- |
 | [2024](2024) | Go: all 25 days, 50 stars |
 | [2025](2025) | Common Lisp: all 12 days, 24 stars |
-| [2026](2026) | not started |
 
 Add another year with `bin/new-year YEAR`. It writes the progress table: 25 days up to 2024, 12 from 2025 on.

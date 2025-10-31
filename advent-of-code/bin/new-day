@@ -1,6 +1,6 @@
 #!/bin/sh
 # Creates the folder for one Advent of Code day.
-# Usage: bin/new-day DAY [YEAR]     e.g. bin/new-day 3        bin/new-day 3 2026
+# Usage: bin/new-day DAY [YEAR]     e.g. bin/new-day 3        bin/new-day 3 2025
 set -eu
 
 if [ $# -lt 1 ]; then
