@@ -1,0 +1,4 @@
+#!/bin/sh
+# Usage: ./run INPUT. Builds and runs this day's Go solution.
+input="$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
+cd "$(dirname "$0")" && exec go run . "$input"
