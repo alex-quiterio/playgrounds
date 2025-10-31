@@ -28,4 +28,4 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2023` from `advent-
 | 22 | [Sand Slabs](https://adventofcode.com/2023/day/22) | Ruby |  |  |
 | 23 | [A Long Walk](https://adventofcode.com/2023/day/23) | Ruby |  |  |
 | 24 | [Never Tell Me The Odds](https://adventofcode.com/2023/day/24) | Ruby |  |  |
-| 25 | [Snowverload](https://adventofcode.com/2023/day/25) |  |  |  |
+| 25 | [Snowverload](https://adventofcode.com/2023/day/25) | Ruby |  |  |
