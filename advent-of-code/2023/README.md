@@ -12,7 +12,7 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2023` from `advent-
 | 6 | [Wait For It](https://adventofcode.com/2023/day/6) | Ruby |  |  |
 | 7 | [Camel Cards](https://adventofcode.com/2023/day/7) | Ruby |  |  |
 | 8 | [Haunted Wasteland](https://adventofcode.com/2023/day/8) | Ruby |  |  |
-| 9 | [Mirage Maintenance](https://adventofcode.com/2023/day/9) |  |  |  |
+| 9 | [Mirage Maintenance](https://adventofcode.com/2023/day/9) | Ruby |  |  |
 | 10 | [Pipe Maze](https://adventofcode.com/2023/day/10) |  |  |  |
 | 11 | [Cosmic Expansion](https://adventofcode.com/2023/day/11) |  |  |  |
 | 12 | [Hot Springs](https://adventofcode.com/2023/day/12) |  |  |  |
