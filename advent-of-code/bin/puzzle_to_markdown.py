@@ -35,7 +35,7 @@ class PuzzleParser(HTMLParser):
             self.out.append("\n\n```text\n")
         elif tag == "code" and not self.in_pre:
             self.out.append("`")
-        elif tag == "em":
+        elif tag == "em" and not self.in_pre:
             self.out.append("**")
         elif tag == "li":
             self.out.append("\n- ")
@@ -65,7 +65,7 @@ class PuzzleParser(HTMLParser):
             self.out.append("```\n")
         elif tag == "code" and not self.in_pre:
             self.out.append("`")
-        elif tag == "em":
+        elif tag == "em" and not self.in_pre:
             self.out.append("**")
         elif tag == "a" and self.link_stack:
             self.out.append("](%s)" % self.link_stack.pop())

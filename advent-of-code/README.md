@@ -50,7 +50,7 @@ bin/check 2026                 # every day of 2026; bin/check 2026 1 for one day
 
 Once an answer is accepted, save it in `input.expected`. `bin/check` will then also re-check your real input, which is useful when you refactor.
 
-From the repository root, `make test-aoc` runs `bin/check` for every year. CI runs the same command against the examples only, because inputs are never committed. CI runs on `ubuntu-latest`, which comes with Python, Ruby, Go and Node. If a day needs anything else, add a setup step to the `advent-of-code` job in [`.github/workflows/tests.yml`](../.github/workflows/tests.yml).
+From the repository root, `make test-aoc` runs `bin/check` for every year. CI runs the same command against the examples only, because inputs are never committed. CI runs on `ubuntu-latest`, which comes with Python, Ruby and Node, and the job also installs Go (for 2024) and SBCL (for 2025). If a day needs anything else, add a setup step to the `advent-of-code` job in [`.github/workflows/tests.yml`](../.github/workflows/tests.yml).
 
 ## Puzzle text
 
@@ -66,8 +66,8 @@ Advent of Code [asks](https://adventofcode.com/about) that puzzle inputs and puz
 
 | Year | Progress |
 | --- | --- |
-| [2024](2024) | not started |
-| [2025](2025) | not started |
+| [2024](2024) | Go: days 1-10 |
+| [2025](2025) | Common Lisp: all 12 days |
 | [2026](2026) | not started |
 
 Add another year with `bin/new-year YEAR`. It writes the progress table: 25 days up to 2024, 12 from 2025 on.

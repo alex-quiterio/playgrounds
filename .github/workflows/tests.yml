@@ -57,4 +57,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: advent-of-code/2024/go.mod
+      - name: Install SBCL (2025 is in Common Lisp)
+        run: sudo apt-get update && sudo apt-get install -y sbcl
       - run: make test-aoc
