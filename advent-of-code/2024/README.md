@@ -14,7 +14,7 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2024` from `advent-
 | 8 | [Resonant Collinearity](https://adventofcode.com/2024/day/8) | Go | ✅ | ✅ |
 | 9 | [Disk Fragmenter](https://adventofcode.com/2024/day/9) | Go | ✅ | ✅ |
 | 10 | [Hoof It](https://adventofcode.com/2024/day/10) | Go | ✅ | ✅ |
-| 11 | [Plutonian Pebbles](https://adventofcode.com/2024/day/11) |  |  |  |
+| 11 | [Plutonian Pebbles](https://adventofcode.com/2024/day/11) | Go |  |  |
 | 12 | [Garden Groups](https://adventofcode.com/2024/day/12) |  |  |  |
 | 13 | [Claw Contraption](https://adventofcode.com/2024/day/13) |  |  |  |
 | 14 | [Restroom Redoubt](https://adventofcode.com/2024/day/14) |  |  |  |
