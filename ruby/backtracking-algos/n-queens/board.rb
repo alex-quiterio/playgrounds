@@ -4,13 +4,14 @@ class Board
 
   def initialize(rows)
     @rows = rows
-    @board = Array.new(rows,0) { Array.new(rows,0) }
+    @board = Array.new(rows) { Array.new(rows, 0) }
   end
 
   def find_free_column
     @rows.times do |col|
       return col if column_ok?(col)
     end
+    nil
   end
 
   def add_piece(row, col)

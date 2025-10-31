@@ -38,12 +38,12 @@
 ; the-biggest(fn x list) -> elemento
 (defun the-biggest (fn l)
   (let ((biggest (first l))
-	(best-val (funcall fn (first l))))
+        (best-val (funcall fn (first l))))
     (dolist (x (rest l))
       (let ((val (funcall fn x)))
-	(when (> val best-val)
-	  (setq best-val val)
-	  (setq biggest x))))
+        (when (> val best-val)
+          (setq best-val val)
+          (setq biggest x))))
     biggest))
 
 ; Move o primeiro elemento da lista para a ultima posicao
@@ -159,7 +159,7 @@
 ; A estrutura game e utilizada para recolher informacoes ao longo das duas instancias
 (defstruct game
   (players '(X O))  ; jogadores
-  (times '(0 0))	; tempos de cada jogador
+  (times '(0 0))        ; tempos de cada jogador
   (scores '(X 0 O 0))   ; vitorias de cada jogador
   (levels 0)
   )
@@ -220,7 +220,7 @@
   (scores '(0 0))     ; vitorias
   (players '(X O))    ; jogadores
   (times '(0 0))      ; tempos de cada jogador
-  (paths '())		  ; lista de caminhos
+  (paths '())             ; lista de caminhos
   (terminal? nil)     ; o jogo chegou ao fim
   (current-player '(X O)) ; jogador actual
   )
@@ -283,10 +283,10 @@
 ; max-anel-ocupado? (tabuleiro x peca) -> true || false
 ; Se tabuleiro tiver no seu ultimo anel pecas do tipo peca retorn true, cc false
 (defun max-anel-ocupado? (tabuleiro peca)
-	(let ((anel (tabuleiro-aneis tabuleiro)))
-	(loop for i below (* anel 3)
-		do (when (string-equal peca (tabuleiro-peca tabuleiro (- anel 1) i))
-		     T))))
+        (let ((anel (tabuleiro-aneis tabuleiro)))
+        (loop for i below (* anel 3)
+                do (when (string-equal peca (tabuleiro-peca tabuleiro (- anel 1) i))
+                     T))))
 
 ; adjacentesMesmoAnel (anel x pos) -> lista de adjacentes
 ; Retorna a lista de adjacentes no mesmo anel
@@ -381,37 +381,37 @@
 ; caminho (board x pos x anel x visited x jogador) -> lista de caminho
 (defun caminho (board anel pos visited jogador)
   (let* ((adj (adjacentes anel pos (tabuleiro-aneis board)))
-	 (posAct (cons anel pos))
-	 (newVisited visited))
+         (posAct (cons anel pos))
+         (newVisited visited))
     (when
       (dolist (posVis visited T)
-	(when (equal posAct posVis)
-	  (return NIL)))
+        (when (equal posAct posVis)
+          (return NIL)))
       (push posAct newVisited)
       (dolist (pAdj adj)
-	(when (equal (tabuleiro-peca board (car pAdj) (cdr pAdj)) jogador)
-	  (setf newVisited (caminho board (car pAdj) (cdr pAdj) newVisited jogador)))))
+        (when (equal (tabuleiro-peca board (car pAdj) (cdr pAdj)) jogador)
+          (setf newVisited (caminho board (car pAdj) (cdr pAdj) newVisited jogador)))))
     newVisited))
 
 ; pode-ganhar? (board x jogador) -> true || false
 (defun pode-ganhar?(board jogador)
   (let ((pecas 0)
-	 (res NIL)
-	 (anelMax (tabuleiro-aneis board))
-	 (terco0 NIL)
-	 (terco1 NIL)
-	 (terco2 NIL))
+         (res NIL)
+         (anelMax (tabuleiro-aneis board))
+         (terco0 NIL)
+         (terco1 NIL)
+         (terco2 NIL))
     (dolist (pos (nth (1- (tabuleiro-aneis board)) board))
       (when (equal jogador pos)
-	(push (cons anelMax pecas) res)
-	(let ((terco (setor anelMax pecas)))
-	  (cond
-	    ((= terco 0)
-	      (setf terco0 T))
-	    ((= terco 1)
-	      (setf terco1 T))
-	    ((= terco 2)
-	      (setf terco2 T)))))
+        (push (cons anelMax pecas) res)
+        (let ((terco (setor anelMax pecas)))
+          (cond
+            ((= terco 0)
+              (setf terco0 T))
+            ((= terco 1)
+              (setf terco1 T))
+            ((= terco 2)
+              (setf terco2 T)))))
       (incf pecas))
     (if (and terco0 terco1 terco2)
       res
@@ -421,9 +421,9 @@
 ; Precorre o caminho ate encontrar 3 posicoes num anel exterior
 (defun path-eval (path nAneis)
   (let ((terco -1)
-	 (terco0 NIL)
-	 (terco1 NIL)
-	 (terco2 NIL))
+         (terco0 NIL)
+         (terco1 NIL)
+         (terco2 NIL))
     (dolist (pos path NIL)
       (when (equal (car pos) nAneis)
         (setf terco (setor (car pos) (cdr pos)))
@@ -471,32 +471,32 @@
           (setf terco0 NIL)
           (setf terco1 NIL)
           (setf terco2 NIL)
-	      (dolist (elem (cdr path))
-	        (when (equal (car elem) anelMax)
-	          (let ((terco (truncate (cdr elem) anelMax)))
-	            (cond
-	              ((and (= terco 0) (not terco0))
-	                (setf terco0 T))
-	              ((and (= terco 1) (not terco1))
-	                (setf terco1 T))
-	              ((and (= terco 2) (not terco2))
-	                (setf terco2 T))))
-	          (when (and terco0 terco1 terco2)
-	            (return-from check T))))))
+              (dolist (elem (cdr path))
+                (when (equal (car elem) anelMax)
+                  (let ((terco (truncate (cdr elem) anelMax)))
+                    (cond
+                      ((and (= terco 0) (not terco0))
+                        (setf terco0 T))
+                      ((and (= terco 1) (not terco1))
+                        (setf terco1 T))
+                      ((and (= terco 2) (not terco2))
+                        (setf terco2 T))))
+                  (when (and terco0 terco1 terco2)
+                    (return-from check T))))))
       NIL)))
 
 ; legal-moves (state) -> lista
 ; Retorna uma lista com todos os movimentos permitidos pelo jogo
 (defun legal-moves (state)
   (let ((tab (game-state-board state))
-	(anel 1)
-	(pos 0)
-	(res '()))
+        (anel 1)
+        (pos 0)
+        (res '()))
     (dolist (path tab)
       (dolist (elem path)
-	(when (equal elem '*)
-	  (push (cons anel pos) res))
-	(incf pos))
+        (when (equal elem '*)
+          (push (cons anel pos) res))
+        (incf pos))
       (setf pos 0)
       (incf anel))
     res))
@@ -505,8 +505,8 @@
 ; Internamente executa o movimento do jogador automatico
 (defun make-move (state move)
   (let ((anel (car move))
-	(pos (cdr move))
-	(player (get-current-player state))
+        (pos (cdr move))
+        (player (get-current-player state))
     (newPlayers (reverse (game-state-current-player state))))
     (make-game-state
      :board (tabuleiro-poe-peca (game-state-board state) player anel pos)
@@ -525,13 +525,13 @@
 ; Retorna os valores de estado para cada jogador
 (defun terminal-values (state)
   (mapcar #'(lambda (player) (getf (game-state-scores state) player))
-	  (game-state-players state)))
+          (game-state-players state)))
 
 ; game-successors (state) -> list
 ; Retorna a lista com par (move . state) que pode ser alcancado de cada estado.
 (defun game-successors (state)
   (mapcar #'(lambda (move) (cons move (make-move state move)))
-	  (legal-moves state)))
+          (legal-moves state)))
 
 
 
@@ -541,8 +541,8 @@
   (cond
     ((game-over-auto? state (get-current-player state)) (list *value-victory* *value-defeat*))
     ((game-over-auto? state (get-previous-player state)) (list *value-defeat* *value-victory*))
-	((<= limit 0) (funcall eval-fn state startplayer))
-	(t (right-rotate
+        ((<= limit 0) (funcall eval-fn state startplayer))
+        (t (right-rotate
       (the-biggest
         #'(lambda (values) (first (right-rotate values)))
         (mapcar
@@ -569,7 +569,7 @@
              (cond
                ((game-over-auto? state (get-current-player state)) (list *value-victory* *value-defeat*))
                ((game-over-auto? state (get-previous-player state)) (list *value-defeat* *value-victory*))
-	           ((<= limit 0) (funcall eval-fn state startplayer))
+                   ((<= limit 0) (funcall eval-fn state startplayer))
                (t (dolist (a+s (game-successors state)
                              (list alpha (- alpha)))
                      (setq alpha (max alpha
@@ -581,7 +581,7 @@
               (cond
                 ((game-over-auto? state (get-current-player state)) (list *value-victory* *value-defeat*))
                 ((game-over-auto? state (get-previous-player state)) (list *value-defeat* *value-victory*))
-	            ((<= limit 0) (funcall eval-fn state startplayer))
+                    ((<= limit 0) (funcall eval-fn state startplayer))
                 (t (dolist (a+s (game-successors state)
                              (list beta (- beta)))
                      (setq beta (max beta
@@ -676,23 +676,23 @@
       (let ((timeout (get-universal-time))
              (anel 0)
              (pos -1))
-	(block jogada
-	  (cond
-	    ((= (tabuleiro-aneis tabuleiro) aneis)
-	      (escreve "Anel")
-	      (setf anel (le-posicao))
-	      (escreve "Posicao")
+        (block jogada
+          (cond
+            ((= (tabuleiro-aneis tabuleiro) aneis)
+              (escreve "Anel")
+              (setf anel (le-posicao))
+              (escreve "Posicao")
        (when (not (equal tempo 0))
-	      (when (>= (- (get-universal-time) timeout) tempo)
-		  (escreve "Tempo expirado")
-		(return-from jogada T)))
-		(setf pos (le-posicao))
-	      (if (legal-move? tabuleiro anel pos)
-		(tabuleiro-poe-peca! tabuleiro peca anel pos)
-		(escreve-nl "Jogada invalida"))
-	      (escreve-tabuleiro tabuleiro))
-	    (t
-	      (escreve "Tabuleiro invalido para jogada")))))))
+              (when (>= (- (get-universal-time) timeout) tempo)
+                  (escreve "Tempo expirado")
+                (return-from jogada T)))
+                (setf pos (le-posicao))
+              (if (legal-move? tabuleiro anel pos)
+                (tabuleiro-poe-peca! tabuleiro peca anel pos)
+                (escreve-nl "Jogada invalida"))
+              (escreve-tabuleiro tabuleiro))
+            (t
+              (escreve "Tabuleiro invalido para jogada")))))))
 
 ; --------------------------------Funcoes auxiliares para Heuristicas (***) -----------------------------;
 ; evalPieces (state x startPlayer) -> lista (bonus x anti-bonus)
