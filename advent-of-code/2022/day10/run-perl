@@ -1,0 +1,3 @@
+#!/bin/sh
+# Usage: ./run-perl INPUT. The Perl version of this day.
+exec perl "$(dirname "$0")/solution.pl" "$@"
