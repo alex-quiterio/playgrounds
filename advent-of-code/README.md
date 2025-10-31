@@ -71,8 +71,8 @@ Advent of Code [asks](https://adventofcode.com/about) that puzzle inputs and puz
 
 | Year | Progress |
 | --- | --- |
-| [2019](2019) | Clojure: day 1 |
-| [2020](2020) | Clojure: day 1 |
+| [2019](2019) | Clojure: day 1, 2 stars |
+| [2020](2020) | Clojure: day 1, 2 stars |
 | [2021](2021) | Clojure: day 1 |
 | [2022](2022) | C (days 1-3, 7-10) and Perl (days 4-6, 9-10), 20 stars |
 | [2023](2023) | Ruby: all 25 days, 50 stars |

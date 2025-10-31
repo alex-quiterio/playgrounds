@@ -11,4 +11,4 @@ exec clojure -M "$(dirname "$0")/solution.clj" "$@"
 
 | Day | Puzzle | Language | Part 1 | Part 2 |
 | --- | --- | --- | --- | --- |
-| 1 | [Sonar Sweep](https://adventofcode.com/2021/day/1) | Clojure | | |
+| 1 | [Sonar Sweep](https://adventofcode.com/2021/day/1) | Clojure | ✅ | ✅ |
