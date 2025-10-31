@@ -1,0 +1,32 @@
+#!/bin/sh
+# Downloads your puzzle input into YEAR/dayNN/input.txt (gitignored).
+# Needs your adventofcode.com session cookie in AOC_SESSION.
+# Usage: AOC_SESSION=... bin/fetch-input DAY [YEAR]
+set -eu
+
+if [ $# -lt 1 ]; then
+    echo "usage: AOC_SESSION=... $0 DAY [YEAR]" >&2
+    exit 2
+fi
+if [ -z "${AOC_SESSION:-}" ]; then
+    echo "Set AOC_SESSION to the 'session' cookie from adventofcode.com" >&2
+    exit 2
+fi
+
+root="$(cd "$(dirname "$0")/.." && pwd)"
+day=$(printf '%d' "$1")
+year="${2:-$(date +%Y)}"
+dir="$root/$year/$(printf 'day%02d' "$day")"
+mkdir -p "$dir"
+
+if [ -s "$dir/input.txt" ]; then
+    echo "$dir/input.txt already exists; not downloading again"
+    exit 0
+fi
+
+curl --fail --silent --show-error \
+    --cookie "session=$AOC_SESSION" \
+    --user-agent "github.com/alex-quiterio/playgrounds advent-of-code/bin/fetch-input" \
+    --output "$dir/input.txt" \
+    "https://adventofcode.com/$year/day/$day/input"
+echo "Saved $dir/input.txt"

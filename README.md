@@ -19,6 +19,10 @@ Each one runs on its own and has its own tests.
 | [`prolog/oscares.pl`](prolog/oscares.pl) | Prolog | Queries over a film/Oscars database, a social-network search, and a tiny Portuguese question parser |
 | [`lisp/y_game.lisp`](lisp/y_game.lisp) | Common Lisp | The game of Y on a ring board, with a minimax / alpha-beta computer player |
 
+### Advent of Code
+
+[`advent-of-code`](advent-of-code) holds solutions to [Advent of Code](https://adventofcode.com), one folder per year and per day, in any language. Each day is an executable `run` that is checked against the puzzle's examples. See [its README](advent-of-code/README.md) for the workflow.
+
 ## Requirements
 
 | Language | Tool | macOS | Debian/Ubuntu |
@@ -35,7 +39,7 @@ From the repository root:
 
 ```sh
 make test          # everything
-make test-c        # one language: test-c, test-go, test-ruby, test-prolog, test-lisp
+make test-c        # one part: test-c, test-go, test-ruby, test-prolog, test-lisp, test-aoc
 make format        # clang-format for C, gofmt for Go
 ```
 

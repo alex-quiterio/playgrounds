@@ -1,0 +1,45 @@
+#!/bin/sh
+# Creates the folder for one Advent of Code day.
+# Usage: bin/new-day DAY [YEAR]     e.g. bin/new-day 3        bin/new-day 3 2026
+set -eu
+
+if [ $# -lt 1 ]; then
+    echo "usage: $0 DAY [YEAR]" >&2
+    exit 2
+fi
+
+root="$(cd "$(dirname "$0")/.." && pwd)"
+day=$(printf '%d' "$1")
+year="${2:-$(date +%Y)}"
+
+if [ "$day" -lt 1 ] || [ "$day" -gt 25 ]; then
+    echo "day must be between 1 and 25" >&2
+    exit 2
+fi
+
+dir="$root/$year/$(printf 'day%02d' "$day")"
+if [ -e "$dir" ]; then
+    echo "$dir already exists" >&2
+    exit 1
+fi
+
+mkdir -p "$dir"
+cat > "$dir/README.md" <<NOTES
+# Day $day
+
+Puzzle: https://adventofcode.com/$year/day/$day
+
+## Part 1
+
+## Part 2
+
+## Notes
+NOTES
+: > "$dir/example.txt"
+: > "$dir/example.expected"
+
+echo "Created $dir"
+echo "Next:"
+echo "  1. Paste the example from the puzzle into example.txt and its answer into example.expected"
+echo "  2. Write an executable 'run' that prints the part 1 answer, then the part 2 answer"
+echo "  3. bin/fetch-input $day $year && bin/check $year"

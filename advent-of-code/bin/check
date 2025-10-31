@@ -1,0 +1,65 @@
+#!/bin/sh
+# Runs every day's solution against its examples and compares the answers.
+#
+# For each YEAR/dayNN folder that has an executable `run`:
+#   - every example*.txt with a matching example*.expected is checked
+#   - input.txt is checked too when you saved your answers in input.expected
+# `run` is called from the day's folder as `./run FILE`. It must print the
+# part 1 answer on line 1 and the part 2 answer on line 2. Only the lines in
+# the .expected file are compared, so one line is enough while part 2 is open.
+#
+# Usage: bin/check [YEAR [DAY]]
+set -u
+
+root="$(cd "$(dirname "$0")/.." && pwd)"
+year="${1:-*}"
+day="${2:-}"
+if [ -n "$day" ]; then
+    pattern="$root/$year/$(printf 'day%02d' "$day")"
+else
+    pattern="$root/$year/day[0-9][0-9]"
+fi
+
+pass=0
+fail=0
+skip=0
+
+check_case() {
+    dir="$1"
+    input="$2"
+    expected="$3"
+    name="$(basename "$(dirname "$dir")")/$(basename "$dir") $(basename "$input")"
+    lines=$(grep -c '' "$expected")
+    if [ "$lines" -eq 0 ]; then
+        skip=$((skip + 1))
+        echo "skip $name (no expected answer yet)"
+        return
+    fi
+    if actual="$(cd "$dir" && ./run "$(basename "$input")" | head -n "$lines")" \
+        && [ "$actual" = "$(cat "$expected")" ]; then
+        pass=$((pass + 1))
+        echo "ok   $name"
+    else
+        fail=$((fail + 1))
+        echo "FAIL $name"
+        echo "$actual" | diff "$expected" - | sed 's/^/     /'
+    fi
+}
+
+for dir in $pattern; do
+    [ -d "$dir" ] || continue
+    if [ ! -x "$dir/run" ]; then
+        skip=$((skip + 1))
+        echo "skip $(basename "$(dirname "$dir")")/$(basename "$dir") (no executable run)"
+        continue
+    fi
+    for input in "$dir"/example*.txt "$dir"/input.txt; do
+        [ -f "$input" ] || continue
+        expected="${input%.txt}.expected"
+        [ -f "$expected" ] || continue
+        check_case "$dir" "$input" "$expected"
+    done
+done
+
+echo "$pass passed, $fail failed, $skip skipped"
+[ "$fail" -eq 0 ]

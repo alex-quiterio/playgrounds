@@ -3,9 +3,9 @@
 C_EXERCISES := c/cyk c/doubled-linked-lists c/rod
 RUBY_EXERCISES := ruby/backtracking-algos ruby/generational-algos
 
-.PHONY: test test-c test-go test-ruby test-prolog test-lisp format clean
+.PHONY: test test-c test-go test-ruby test-prolog test-lisp test-aoc format clean
 
-test: test-c test-go test-ruby test-prolog test-lisp
+test: test-c test-go test-ruby test-prolog test-lisp test-aoc
 
 test-c:
 	@for dir in $(C_EXERCISES); do echo "== $$dir"; $(MAKE) -s -C $$dir test || exit 1; done
@@ -21,6 +21,9 @@ test-prolog:
 
 test-lisp:
 	sbcl --script lisp/tests/y-game-test.lisp
+
+test-aoc:
+	advent-of-code/bin/check
 
 format:
 	clang-format -i $$(find c -name '*.[ch]')

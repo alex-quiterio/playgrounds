@@ -1,0 +1,3 @@
+# Advent of Code asks that puzzle inputs are not shared publicly.
+input*.txt
+input*.expected
