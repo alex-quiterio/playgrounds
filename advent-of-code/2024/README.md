@@ -4,7 +4,7 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2024` from `advent-
 
 | Day | Puzzle | Language | Part 1 | Part 2 |
 | --- | --- | --- | --- | --- |
-| 1 | [Historian Hysteria](https://adventofcode.com/2024/day/1) | | | |
+| 1 | [Historian Hysteria](https://adventofcode.com/2024/day/1) | Go | | |
 | 2 | [Red-Nosed Reports](https://adventofcode.com/2024/day/2) | | | |
 | 3 | [Mull It Over](https://adventofcode.com/2024/day/3) | | | |
 | 4 | [Ceres Search](https://adventofcode.com/2024/day/4) | | | |
