@@ -1,0 +1,2 @@
+#!/bin/sh
+exec perl "$(dirname "$0")/solution.pl" "$@"
