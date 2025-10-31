@@ -5,9 +5,11 @@ Solutions to [Advent of Code](https://adventofcode.com), one folder per year and
 ```text
 advent-of-code/
 ├── bin/
+│   ├── new-year       # create YEAR/README.md with a progress table
 │   ├── new-day        # create YEAR/dayNN from the template
 │   ├── fetch-input    # download your puzzle input (needs AOC_SESSION)
 │   └── check          # run every solution against its examples
+├── 2024/  2025/
 └── 2026/
     └── day01/
         ├── README.md          # puzzle link and notes
@@ -55,4 +57,8 @@ Advent of Code [asks](https://adventofcode.com/about) that puzzle inputs and puz
 
 | Year | Progress |
 | --- | --- |
+| [2024](2024) | not started |
+| [2025](2025) | not started |
 | [2026](2026) | not started |
+
+Add another year with `bin/new-year YEAR`. It writes the progress table: 25 days up to 2024, 12 from 2025 on.

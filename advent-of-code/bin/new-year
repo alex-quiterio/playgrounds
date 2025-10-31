@@ -1,0 +1,40 @@
+#!/bin/sh
+# Creates YEAR/README.md with a progress table for that year's puzzles.
+# Advent of Code had 25 puzzles a year until 2024, and 12 from 2025 on.
+# Usage: bin/new-year [YEAR]
+set -eu
+
+root="$(cd "$(dirname "$0")/.." && pwd)"
+year="${1:-$(date +%Y)}"
+dir="$root/$year"
+
+if [ -e "$dir/README.md" ]; then
+    echo "$dir/README.md already exists" >&2
+    exit 1
+fi
+
+if [ "$year" -ge 2025 ]; then
+    days=12
+    note="Since 2025, Advent of Code has 12 puzzles."
+else
+    days=25
+    note="This edition has 25 puzzles."
+fi
+
+mkdir -p "$dir"
+{
+    echo "# Advent of Code $year"
+    echo
+    echo "$note Start a day with \`bin/new-day N $year\` from \`advent-of-code/\`."
+    echo
+    echo "| Day | Puzzle | Language | Part 1 | Part 2 |"
+    echo "| --- | --- | --- | --- | --- |"
+    day=1
+    while [ "$day" -le "$days" ]; do
+        echo "| $day | [Day $day](https://adventofcode.com/$year/day/$day) | | | |"
+        day=$((day + 1))
+    done
+} > "$dir/README.md"
+
+echo "Created $dir/README.md ($days days)"
+echo "Add a row for $year to the Years table in advent-of-code/README.md"

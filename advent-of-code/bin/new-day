@@ -12,8 +12,10 @@ root="$(cd "$(dirname "$0")/.." && pwd)"
 day=$(printf '%d' "$1")
 year="${2:-$(date +%Y)}"
 
-if [ "$day" -lt 1 ] || [ "$day" -gt 25 ]; then
-    echo "day must be between 1 and 25" >&2
+# 25 puzzles a year until 2024, 12 from 2025 on
+if [ "$year" -ge 2025 ]; then last=12; else last=25; fi
+if [ "$day" -lt 1 ] || [ "$day" -gt "$last" ]; then
+    echo "day must be between 1 and $last for $year" >&2
     exit 2
 fi
 
