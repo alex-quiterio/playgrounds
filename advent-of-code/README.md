@@ -70,7 +70,7 @@ Advent of Code [asks](https://adventofcode.com/about) that puzzle inputs and puz
 
 | Year | Progress |
 | --- | --- |
-| [2024](2024) | Go: days 1-10 |
+| [2024](2024) | Go: all 25 days |
 | [2025](2025) | Common Lisp: all 12 days |
 | [2026](2026) | not started |
 
