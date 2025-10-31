@@ -5,7 +5,7 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2023` from `advent-
 | Day | Puzzle | Language | Part 1 | Part 2 |
 | --- | --- | --- | --- | --- |
 | 1 | [Trebuchet?!](https://adventofcode.com/2023/day/1) | Ruby |  |  |
-| 2 | [Cube Conundrum](https://adventofcode.com/2023/day/2) |  |  |  |
+| 2 | [Cube Conundrum](https://adventofcode.com/2023/day/2) | Ruby |  |  |
 | 3 | [Gear Ratios](https://adventofcode.com/2023/day/3) |  |  |  |
 | 4 | [Scratchcards](https://adventofcode.com/2023/day/4) |  |  |  |
 | 5 | [If You Give A Seed A Fertilizer](https://adventofcode.com/2023/day/5) |  |  |  |
