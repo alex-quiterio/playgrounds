@@ -1,0 +1,55 @@
+#!/bin/sh
+# Marks the solved parts in YEAR/README.md with a check mark.
+# Stars come from your adventofcode.com calendar when a session is available
+# (so days solved elsewhere count too); otherwise from the answers recorded in
+# each dayNN/input.expected by bin/submit.
+# Usage: bin/progress YEAR
+set -eu
+
+if [ -z "${AOC_SESSION:-}" ] && [ -f "$HOME/.config/aoc/session" ]; then
+    AOC_SESSION="$(tr -d '[:space:]' < "$HOME/.config/aoc/session")"
+fi
+if [ $# -lt 1 ]; then
+    echo "usage: $0 YEAR" >&2
+    exit 2
+fi
+
+root="$(cd "$(dirname "$0")/.." && pwd)"
+year="$1"
+calendar=""
+if [ -n "${AOC_SESSION:-}" ]; then
+    calendar="$(curl --fail --silent --show-error \
+        --cookie "session=$AOC_SESSION" \
+        --user-agent "github.com/alex-quiterio/playgrounds advent-of-code/bin/progress" \
+        "https://adventofcode.com/$year")" || calendar=""
+fi
+
+printf '%s' "$calendar" | python3 -I -c '
+import os, re, sys
+root, year = sys.argv[1], sys.argv[2]
+calendar = sys.stdin.read()
+stars = {}
+# The calendar labels each day "Day 3, one star" / "Day 3, two stars".
+for day, count in re.findall(r"aria-label=\"Day (\d+), (one|two) stars?\"", calendar):
+    stars[int(day)] = 1 if count == "one" else 2
+source = "calendar" if calendar else "input.expected"
+if not calendar:
+    for name in os.listdir(os.path.join(root, year)):
+        match = re.fullmatch(r"day(\d\d)", name)
+        path = os.path.join(root, year, name, "input.expected")
+        if match and os.path.exists(path):
+            answers = [l for l in open(path).read().splitlines()]
+            stars[int(match.group(1))] = sum(1 for a in answers[:2] if a.strip())
+readme = os.path.join(root, year, "README.md")
+lines = open(readme).read().split("\n")
+for i, line in enumerate(lines):
+    cells = [c.strip() for c in line.strip().strip("|").split("|")]
+    if len(cells) == 5 and cells[0].isdigit():
+        n = stars.get(int(cells[0]), 0)
+        p1 = "✅" if n >= 1 else ""
+        p2 = "✅" if n >= 2 else ""
+        lines[i] = f"| {cells[0]} | {cells[1]} | {cells[2]} | {p1} | {p2} |"
+open(readme, "w").write("\n".join(lines))
+total = sum(min(v, 2) for v in stars.values())
+print(f"{year}: {total} stars (from {source})")
+' "$root" "$year"

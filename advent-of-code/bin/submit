@@ -53,9 +53,11 @@ case "$message" in
     *"That's the right answer"*)
         record
         echo "$year day $day part $part: $answer is right"
+        "$bin/progress" "$year"
         ;;
     *"already complete it"*)
         echo "$year day $day part $part: already solved (answer not checked)"
+        "$bin/progress" "$year"
         ;;
     *)
         echo "$year day $day part $part: $answer was not accepted"

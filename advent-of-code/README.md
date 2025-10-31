@@ -10,6 +10,8 @@ advent-of-code/
 │   ├── fetch-puzzle   # save a puzzle's text as dayNN/puzzle.md (gitignored)
 │   ├── fetch-year     # fetch every puzzle of a year and fill in the titles
 │   ├── fetch-input    # download your puzzle input (needs AOC_SESSION)
+│   ├── submit         # submit an answer and record it when accepted
+│   ├── progress       # mark solved parts with ✅ in YEAR/README.md
 │   └── check          # run every solution against its examples
 ├── 2024/  2025/
 └── 2026/
@@ -48,7 +50,9 @@ bin/fetch-input 1              # saves 2026/day01/input.txt
 bin/check 2026                 # every day of 2026; bin/check 2026 1 for one day
 ```
 
-Once an answer is accepted, save it in `input.expected`. `bin/check` will then also re-check your real input, which is useful when you refactor.
+`bin/submit DAY YEAR PART` runs `./run input.txt` and submits that part's answer (or pass the answer as a fourth argument). When it is accepted, it is saved in `input.expected` and the year's table is updated. `bin/progress YEAR` refreshes the ✅ marks on its own. With a session it reads the stars from your calendar, so days solved elsewhere count too. Without one it uses `input.expected`.
+
+Once an answer is accepted, it lives in `input.expected`. `bin/check` will then also re-check your real input, which is useful when you refactor.
 
 From the repository root, `make test-aoc` runs `bin/check` for every year. CI runs the same command against the examples only, because inputs are never committed. CI runs on `ubuntu-latest`, which comes with Python, Ruby and Node, and the job also installs Go (for 2024) and SBCL (for 2025). If a day needs anything else, add a setup step to the `advent-of-code` job in [`.github/workflows/tests.yml`](../.github/workflows/tests.yml).
 
