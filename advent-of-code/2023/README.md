@@ -10,7 +10,7 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2023` from `advent-
 | 4 | [Scratchcards](https://adventofcode.com/2023/day/4) | Ruby | ✅ | ✅ |
 | 5 | [If You Give A Seed A Fertilizer](https://adventofcode.com/2023/day/5) | Ruby | ✅ | ✅ |
 | 6 | [Wait For It](https://adventofcode.com/2023/day/6) | Ruby |  |  |
-| 7 | [Camel Cards](https://adventofcode.com/2023/day/7) |  |  |  |
+| 7 | [Camel Cards](https://adventofcode.com/2023/day/7) | Ruby |  |  |
 | 8 | [Haunted Wasteland](https://adventofcode.com/2023/day/8) |  |  |  |
 | 9 | [Mirage Maintenance](https://adventofcode.com/2023/day/9) |  |  |  |
 | 10 | [Pipe Maze](https://adventofcode.com/2023/day/10) |  |  |  |
