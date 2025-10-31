@@ -1,0 +1,65 @@
+#!/bin/sh
+# Submits an answer and records it in input.expected when it is accepted.
+# With no ANSWER, runs ./run input.txt and submits that part's line.
+# Usage: bin/submit DAY YEAR PART [ANSWER]
+set -eu
+
+if [ -z "${AOC_SESSION:-}" ] && [ -f "$HOME/.config/aoc/session" ]; then
+    AOC_SESSION="$(tr -d '[:space:]' < "$HOME/.config/aoc/session")"
+fi
+if [ $# -lt 3 ]; then
+    echo "usage: $0 DAY YEAR PART [ANSWER]" >&2
+    exit 2
+fi
+if [ -z "${AOC_SESSION:-}" ]; then
+    echo "Set AOC_SESSION, or save it in ~/.config/aoc/session" >&2
+    exit 2
+fi
+
+bin="$(cd "$(dirname "$0")" && pwd)"
+root="$(dirname "$bin")"
+day=$(printf '%d' "$1")
+year="$2"
+part="$3"
+dir="$root/$year/$(printf 'day%02d' "$day")"
+
+if [ $# -ge 4 ]; then
+    answer="$4"
+else
+    answer="$(cd "$dir" && ./run input.txt | sed -n "${part}p")"
+fi
+if [ -z "$answer" ]; then
+    echo "no answer for part $part" >&2
+    exit 1
+fi
+
+response="$(curl --fail --silent --show-error \
+    --cookie "session=$AOC_SESSION" \
+    --user-agent "github.com/alex-quiterio/playgrounds advent-of-code/bin/submit" \
+    --data-urlencode "level=$part" --data-urlencode "answer=$answer" \
+    "https://adventofcode.com/$year/day/$day/answer")"
+message="$(printf '%s' "$response" | tr '\n' ' ' | sed -n 's:.*<article><p>\(.*\)</p></article>.*:\1:p' | sed 's/<[^>]*>//g')"
+
+record() {
+    expected="$dir/input.expected"
+    touch "$expected"
+    # Keep line PART in input.expected in sync with the accepted answer.
+    awk -v part="$part" -v answer="$answer" \
+        'NR == part { print answer; done = 1; next } { print } END { if (!done) { while (NR < part - 1) { print ""; NR++ } print answer } }' \
+        "$expected" > "$expected.tmp" && mv "$expected.tmp" "$expected"
+}
+
+case "$message" in
+    *"That's the right answer"*)
+        record
+        echo "$year day $day part $part: $answer is right"
+        ;;
+    *"already complete it"*)
+        echo "$year day $day part $part: already solved (answer not checked)"
+        ;;
+    *)
+        echo "$year day $day part $part: $answer was not accepted"
+        echo "$message" | fold -s -w 100
+        exit 1
+        ;;
+esac

@@ -48,6 +48,8 @@ check_case() {
 
 for dir in $pattern; do
     [ -d "$dir" ] || continue
+    # Folders with only a fetched puzzle.md are not started yet.
+    [ -f "$dir/README.md" ] || continue
     if [ ! -x "$dir/run" ]; then
         skip=$((skip + 1))
         echo "skip $(basename "$(dirname "$dir")")/$(basename "$dir") (no executable run)"
