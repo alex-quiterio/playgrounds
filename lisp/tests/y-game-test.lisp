@@ -14,14 +14,6 @@
        (push ',name *failed*)
        (format t "FAIL ~(~a~): ~a~%" ',name e))))
 
-(defvar *skipped* 0)
-
-(defmacro defknown-bug (name reason &body body)
-  "A test documenting a known bug: reported as skipped, never run."
-  (declare (ignore body))
-  `(progn (incf *skipped*)
-          (format t "skip ~(~a~): ~a~%" ',name ,reason)))
-
 (defun check (expected actual &optional (description ""))
   (unless (equal expected actual)
     (error "~a expected ~s, got ~s" description expected actual)))
@@ -172,18 +164,93 @@
     (setf (game-state-paths state) (transform-tab-path board))
     state))
 
+(defun state-of (board)
+  (let ((state (init-game-state (length board))))
+    (set-board board state)
+    (setf (game-state-nAneis state) (length board))
+    (setf (game-state-paths state) (transform-tab-path board))
+    state))
+
+(defun block-state ()
+  "O holds sides 0 and 1 of the outer ring and wins with (2 . 5) unless X takes it."
+  (state-of (list (list 'X 'X '*) (list 'O 'O 'O 'X '* '*))))
+
+(deftest make-move-hands-the-turn-to-the-other-player
+  (let* ((state (init-game-state 2))
+         (next (make-move state '(2 . 0)))
+         (after (make-move next '(2 . 1))))
+    (check 'O (get-current-player next))
+    (check 'X (tabuleiro-peca (get-board after) 2 0))
+    (check 'O (tabuleiro-peca (get-board after) 2 1))
+    (check 'X (get-current-player after))))
+
+(deftest search-does-not-mutate-the-state
+  (let ((state (near-win-state)))
+    (alpha-beta-decision state #'eval-f3 'X 3)
+    (check '(X O) (game-state-current-player state))
+    (check '((O O *) (X X X O * *)) (get-board state))))
+
 (deftest alpha-beta-returns-a-legal-move
+  (dolist (limit '(1 2 3 4))
+    (let ((move (alpha-beta-decision (state-of (faz-tabuleiro 2)) #'eval-f3 'O limit)))
+      (check t (not (null (legal-move-auto? move (state-of (faz-tabuleiro 2))))) "legal decision"))))
+
+(deftest alpha-beta-takes-the-winning-move-at-every-depth
+  (dolist (limit '(1 2 3 4 5))
+    (check '(2 . 5) (alpha-beta-decision (near-win-state) #'eval-f3 'X limit)
+           (format nil "depth ~a:" limit))))
+
+(deftest alpha-beta-blocks-the-opponents-winning-move
+  (dolist (limit '(2 3 4))
+    (check '(2 . 5) (alpha-beta-decision (block-state) #'eval-f3 'X limit)
+           (format nil "depth ~a:" limit))))
+
+(deftest alpha-beta-works-for-either-piece
+  ;; Same position with the pieces swapped: O must take (2 . 5).
+  (let ((state (state-of (list (list 'X 'X '*) (list 'O 'O 'O 'X '* '*)))))
+    (check '(2 . 5) (alpha-beta-decision state #'eval-f3 'O 1))))
+
+(deftest minimax-takes-the-winning-move
   (dolist (limit '(1 2 3))
-    (let* ((state (near-win-state))
-           (move (alpha-beta-decision state #'eval-f3 'X limit)))
-      (check t (not (null (legal-move-auto? move (near-win-state)))) "legal decision"))))
+    (check '(2 . 5) (minimax-cutoff-decision (near-win-state) #'eval-f3 limit 'X)
+           (format nil "depth ~a:" limit))))
 
-(deftest alpha-beta-finds-the-win-at-depth-3
-  (check '(2 . 5) (alpha-beta-decision (near-win-state) #'eval-f3 'X 3)))
+(deftest alpha-beta-and-minimax-agree-on-the-value
+  (dolist (board (list (faz-tabuleiro 2)
+                       (list (list 'X '* '*) (list '* 'O '* '* '* '*))
+                       (list (list 'X 'X '*) (list 'O 'O 'O 'X '* '*))))
+    (dolist (player '(X O))
+      (dolist (limit '(1 2 3))
+        (let ((root (root-state (state-of board) player)))
+          (check (minimax-cutoff-value root #'eval-f3 limit player)
+                 (alpha-beta-value root minus-infinity infinity #'eval-f3 limit player)
+                 (format nil "~a ~a depth ~a:" board player limit)))))))
 
-(defknown-bug alpha-beta-finds-the-win-at-shallow-depth
-  "alpha-beta-decision picks (2 . 4) instead of the winning (2 . 5) at depth 1 and 2"
-  (check '(2 . 5) (alpha-beta-decision (near-win-state) #'eval-f3 'X 1)))
+;;; Automatic player
 
-(format t "~a passed, ~a failed, ~a skipped~%" *passed* (length *failed*) *skipped*)
+(defun quietly (thunk)
+  (let ((*standard-output* (make-broadcast-stream)))
+    (funcall thunk)))
+
+(deftest automatic-player-moves-on-an-almost-full-board
+  ;; Only one cell left: the player must still find a move.
+  (let ((board (list (list '* 'X 'O) (list 'O 'X 'X 'X 'O 'O))))
+    (quietly (lambda () (funcall (faz-jogador-automatico 2 'O 1) board)))
+    (check 'O (tabuleiro-peca board 1 0))))
+
+(deftest automatic-player-takes-the-win
+  (let ((board (list (list 'O 'O '*) (list 'X 'X 'X 'O '* '*))))
+    (quietly (lambda () (funcall (faz-jogador-automatico 2 'X 1) board)))
+    (check 'X (tabuleiro-peca board 2 5))
+    (check 2 (game-over? board 'X))))
+
+(deftest automatic-players-finish-a-game
+  (dolist (rings '(2 3))
+    (let ((result (quietly (lambda ()
+                             (executa-jogo rings #'faz-jogador-automatico #'faz-jogador-automatico 1)))))
+      (check 2 (length result) (format nil "~a rings:" rings))
+      (dolist (game result)
+        (check t (tabuleiro-p (third game)) "final board")))))
+
+(format t "~a passed, ~a failed~%" *passed* (length *failed*))
 (sb-ext:exit :code (if *failed* 1 0))

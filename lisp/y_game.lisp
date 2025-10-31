@@ -506,12 +506,12 @@
 (defun make-move (state move)
   (let ((anel (car move))
         (pos (cdr move))
-        (player (get-current-player state))
-    (newPlayers (reverse (game-state-current-player state))))
+        (player (get-current-player state)))
     (make-game-state
      :board (tabuleiro-poe-peca (game-state-board state) player anel pos)
      :nAneis (game-state-nAneis state)
-     :players newPlayers
+     :players (game-state-players state)
+     :current-player (reverse (game-state-current-player state))
      :scores (game-state-scores state)
      :times (game-state-times state)
      :terminal? NIL
@@ -535,66 +535,86 @@
 
 
 
+;---------------------------- Funcoes auxiliares de procura ---------------------------;
+; other-player (player) -> player
+(defun other-player (player)
+  (if (equal player 'X) 'O 'X))
+
+; root-state (state x player) -> state
+; Copia o estado com player como jogador a jogar
+(defun root-state (state player)
+  (let ((root (copy-game-state state)))
+    (setf (game-state-current-player root) (list player (other-player player)))
+    root))
+
+; search-value (state x eval-fn x limit x startplayer) -> numero ou NIL
+; Valor de um estado terminal ou no limite, do ponto de vista de startplayer.
+; Retorna NIL se a procura deve continuar.
+; Vitorias mais rapidas (limit maior) valem mais, derrotas mais rapidas valem menos.
+(defun search-value (state eval-fn limit startplayer)
+  (let ((moved (get-previous-player state)))
+    (cond
+      ((equal 2 (game-over? (get-board state) moved))
+        (if (equal moved startplayer)
+          (+ *value-victory* limit)
+          (- *value-defeat* limit)))
+      ((null (legal-moves state)) 0)
+      ((<= limit 0)
+        (let ((values (funcall eval-fn state startplayer)))
+          (if (equal startplayer (get-current-player state))
+            (first values)
+            (second values))))
+      (t nil))))
+
+; best-successor (state x value-fn) -> accao
+; Retorna a accao cujo sucessor tem o maior valor segundo value-fn
+(defun best-successor (state value-fn)
+  (car (the-biggest #'(lambda (a+s) (funcall value-fn (cdr a+s)))
+                    (game-successors state))))
+
 ;-------------------------- Minimax with Cutoff ---------------------------;
-; minimax-cutoff-value (state x eval-fn x limit x startplayer) -> accao
+; minimax-cutoff-value (state x eval-fn x limit x startplayer) -> valor
 (defun minimax-cutoff-value (state eval-fn limit startplayer)
-  (cond
-    ((game-over-auto? state (get-current-player state)) (list *value-victory* *value-defeat*))
-    ((game-over-auto? state (get-previous-player state)) (list *value-defeat* *value-victory*))
-        ((<= limit 0) (funcall eval-fn state startplayer))
-        (t (right-rotate
-      (the-biggest
-        #'(lambda (values) (first (right-rotate values)))
-        (mapcar
-          #'(lambda (a+s)
-              (swap-current-player (cdr a+s))
-              (minimax-cutoff-value (cdr a+s) eval-fn (- limit 1) startplayer))
-          (game-successors state)))))))
+  (or (search-value state eval-fn limit startplayer)
+      (let ((values (mapcar #'(lambda (a+s)
+                                (minimax-cutoff-value (cdr a+s) eval-fn (- limit 1) startplayer))
+                            (game-successors state))))
+        (if (equal startplayer (get-current-player state))
+          (reduce #'max values)
+          (reduce #'min values)))))
 
 ; minimax-cutoff-decision (state x eval-fn x limit x startplayer) -> accao
-; Retorna a melhor accao de acordo com a avaliacao de os ramos ate ao limite
+; Retorna a melhor accao para startplayer, procurando ate limit jogadas
 (defun minimax-cutoff-decision (state eval-fn limit startplayer)
-  (swap-current-player state)
-  (car (the-biggest
-        #'(lambda (a+s)
-            (first (right-rotate
-                    (minimax-cutoff-value (cdr a+s) eval-fn (- limit 1) startplayer))))
-        (game-successors state))))
+  (best-successor (root-state state startplayer)
+                  #'(lambda (next) (minimax-cutoff-value next eval-fn (- limit 1) startplayer))))
 
 ;---------------------------- Procura Alpha-Beta ---------------------------------------------;
-;alpha-beta-decision (state x eval-fn x startplayer x &optional limit) -> melhor estimativa accao
-; retorna a estimativa da melhor acao aplicando a EVAL-FN
+; alpha-beta-value (state x alpha x beta x eval-fn x limit x startplayer) -> valor
+; Minimax com cortes alfa-beta, do ponto de vista de startplayer
+(defun alpha-beta-value (state alpha beta eval-fn limit startplayer)
+  (or (search-value state eval-fn limit startplayer)
+      (if (equal startplayer (get-current-player state))
+        (dolist (a+s (game-successors state) alpha)
+          (setf alpha (max alpha (alpha-beta-value (cdr a+s) alpha beta eval-fn (- limit 1) startplayer)))
+          (when (>= alpha beta)
+            (return alpha)))
+        (dolist (a+s (game-successors state) beta)
+          (setf beta (min beta (alpha-beta-value (cdr a+s) alpha beta eval-fn (- limit 1) startplayer)))
+          (when (<= beta alpha)
+            (return beta))))))
+
+; alpha-beta-decision (state x eval-fn x startplayer x &optional limit) -> accao
+; Retorna a melhor accao para startplayer, procurando ate limit jogadas
 (defun alpha-beta-decision (state eval-fn startplayer &optional (limit 4))
-  (labels ((alpha-value (state alpha beta eval-fn limit startplayer)
-             (cond
-               ((game-over-auto? state (get-current-player state)) (list *value-victory* *value-defeat*))
-               ((game-over-auto? state (get-previous-player state)) (list *value-defeat* *value-victory*))
-                   ((<= limit 0) (funcall eval-fn state startplayer))
-               (t (dolist (a+s (game-successors state)
-                             (list alpha (- alpha)))
-                     (setq alpha (max alpha
-                                   (first (right-rotate
-                                            (beta-value (cdr a+s) alpha beta eval-fn (- limit 1) startplayer)))))
-                     (when (>= alpha (- beta))
-                       (return (list (- beta) beta)))))))
-            (beta-value (state alpha beta eval-fn limit startplayer)
-              (cond
-                ((game-over-auto? state (get-current-player state)) (list *value-victory* *value-defeat*))
-                ((game-over-auto? state (get-previous-player state)) (list *value-defeat* *value-victory*))
-                    ((<= limit 0) (funcall eval-fn state startplayer))
-                (t (dolist (a+s (game-successors state)
-                             (list beta (- beta)))
-                     (setq beta (max beta
-                                  (first (right-rotate
-                                           (alpha-value (cdr a+s) alpha beta eval-fn (- limit 1) startplayer)))))
-                     (when (>= beta (- alpha))
-                       (return (list (- alpha) alpha))))))))
-    (swap-current-player state)
-    (car (the-biggest
-      #'(lambda (a+s)
-          (first (right-rotate
-                  (alpha-value (cdr a+s) minus-infinity minus-infinity eval-fn (- limit 1) startplayer))))
-        (game-successors state)))))
+  (let ((root (root-state state startplayer))
+        (best-move nil)
+        (alpha minus-infinity))
+    (dolist (a+s (game-successors root) best-move)
+      (let ((value (alpha-beta-value (cdr a+s) alpha infinity eval-fn (- limit 1) startplayer)))
+        (when (or (null best-move) (> value alpha))
+          (setf alpha value
+                best-move (car a+s)))))))
 
 ; --------------------- Funcoes de execucao do Jogo Y ---------------------------------- ;
 
@@ -812,8 +832,7 @@
 
 ; jogador automatico
 (defun faz-jogador-automatico (aneis peca tempo)
-  (let ((moveN 0)
-        (maxlimit (nPosicoes aneis)))
+  (let ((moveN 0))
     #'(lambda (tabuleiro)
         (let ((state (init-game-state aneis))
                (decision '())
@@ -827,17 +846,19 @@
           (setf (game-state-nAneis state) (tabuleiro-aneis tabuleiro))
           (cond
             ((equal 0 tempo)
-              (setf limit (- maxLimit moveN))
+              (setf limit (length (legal-moves state)))
               (setf decision (alpha-beta-decision state #'eval-f3 peca limit)))
             (t
+              ;; Iterative deepening: always search one ply, then go deeper while time allows.
+              (setf decision (alpha-beta-decision state #'eval-f3 peca limit))
               (loop while (and
-                            (< limit (- maxLimit moveN))
+                            (< limit (length (legal-moves state)))
                             (time-available? (* tempo internal-time-units-per-second) time-out moveN iterTime))
                 do
+                (incf limit)
                 (setf time1 (get-internal-real-time))
                 (setf decision (alpha-beta-decision state #'eval-f3 peca limit))
                 (setf time2 (get-internal-real-time))
-                (incf limit)
                 (incf time-out (setf iterTime (- time2 time1))))))
                 (escreve "Anel =")
               (print-var (car decision))

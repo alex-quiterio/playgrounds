@@ -114,13 +114,7 @@ swipl tests/fixtures.pl oscares.pl
 ```sh
 cd lisp
 sbcl --load y_game.lisp
-* (executa-jogo 3 #'faz-jogador-manual #'faz-jogador-automatico 0)
+* (executa-jogo 3 #'faz-jogador-manual #'faz-jogador-automatico 5)
 ```
 
-The arguments are the number of rings, player A, player B, and the time limit per move in seconds (`0` means no limit).
-
-## Known issues
-
-This is a bug in the exercise itself. It is covered by a test that is **skipped** for now; un-skip it once the bug is fixed.
-
-- **`lisp/y_game.lisp`**: `alpha-beta-decision` misses a winning move that is one turn away when the search depth is 1 or 2.
+The arguments are the number of rings, player A, player B, and the time limit per move in seconds. The computer player searches deeper and deeper (alpha-beta) until it runs out of time. With a limit of `0` it searches every remaining move, which is only practical on 2 rings.
