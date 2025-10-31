@@ -9,9 +9,9 @@ This edition has 25 puzzles; only days 1-6 are set up here. Start a day with `bi
 
 | Day | Puzzle | Language | Part 1 | Part 2 |
 | --- | --- | --- | --- | --- |
-| 1 | [Calorie Counting](https://adventofcode.com/2022/day/1) | C |  |  |
-| 2 | [Rock Paper Scissors](https://adventofcode.com/2022/day/2) | C |  |  |
-| 3 | [Rucksack Reorganization](https://adventofcode.com/2022/day/3) | C |  |  |
-| 4 | [Camp Cleanup](https://adventofcode.com/2022/day/4) | Perl |  |  |
-| 5 | [Supply Stacks](https://adventofcode.com/2022/day/5) | Perl |  |  |
-| 6 | [Tuning Trouble](https://adventofcode.com/2022/day/6) | Perl |  |  |
+| 1 | [Calorie Counting](https://adventofcode.com/2022/day/1) | C | ✅ | ✅ |
+| 2 | [Rock Paper Scissors](https://adventofcode.com/2022/day/2) | C | ✅ | ✅ |
+| 3 | [Rucksack Reorganization](https://adventofcode.com/2022/day/3) | C | ✅ | ✅ |
+| 4 | [Camp Cleanup](https://adventofcode.com/2022/day/4) | Perl | ✅ | ✅ |
+| 5 | [Supply Stacks](https://adventofcode.com/2022/day/5) | Perl | ✅ | ✅ |
+| 6 | [Tuning Trouble](https://adventofcode.com/2022/day/6) | Perl | ✅ | ✅ |
