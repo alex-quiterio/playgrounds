@@ -14,11 +14,11 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2023` from `advent-
 | 8 | [Haunted Wasteland](https://adventofcode.com/2023/day/8) | Ruby | ✅ | ✅ |
 | 9 | [Mirage Maintenance](https://adventofcode.com/2023/day/9) | Ruby | ✅ | ✅ |
 | 10 | [Pipe Maze](https://adventofcode.com/2023/day/10) | Ruby | ✅ | ✅ |
-| 11 | [Cosmic Expansion](https://adventofcode.com/2023/day/11) | Ruby |  |  |
-| 12 | [Hot Springs](https://adventofcode.com/2023/day/12) | Ruby |  |  |
-| 13 | [Point of Incidence](https://adventofcode.com/2023/day/13) | Ruby |  |  |
-| 14 | [Parabolic Reflector Dish](https://adventofcode.com/2023/day/14) | Ruby |  |  |
-| 15 | [Lens Library](https://adventofcode.com/2023/day/15) | Ruby |  |  |
+| 11 | [Cosmic Expansion](https://adventofcode.com/2023/day/11) | Ruby | ✅ | ✅ |
+| 12 | [Hot Springs](https://adventofcode.com/2023/day/12) | Ruby | ✅ | ✅ |
+| 13 | [Point of Incidence](https://adventofcode.com/2023/day/13) | Ruby | ✅ | ✅ |
+| 14 | [Parabolic Reflector Dish](https://adventofcode.com/2023/day/14) | Ruby | ✅ | ✅ |
+| 15 | [Lens Library](https://adventofcode.com/2023/day/15) | Ruby | ✅ | ✅ |
 | 16 | [The Floor Will Be Lava](https://adventofcode.com/2023/day/16) |  |  |  |
 | 17 | [Clumsy Crucible](https://adventofcode.com/2023/day/17) |  |  |  |
 | 18 | [Lavaduct Lagoon](https://adventofcode.com/2023/day/18) |  |  |  |
