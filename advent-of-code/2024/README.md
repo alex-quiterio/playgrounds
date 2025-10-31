@@ -9,7 +9,7 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2024` from `advent-
 | 3 | [Mull It Over](https://adventofcode.com/2024/day/3) | Go | | |
 | 4 | [Ceres Search](https://adventofcode.com/2024/day/4) | Go | | |
 | 5 | [Print Queue](https://adventofcode.com/2024/day/5) | Go | | |
-| 6 | [Guard Gallivant](https://adventofcode.com/2024/day/6) | | | |
+| 6 | [Guard Gallivant](https://adventofcode.com/2024/day/6) | Go | | |
 | 7 | [Bridge Repair](https://adventofcode.com/2024/day/7) | | | |
 | 8 | [Resonant Collinearity](https://adventofcode.com/2024/day/8) | | | |
 | 9 | [Disk Fragmenter](https://adventofcode.com/2024/day/9) | | | |
