@@ -21,7 +21,7 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2023` from `advent-
 | 15 | [Lens Library](https://adventofcode.com/2023/day/15) | Ruby | ✅ | ✅ |
 | 16 | [The Floor Will Be Lava](https://adventofcode.com/2023/day/16) | Ruby |  |  |
 | 17 | [Clumsy Crucible](https://adventofcode.com/2023/day/17) | Ruby |  |  |
-| 18 | [Lavaduct Lagoon](https://adventofcode.com/2023/day/18) |  |  |  |
+| 18 | [Lavaduct Lagoon](https://adventofcode.com/2023/day/18) | Ruby |  |  |
 | 19 | [Aplenty](https://adventofcode.com/2023/day/19) |  |  |  |
 | 20 | [Pulse Propagation](https://adventofcode.com/2023/day/20) |  |  |  |
 | 21 | [Step Counter](https://adventofcode.com/2023/day/21) |  |  |  |
