@@ -1,3 +1,6 @@
 # Advent of Code asks that puzzle inputs are not shared publicly.
 input*.txt
 input*.expected
+
+# Puzzle text is not ours to publish either; bin/fetch-puzzle saves it locally.
+puzzle.md

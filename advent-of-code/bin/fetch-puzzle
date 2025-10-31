@@ -1,0 +1,37 @@
+#!/bin/sh
+# Saves a day's puzzle text as YEAR/dayNN/puzzle.md (gitignored) and prints its title.
+# Without AOC_SESSION you get part 1. With it, you also get part 2 once part 1 is solved.
+# Usage: [AOC_SESSION=...] bin/fetch-puzzle DAY [YEAR]
+set -eu
+
+# The session cookie comes from AOC_SESSION, or else from ~/.config/aoc/session.
+if [ -z "${AOC_SESSION:-}" ] && [ -f "$HOME/.config/aoc/session" ]; then
+    AOC_SESSION="$(tr -d '[:space:]' < "$HOME/.config/aoc/session")"
+fi
+
+if [ $# -lt 1 ]; then
+    echo "usage: [AOC_SESSION=...] $0 DAY [YEAR]" >&2
+    exit 2
+fi
+
+bin="$(cd "$(dirname "$0")" && pwd)"
+root="$(dirname "$bin")"
+day=$(printf '%d' "$1")
+year="${2:-$(date +%Y)}"
+dir="$root/$year/$(printf 'day%02d' "$day")"
+url="https://adventofcode.com/$year/day/$day"
+
+page="$(curl --fail --silent --show-error \
+    ${AOC_SESSION:+--cookie "session=$AOC_SESSION"} \
+    --user-agent "github.com/alex-quiterio/playgrounds advent-of-code/bin/fetch-puzzle" \
+    "$url")"
+markdown="$(printf '%s' "$page" | python3 -I "$bin/puzzle_to_markdown.py")"
+title="$(printf '%s\n' "$markdown" | head -n 1)"
+
+mkdir -p "$dir"
+{
+    echo "<!-- $url (not committed: Advent of Code asks that puzzle text is not shared) -->"
+    printf '%s\n' "$markdown" | tail -n +2
+} > "$dir/puzzle.md"
+
+echo "$title"

@@ -20,7 +20,7 @@ if [ "$day" -lt 1 ] || [ "$day" -gt "$last" ]; then
 fi
 
 dir="$root/$year/$(printf 'day%02d' "$day")"
-if [ -e "$dir" ]; then
+if [ -e "$dir/README.md" ]; then
     echo "$dir already exists" >&2
     exit 1
 fi
@@ -39,6 +39,11 @@ Puzzle: https://adventofcode.com/$year/day/$day
 NOTES
 : > "$dir/example.txt"
 : > "$dir/example.expected"
+if [ -f "$dir/puzzle.md" ]; then
+    # Use the first example block of the puzzle text (from bin/fetch-puzzle).
+    awk '/^```text$/ { inside = 1; next } inside && /^```$/ { exit } inside { print }' \
+        "$dir/puzzle.md" > "$dir/example.txt"
+fi
 
 echo "Created $dir"
 echo "Next:"

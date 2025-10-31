@@ -4,12 +4,17 @@
 # Usage: AOC_SESSION=... bin/fetch-input DAY [YEAR]
 set -eu
 
+# The session cookie comes from AOC_SESSION, or else from ~/.config/aoc/session.
+if [ -z "${AOC_SESSION:-}" ] && [ -f "$HOME/.config/aoc/session" ]; then
+    AOC_SESSION="$(tr -d '[:space:]' < "$HOME/.config/aoc/session")"
+fi
+
 if [ $# -lt 1 ]; then
     echo "usage: AOC_SESSION=... $0 DAY [YEAR]" >&2
     exit 2
 fi
 if [ -z "${AOC_SESSION:-}" ]; then
-    echo "Set AOC_SESSION to the 'session' cookie from adventofcode.com" >&2
+    echo "Set AOC_SESSION, or save it in ~/.config/aoc/session: the 'session' cookie from adventofcode.com" >&2
     exit 2
 fi
 

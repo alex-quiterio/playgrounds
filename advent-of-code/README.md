@@ -7,12 +7,15 @@ advent-of-code/
 ├── bin/
 │   ├── new-year       # create YEAR/README.md with a progress table
 │   ├── new-day        # create YEAR/dayNN from the template
+│   ├── fetch-puzzle   # save a puzzle's text as dayNN/puzzle.md (gitignored)
+│   ├── fetch-year     # fetch every puzzle of a year and fill in the titles
 │   ├── fetch-input    # download your puzzle input (needs AOC_SESSION)
 │   └── check          # run every solution against its examples
 ├── 2024/  2025/
 └── 2026/
     └── day01/
         ├── README.md          # puzzle link and notes
+        ├── puzzle.md          # puzzle text (gitignored)
         ├── run                # your solution: any executable
         ├── example.txt        # example input from the puzzle text
         ├── example.expected   # the example's answers
@@ -48,6 +51,12 @@ bin/check 2026                 # every day of 2026; bin/check 2026 1 for one day
 Once an answer is accepted, save it in `input.expected`. `bin/check` will then also re-check your real input, which is useful when you refactor.
 
 From the repository root, `make test-aoc` runs `bin/check` for every year. CI runs the same command against the examples only, because inputs are never committed. CI runs on `ubuntu-latest`, which comes with Python, Ruby, Go and Node. If a day needs anything else, add a setup step to the `advent-of-code` job in [`.github/workflows/tests.yml`](../.github/workflows/tests.yml).
+
+## Puzzle text
+
+`bin/fetch-year 2024` saves every puzzle as `dayNN/puzzle.md` and writes the titles into `2024/README.md`. `bin/fetch-puzzle DAY YEAR` does one day. Without a session you only get part 1. With one, you also get part 2 for the days you have solved. Fetch again after solving part 1. `bin/new-day` fills `example.txt` from the first example in `puzzle.md`. Puzzle text is gitignored as well.
+
+The session cookie is read from `AOC_SESSION`, or from `~/.config/aoc/session` when that variable is not set.
 
 ## Inputs
 

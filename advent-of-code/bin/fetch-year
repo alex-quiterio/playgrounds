@@ -1,0 +1,40 @@
+#!/bin/sh
+# Fetches every puzzle of a year: saves each puzzle.md and puts the titles in YEAR/README.md.
+# Waits between requests to go easy on the server.
+# Usage: [AOC_SESSION=...] bin/fetch-year YEAR
+set -eu
+
+if [ $# -lt 1 ]; then
+    echo "usage: [AOC_SESSION=...] $0 YEAR" >&2
+    exit 2
+fi
+
+bin="$(cd "$(dirname "$0")" && pwd)"
+root="$(dirname "$bin")"
+year="$1"
+readme="$root/$year/README.md"
+if [ "$year" -ge 2025 ]; then last=12; else last=25; fi
+
+[ -f "$readme" ] || "$bin/new-year" "$year" >/dev/null
+
+day=1
+while [ "$day" -le "$last" ]; do
+    if ! title="$("$bin/fetch-puzzle" "$day" "$year" 2>/dev/null)"; then
+        echo "day $day: not available yet, stopping"
+        break
+    fi
+    echo "day $day: $title"
+    # "Day 1: Historian Hysteria" -> "Historian Hysteria"
+    name="$(printf '%s' "$title" | sed 's/^Day [0-9]*: //')"
+    python3 -I - "$readme" "$year" "$day" "$name" <<'PY'
+import re, sys
+path, year, day, name = sys.argv[1:]
+url = f"https://adventofcode.com/{year}/day/{day}"
+text = open(path).read()
+text = re.sub(rf"^\| {day} \| \[[^\]]*\]\({re.escape(url)}\) \|",
+              f"| {day} | [{name}]({url}) |", text, flags=re.M)
+open(path, "w").write(text)
+PY
+    day=$((day + 1))
+    if [ "$day" -le "$last" ]; then sleep 2; fi
+done
