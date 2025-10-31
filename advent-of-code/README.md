@@ -13,7 +13,7 @@ advent-of-code/
 │   ├── submit         # submit an answer and record it when accepted
 │   ├── progress       # mark solved parts with ✅ in YEAR/README.md
 │   └── check          # run every solution against its examples
-├── 2023/  2024/
+├── 2022/  2023/  2024/
 └── 2025/
     └── day01/
         ├── README.md          # puzzle link and notes
@@ -71,6 +71,7 @@ Advent of Code [asks](https://adventofcode.com/about) that puzzle inputs and puz
 
 | Year | Progress |
 | --- | --- |
+| [2022](2022) | C: not started (days 1-3 set up) |
 | [2023](2023) | Ruby: all 25 days, 50 stars |
 | [2024](2024) | Go: all 25 days, 50 stars |
 | [2025](2025) | Common Lisp: all 12 days, 24 stars |
