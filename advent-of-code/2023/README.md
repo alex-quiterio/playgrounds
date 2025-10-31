@@ -4,11 +4,11 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2023` from `advent-
 
 | Day | Puzzle | Language | Part 1 | Part 2 |
 | --- | --- | --- | --- | --- |
-| 1 | [Trebuchet?!](https://adventofcode.com/2023/day/1) | Ruby |  |  |
-| 2 | [Cube Conundrum](https://adventofcode.com/2023/day/2) | Ruby |  |  |
-| 3 | [Gear Ratios](https://adventofcode.com/2023/day/3) | Ruby |  |  |
-| 4 | [Scratchcards](https://adventofcode.com/2023/day/4) | Ruby |  |  |
-| 5 | [If You Give A Seed A Fertilizer](https://adventofcode.com/2023/day/5) | Ruby |  |  |
+| 1 | [Trebuchet?!](https://adventofcode.com/2023/day/1) | Ruby | ✅ | ✅ |
+| 2 | [Cube Conundrum](https://adventofcode.com/2023/day/2) | Ruby | ✅ | ✅ |
+| 3 | [Gear Ratios](https://adventofcode.com/2023/day/3) | Ruby | ✅ | ✅ |
+| 4 | [Scratchcards](https://adventofcode.com/2023/day/4) | Ruby | ✅ | ✅ |
+| 5 | [If You Give A Seed A Fertilizer](https://adventofcode.com/2023/day/5) | Ruby | ✅ | ✅ |
 | 6 | [Wait For It](https://adventofcode.com/2023/day/6) |  |  |  |
 | 7 | [Camel Cards](https://adventofcode.com/2023/day/7) |  |  |  |
 | 8 | [Haunted Wasteland](https://adventofcode.com/2023/day/8) |  |  |  |
