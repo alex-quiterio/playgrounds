@@ -25,7 +25,7 @@ This edition has 25 puzzles; only days 1-19 are set up here. Start a day with `b
 | 13 | [Distress Signal](https://adventofcode.com/2022/day/13) | Perl | ✅ | ✅ |
 | 14 | [Regolith Reservoir](https://adventofcode.com/2022/day/14) | C | ✅ | ✅ |
 | 15 | [Beacon Exclusion Zone](https://adventofcode.com/2022/day/15) | C | ✅ | ✅ |
-| 16 | [Proboscidea Volcanium](https://adventofcode.com/2022/day/16) | C |  |  |
-| 17 | [Pyroclastic Flow](https://adventofcode.com/2022/day/17) | C |  |  |
-| 18 | [Boiling Boulders](https://adventofcode.com/2022/day/18) | Perl |  |  |
-| 19 | [Not Enough Minerals](https://adventofcode.com/2022/day/19) | C |  |  |
+| 16 | [Proboscidea Volcanium](https://adventofcode.com/2022/day/16) | C | ✅ | ✅ |
+| 17 | [Pyroclastic Flow](https://adventofcode.com/2022/day/17) | C | ✅ | ✅ |
+| 18 | [Boiling Boulders](https://adventofcode.com/2022/day/18) | Perl | ✅ | ✅ |
+| 19 | [Not Enough Minerals](https://adventofcode.com/2022/day/19) | C | ✅ | ✅ |
