@@ -1,0 +1,2 @@
+#!/bin/sh
+exec sbcl --script "$(dirname "$0")/solution.lisp" "$@"
