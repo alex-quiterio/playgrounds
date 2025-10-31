@@ -55,10 +55,7 @@ func TestWaterRetainedExamples(t *testing.T) {
 	}
 }
 
-// Known bug: the local-maximum pairing misses puddles whose walls are not
-// adjacent local maxima, so these profiles are under-counted.
-func TestWaterRetainedKnownFailures(t *testing.T) {
-	t.Skip("known bug: findPuddles under-counts some profiles; see cases below")
+func TestWaterRetainedRegressions(t *testing.T) {
 	cases := []struct {
 		montain []int
 		want    int
@@ -68,6 +65,9 @@ func TestWaterRetainedKnownFailures(t *testing.T) {
 		{[]int{6, 3, 8, 3, 1, 3}, 5},
 		{[]int{5, 2, 8, 6, 3, 6, 3, 3, 4, 2}, 8},
 		{[]int{2, 6, 8, 1, 2, 1, 3, 8, 4, 4}, 25},
+		{[]int{}, 0},
+		{[]int{4}, 0},
+		{[]int{4, 4}, 0},
 	}
 	for _, tc := range cases {
 		if got := waterRetained(tc.montain); got != tc.want {
@@ -77,12 +77,11 @@ func TestWaterRetainedKnownFailures(t *testing.T) {
 }
 
 func TestWaterRetainedMatchesReference(t *testing.T) {
-	t.Skip("known bug: disagrees with the reference on roughly half of random profiles")
 	r := rand.New(rand.NewSource(1))
-	for i := 0; i < 1000; i++ {
-		montain := make([]int, r.Intn(12)+1)
+	for i := 0; i < 5000; i++ {
+		montain := make([]int, r.Intn(20))
 		for j := range montain {
-			montain[j] = r.Intn(8) + 1
+			montain[j] = r.Intn(10)
 		}
 		if got, want := waterRetained(montain), trappedWater(montain); got != want {
 			t.Fatalf("waterRetained(%v) = %d, want %d", montain, got, want)
@@ -90,20 +89,16 @@ func TestWaterRetainedMatchesReference(t *testing.T) {
 	}
 }
 
-func TestIsLocalMax(t *testing.T) {
-	montain := []int{2, 5, 1, 2, 3, 4, 7, 7, 6}
-	want := []bool{false, true, false, false, false, false, true, true, false}
-	for i, w := range want {
-		if got := isLocalMax(montain, i); got != w {
-			t.Errorf("isLocalMax(%v, %d) = %v, want %v", montain, i, got, w)
-		}
+func TestFindPuddles(t *testing.T) {
+	montain := []int{2, 5, 1, 2, 3, 4, 7, 6, 2, 7}
+	want := []Puddle{{5, 1, 7, 6}, {7, 6, 7, 9}}
+	got := findPuddles(montain)
+	if len(got) != len(want) {
+		t.Fatalf("findPuddles(%v) = %v, want %v", montain, got, want)
 	}
-}
-
-func TestOnlyValidPuddlesDropsEmptyEntries(t *testing.T) {
-	input := []Puddle{{5, 1, 7, 6}, {}, {7, 7, 3, 9}, {}}
-	got := onlyValidPuddles(input)
-	if len(got) != 2 || got[0] != input[0] || got[1] != input[2] {
-		t.Errorf("onlyValidPuddles(%v) = %v", input, got)
+	for i := range want {
+		if got[i] != want[i] {
+			t.Errorf("findPuddles(%v)[%d] = %v, want %v", montain, i, got[i], want[i])
+		}
 	}
 }

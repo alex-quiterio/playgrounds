@@ -15,119 +15,44 @@ func (p *Puddle) inspect() {
 	fmt.Printf("X: %d, XPos: %d, Y:%d, YPos:%d\n", p.X, p.XPos, p.Y, p.YPos)
 }
 
-func (p *Puddle) valid() bool {
-	return p.X != 0
+// waterLevels returns, for every position, the height the water would reach
+// there: the lower of the tallest wall on its left and on its right.
+func waterLevels(montain []int) []int {
+	n := len(montain)
+	levels := make([]int, n)
+	if n == 0 {
+		return levels
+	}
+	leftMax := make([]int, n)
+	leftMax[0] = montain[0]
+	for i := 1; i < n; i++ {
+		leftMax[i] = max(leftMax[i-1], montain[i])
+	}
+	rightMax := montain[n-1]
+	for i := n - 1; i >= 0; i-- {
+		rightMax = max(rightMax, montain[i])
+		levels[i] = min(leftMax[i], rightMax)
+	}
+	return levels
 }
 
-func isLocalMax(montain []int, x int) bool {
-
-	currentX := montain[x]
-	XPlusOne, XMinusOne := 0, 0
-
-	if (x + 1) < len(montain) {
-		XPlusOne = montain[x+1]
-	}
-	if x > 0 {
-		XMinusOne = montain[x-1]
-	}
-
-	return (currentX >= XPlusOne && currentX > XMinusOne) || (currentX > XPlusOne && currentX >= XMinusOne)
-}
-
-func rightLocalMax(montain []int, x int) bool {
-	currentX := montain[x]
-	XPlusOne, XMinusOne := 0, 0
-
-	if (x + 1) < len(montain) {
-		XPlusOne = montain[x+1]
-	}
-	if x > 0 {
-		XMinusOne = montain[x-1]
-	}
-
-	return currentX > XPlusOne && currentX >= XMinusOne
-}
-
-func onlyValidPuddles(oldPuddles []Puddle) []Puddle {
-
-	currentPuddle, validPuddles := 0, 0
-
-	for i := 0; i < len(oldPuddles); i++ {
-		if oldPuddles[i].valid() {
-			validPuddles++
-		}
-	}
-
-	newPuddles := make([]Puddle, validPuddles)
-
-	for i := 0; i < len(oldPuddles); i++ {
-		if oldPuddles[i].valid() {
-			newPuddles[currentPuddle] = oldPuddles[i]
-			currentPuddle++
-		}
-	}
-	return newPuddles
-}
-
-func greater(value int, coord int, puddles []Puddle) bool {
-	for _, puddle := range puddles {
-		if puddle.XPos >= coord && puddle.X > value {
-			return false
-		}
-	}
-	return true
-}
-
-func normalizePuddles(oldPuddles []Puddle) []Puddle {
-
-	puddles := make([]Puddle, len(oldPuddles))
-	copy(puddles, oldPuddles)
-
-	for i := 0; i < len(puddles)-1; i++ {
-		left := puddles[i]
-
-		for j := i + 1; j < len(puddles); j++ {
-			right := puddles[j]
-
-			if left.Y > right.X && right.Y > left.Y {
-				oldPuddles[i] = Puddle{left.X, left.XPos, right.Y, right.YPos}
-				oldPuddles[j].X = 0
-			} else if left.Y > right.X && greater(right.X, right.XPos, puddles) {
-				oldPuddles[i] = Puddle{left.Y, left.YPos, right.X, right.XPos}
-				oldPuddles[j].X = 0
-			} else {
-				break
-			}
-		}
-	}
-	return oldPuddles
-}
-
+// findPuddles returns every puddle in the montain: a run of positions under
+// water, bounded by the dry walls at XPos and YPos.
 func findPuddles(montain []int) []Puddle {
-
-	currentPuddle, leftMax, leftPos := 0, 0, 0
-	puddles := make([]Puddle, len(montain))
-
-	for position, value := range montain {
-		if isLocalMax(montain, position) {
-			if leftPos != 0 {
-				puddles[currentPuddle] = Puddle{leftMax, leftPos, value, position}
-				if rightLocalMax(montain, position) && leftMax <= value {
-					leftPos, leftMax = position, value
-				} else {
-					leftPos, leftMax = 0, 0
-				}
-				currentPuddle++
-			} else {
-				leftMax, leftPos = value, position
-			}
+	levels := waterLevels(montain)
+	puddles := []Puddle{}
+	for i := 1; i < len(montain)-1; i++ {
+		if levels[i] <= montain[i] {
+			continue
 		}
+		left := i - 1
+		for levels[i] > montain[i] {
+			i++
+		}
+		// Inside a puddle the level is constant and equals the lower wall.
+		puddles = append(puddles, Puddle{montain[left], left, montain[i], i})
 	}
-	if leftMax != 0 && leftPos != 0 {
-		puddles[currentPuddle+1] = Puddle{leftMax, leftPos, 0, 0}
-	}
-
-	return onlyValidPuddles(normalizePuddles(onlyValidPuddles(puddles)))
+	return puddles
 }
 
 // waterRetained returns how many units of water the montain profile holds.

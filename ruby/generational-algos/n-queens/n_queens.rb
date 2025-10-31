@@ -1,26 +1,25 @@
 class Solver
   attr_reader :population
+
   def initialize(options)
     @population      = []
     @max_generations = options.fetch(:max_generations)
     @decimation      = options.fetch(:decimation, 0.4)
-    @population_size = options.fetch(:size, 100)
+    @population_size = options.fetch(:population, 100)
   end
 
   def best(population)
     _sort_population(population).first
   end
 
+  # Breeds generations until a perfect member appears or max_generations is reached.
   def run
-    decimation = @decimation
-    max_gens   = @max_generations
-    ->(population) {
-      size = population.length
-      max_gens.times {
-        population = _breed(_decimate(population, decimation), size)
-      }
-      population
-    }.call(create_first_generation(@population_size))
+    population = create_first_generation(@population_size)
+    @max_generations.times do
+      break if best(population)[:fitness] >= 1
+      population = _breed(_decimate(population, @decimation), @population_size)
+    end
+    population
   end
 
   def create_first_generation(population_size)
@@ -28,17 +27,19 @@ class Solver
   end
 
   def _sort_population(population)
-    population.sort { |a,b| b[:fitness] - a[:fitness] }
+    population.sort_by { |member| -member[:fitness] }
   end
 
+  # Keeps the fittest members, dropping the `decimation` fraction that scored lowest.
   def _decimate(population, decimation)
     population = _sort_population(population)
     kill = (decimation * population.length).ceil
-    population.slice(0, population.length - kill + 1)
+    population.first([population.length - kill, 2].max)
   end
 
+  # Refills the population up to `size` with children of random survivors.
   def _breed(population, size)
-    population + (population.length..size).map do
+    population + (population.length...size).map do
       _create_gene(reproduce(_select(population), _select(population)))
     end
   end
@@ -48,54 +49,63 @@ class Solver
   end
 
   def _select(population)
-    population[(population.length * rand).floor]
+    population[rand(population.length)]
   end
 end
 
+# A gene is a permutation: gene[row] is the column of the queen in that row,
+# so rows and columns never clash and only diagonals have to be checked.
 class NQueens < Solver
+  attr_reader :board_size
+
+  def initialize(options)
+    super
+    @board_size    = options.fetch(:size, 8)
+    @mutation_rate = options.fetch(:mutation_rate, 0.2)
+  end
+
   def gen_random_gene
-    gene = Array.new(@population_size);
-    gene.size.times do |i|
-      gene[i] = i
-    end
-    gene.size.times do |i|
-      holder = (rand * gene.size).floor
-      gene[i], gene[holder] = gene[holder], gene[i]
-    end
-    return gene
+    (0...@board_size).to_a.shuffle
   end
 
-  def reproduce(geneA, geneB)
-    new_gene   = ([false] * geneA[:gene].size)
-    _next      = (rand * new_gene.size).floor
-    while new_gene[_next] == false
-      new_gene[_next] = geneA[:gene][_next]
-      _next = geneA[:gene].find_index do |crox|
-        break if crox == geneB[:gene][_next]
-      end || (new_gene.length - 1)
+  # Cycle crossover: copies one cycle of positions from parent A and the rest
+  # from parent B, so the child is always a valid permutation.
+  def reproduce(gene_a, gene_b)
+    a = gene_a[:gene]
+    b = gene_b[:gene]
+    child = Array.new(a.size)
+    position = rand(a.size)
+    until child[position]
+      child[position] = a[position]
+      position = a.index(b[position])
     end
-    geneB[:gene].each_with_index do |ix, crox|
-      new_gene[ix] ||= crox
-    end
-    return new_gene
+    b.each_with_index { |column, row| child[row] ||= column }
+    mutate(child)
   end
 
+  # Swaps two rows with probability mutation_rate, keeping the permutation valid.
+  def mutate(gene)
+    return gene unless rand < @mutation_rate
+
+    i = rand(gene.size)
+    j = rand(gene.size)
+    gene[i], gene[j] = gene[j], gene[i]
+    gene
+  end
+
+  # Fitness in [0, 1]: 1 means no two queens threaten each other.
   def evaluate(gene)
-    threats = 0
-    gene.size.times do |i|
-      gene.size.times do |j|
-        threats += 1 if is_threat(gene, i,j)
-      end
-    end
-    max_threats = gene.size * (gene.size - 1)
-    return (max_threats - threats) / max_threats
+    pairs = gene.size * (gene.size - 1) / 2
+    return 1.0 if pairs.zero?
+
+    threats = gene.each_index.to_a.combination(2).count { |i, j| is_threat(gene, i, j) }
+    (pairs - threats).fdiv(pairs)
   end
 
   def is_threat(gene, i, j)
     return false if i == j
     return true if gene[i] == gene[j]
-    former = [i, j].min
-    latter = [i, j].max
-    return (gene[latter] - gene[former]) == (latter - former)
+
+    (gene[i] - gene[j]).abs == (i - j).abs
   end
 end

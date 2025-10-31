@@ -10,13 +10,14 @@ end
 task default: :test
 
 namespace :generational do
-  desc 'N-Queens solved by a generational algorithm, e.g. rake "generational:nqueens[10,10]"'
+  desc 'N-Queens solved by a generational algorithm, e.g. rake "generational:nqueens[8,1000]"'
   task :nqueens, :size, :maxgen do |_t, args|
-    size = (args[:size] || 10).to_i
-    maxgen = (args[:maxgen] || 10).to_i
+    size = (args[:size] || 8).to_i
+    maxgen = (args[:maxgen] || 1000).to_i
     solver = NQueens.new(size: size, max_generations: maxgen)
     population = solver.run
     best_match = solver.best(population)
+    puts "Fitness: #{best_match[:fitness].round(3)}"
     size.times do |i|
       size.times do |j|
         print '|'

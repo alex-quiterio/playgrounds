@@ -15,7 +15,7 @@ Each one runs on its own and has its own tests.
 | [`go/insertion-sort`](go/insertion-sort/insertion_sort.go) | Go | In-place insertion sort |
 | [`go/twitter-puddle`](go/twitter-puddle/twitter_puddle.go) | Go | Twitter's "puddle" puzzle: how much water a skyline of walls holds |
 | [`ruby/backtracking-algos`](ruby/backtracking-algos) | Ruby | A generic backtracking engine, used for N-Queens and Sudoku |
-| [`ruby/generational-algos`](ruby/generational-algos) | Ruby | N-Queens with a genetic (generational) algorithm |
+| [`ruby/generational-algos`](ruby/generational-algos) | Ruby | N-Queens with a genetic algorithm (cycle crossover plus swap mutation) |
 | [`prolog/oscares.pl`](prolog/oscares.pl) | Prolog | Queries over a film/Oscars database, a social-network search, and a tiny Portuguese question parser |
 | [`lisp/y_game.lisp`](lisp/y_game.lisp) | Common Lisp | The game of Y on a ring board, with a minimax / alpha-beta computer player |
 
@@ -91,7 +91,7 @@ rake "backtrack:sudoku[easy01]"   # any file name from sudoku/puzzles, without .
 rake test
 
 cd ../generational-algos
-rake "generational:nqueens[10,10]"  # board size, number of generations
+rake "generational:nqueens[8,1000]"  # board size, maximum number of generations
 rake test
 ```
 
@@ -121,12 +121,6 @@ The arguments are the number of rings, player A, player B, and the time limit pe
 
 ## Known issues
 
-These are bugs in the exercises themselves. Each one is covered by a test that is **skipped** for now; un-skip it once the bug is fixed.
+This is a bug in the exercise itself. It is covered by a test that is **skipped** for now; un-skip it once the bug is fixed.
 
-- **`go/twitter-puddle`**: `findPuddles` gets the wrong answer for about half of all random skylines. For example, `[6 1 4 8]` should hold 7 units and the program says 0. See `TestWaterRetainedKnownFailures`.
-- **`ruby/generational-algos`**:
-  - `reproduce` leaves `false` values in the gene, so `run` crashes in `is_threat`.
-  - `is_threat` only checks one of the two diagonal directions.
-  - `evaluate` uses integer division, so fitness can only be 0 or 1.
-  - The board size is taken from `size`, which is also the population size.
 - **`lisp/y_game.lisp`**: `alpha-beta-decision` misses a winning move that is one turn away when the search depth is 1 or 2.
