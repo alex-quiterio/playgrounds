@@ -15,4 +15,4 @@ Since 2025, Advent of Code has 12 puzzles. Start a day with `bin/new-day N 2025`
 | 9 | [Movie Theater](https://adventofcode.com/2025/day/9) | Common Lisp | | |
 | 10 | [Factory](https://adventofcode.com/2025/day/10) | Common Lisp | | |
 | 11 | [Reactor](https://adventofcode.com/2025/day/11) | Common Lisp | | |
-| 12 | [Christmas Tree Farm](https://adventofcode.com/2025/day/12) | | | |
+| 12 | [Christmas Tree Farm](https://adventofcode.com/2025/day/12) | Common Lisp | | |
