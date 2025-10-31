@@ -28,4 +28,4 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2024` from `advent-
 | 22 | [Monkey Market](https://adventofcode.com/2024/day/22) | Go |  |  |
 | 23 | [LAN Party](https://adventofcode.com/2024/day/23) | Go |  |  |
 | 24 | [Crossed Wires](https://adventofcode.com/2024/day/24) | Go |  |  |
-| 25 | [Code Chronicle](https://adventofcode.com/2024/day/25) |  |  |  |
+| 25 | [Code Chronicle](https://adventofcode.com/2024/day/25) | Go |  |  |
