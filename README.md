@@ -21,7 +21,7 @@ Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp, p
 
 ## Advent of Code
 
-[`advent-of-code/`](advent-of-code) holds solutions to [Advent of Code](https://adventofcode.com), the December puzzle calendar. Each year picks its language (2022 uses two), and every answer counted below was accepted on adventofcode.com.
+[`advent-of-code/`](advent-of-code) holds solutions to [Advent of Code](https://adventofcode.com), the December puzzle calendar. Each year picks its language (2022 uses two), and every star counted below was earned on adventofcode.com.
 
 | Year | Language | Solved | Stars |
 | --- | --- | --- | --- |
@@ -29,11 +29,13 @@ Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp, p
 | [2024](advent-of-code/2024) | Go | all 25 days | ⭐ 50 / 50 |
 | [2023](advent-of-code/2023) | Ruby | all 25 days | ⭐ 50 / 50 |
 | [2022](advent-of-code/2022) | C and Perl | days 1-10 | ⭐ 20 / 50 |
-| [2021](advent-of-code/2021) | Clojure | day 1 | ⭐ 2 / 50 |
+| [2021](advent-of-code/2021) | Clojure | day 1 (day 6 solved elsewhere) | ⭐ 4 / 50 |
 | [2020](advent-of-code/2020) | Clojure | day 1 | ⭐ 2 / 50 |
 | [2019](advent-of-code/2019) | Clojure | day 1 | ⭐ 2 / 50 |
+| 2018 | not in this repo | all 25 days, solved elsewhere | ⭐ 50 / 50 |
+| 2017 | not in this repo | all 25 days, solved elsewhere | ⭐ 50 / 50 |
 
-**150 stars** in the repository so far. Each year's README has a ✅ per part, filled in from the Advent of Code calendar.
+**252 stars** on the account, **150** of them with code in this repository. Each year's README has a ✅ per part, filled in from the Advent of Code calendar.
 
 ### Quick start
 
