@@ -18,7 +18,7 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2024` from `advent-
 | 12 | [Garden Groups](https://adventofcode.com/2024/day/12) | Go |  |  |
 | 13 | [Claw Contraption](https://adventofcode.com/2024/day/13) | Go |  |  |
 | 14 | [Restroom Redoubt](https://adventofcode.com/2024/day/14) | Go |  |  |
-| 15 | [Warehouse Woes](https://adventofcode.com/2024/day/15) |  |  |  |
+| 15 | [Warehouse Woes](https://adventofcode.com/2024/day/15) | Go |  |  |
 | 16 | [Reindeer Maze](https://adventofcode.com/2024/day/16) |  |  |  |
 | 17 | [Chronospatial Computer](https://adventofcode.com/2024/day/17) |  |  |  |
 | 18 | [RAM Run](https://adventofcode.com/2024/day/18) |  |  |  |
