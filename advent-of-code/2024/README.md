@@ -16,7 +16,7 @@ This edition has 25 puzzles. Start a day with `bin/new-day N 2024` from `advent-
 | 10 | [Hoof It](https://adventofcode.com/2024/day/10) | Go | ✅ | ✅ |
 | 11 | [Plutonian Pebbles](https://adventofcode.com/2024/day/11) | Go |  |  |
 | 12 | [Garden Groups](https://adventofcode.com/2024/day/12) | Go |  |  |
-| 13 | [Claw Contraption](https://adventofcode.com/2024/day/13) |  |  |  |
+| 13 | [Claw Contraption](https://adventofcode.com/2024/day/13) | Go |  |  |
 | 14 | [Restroom Redoubt](https://adventofcode.com/2024/day/14) |  |  |  |
 | 15 | [Warehouse Woes](https://adventofcode.com/2024/day/15) |  |  |  |
 | 16 | [Reindeer Maze](https://adventofcode.com/2024/day/16) |  |  |  |
