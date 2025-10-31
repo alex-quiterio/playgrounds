@@ -71,7 +71,7 @@ Advent of Code [asks](https://adventofcode.com/about) that puzzle inputs and puz
 
 | Year | Progress |
 | --- | --- |
-| [2022](2022) | C: not started (days 1-3 set up) |
+| [2022](2022) | C (days 1-3) and Perl (days 4-6) |
 | [2023](2023) | Ruby: all 25 days, 50 stars |
 | [2024](2024) | Go: all 25 days, 50 stars |
 | [2025](2025) | Common Lisp: all 12 days, 24 stars |
