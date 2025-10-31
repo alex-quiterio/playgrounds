@@ -7,7 +7,7 @@ Since 2025, Advent of Code has 12 puzzles. Start a day with `bin/new-day N 2025`
 | 1 | [Secret Entrance](https://adventofcode.com/2025/day/1) | Common Lisp | | |
 | 2 | [Gift Shop](https://adventofcode.com/2025/day/2) | Common Lisp | | |
 | 3 | [Lobby](https://adventofcode.com/2025/day/3) | Common Lisp | | |
-| 4 | [Printing Department](https://adventofcode.com/2025/day/4) | | | |
+| 4 | [Printing Department](https://adventofcode.com/2025/day/4) | Common Lisp | | |
 | 5 | [Cafeteria](https://adventofcode.com/2025/day/5) | | | |
 | 6 | [Trash Compactor](https://adventofcode.com/2025/day/6) | | | |
 | 7 | [Laboratories](https://adventofcode.com/2025/day/7) | | | |
