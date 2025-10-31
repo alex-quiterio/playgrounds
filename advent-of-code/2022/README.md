@@ -20,8 +20,8 @@ This edition has 25 puzzles; only days 1-15 are set up here. Start a day with `b
 | 8 | [Treetop Tree House](https://adventofcode.com/2022/day/8) | C | ✅ | ✅ |
 | 9 | [Rope Bridge](https://adventofcode.com/2022/day/9) | C + Perl | ✅ | ✅ |
 | 10 | [Cathode-Ray Tube](https://adventofcode.com/2022/day/10) | C + Perl | ✅ | ✅ |
-| 11 | [Monkey in the Middle](https://adventofcode.com/2022/day/11) | Perl |  |  |
-| 12 | [Hill Climbing Algorithm](https://adventofcode.com/2022/day/12) | Perl |  |  |
-| 13 | [Distress Signal](https://adventofcode.com/2022/day/13) | Perl |  |  |
-| 14 | [Regolith Reservoir](https://adventofcode.com/2022/day/14) | C |  |  |
-| 15 | [Beacon Exclusion Zone](https://adventofcode.com/2022/day/15) | C |  |  |
+| 11 | [Monkey in the Middle](https://adventofcode.com/2022/day/11) | Perl | ✅ | ✅ |
+| 12 | [Hill Climbing Algorithm](https://adventofcode.com/2022/day/12) | Perl | ✅ | ✅ |
+| 13 | [Distress Signal](https://adventofcode.com/2022/day/13) | Perl | ✅ | ✅ |
+| 14 | [Regolith Reservoir](https://adventofcode.com/2022/day/14) | C | ✅ | ✅ |
+| 15 | [Beacon Exclusion Zone](https://adventofcode.com/2022/day/15) | C | ✅ | ✅ |
