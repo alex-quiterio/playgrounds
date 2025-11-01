@@ -28,14 +28,14 @@ Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp, p
 | [2025](advent-of-code/2025) | Common Lisp | all 12 days | ⭐ 24 / 24 |
 | [2024](advent-of-code/2024) | Go | all 25 days | ⭐ 50 / 50 |
 | [2023](advent-of-code/2023) | Ruby | all 25 days | ⭐ 50 / 50 |
-| [2022](advent-of-code/2022) | C and Perl | days 1-19 | ⭐ 38 / 50 |
-| [2021](advent-of-code/2021) | Clojure | day 1 (day 6 solved elsewhere) | ⭐ 4 / 50 |
-| [2020](advent-of-code/2020) | Clojure | day 1 | ⭐ 2 / 50 |
+| [2022](advent-of-code/2022) | C and Perl | all 25 days | ⭐ 50 / 50 |
+| [2021](advent-of-code/2021) | Clojure | all 25 days (day 6 solved elsewhere) | ⭐ 50 / 50 |
+| [2020](advent-of-code/2020) | C++ | all 25 days | ⭐ 50 / 50 |
 | [2019](advent-of-code/2019) | Clojure | day 1 | ⭐ 2 / 50 |
 | 2018 | not in this repo | all 25 days, solved elsewhere | ⭐ 50 / 50 |
 | 2017 | not in this repo | all 25 days, solved elsewhere | ⭐ 50 / 50 |
 
-**270 stars** on the account, **168** of them with code in this repository. Each year's README has a ✅ per part, filled in from the Advent of Code calendar.
+**376 stars** on the account, **274** of them with code in this repository. Each year's README has a ✅ per part, filled in from the Advent of Code calendar.
 
 ### Quick start
 
@@ -78,7 +78,8 @@ The tooling in [`advent-of-code/bin`](advent-of-code/bin) covers the whole loop:
 | Prolog | SWI-Prolog | `brew install swi-prolog` | `swi-prolog-nox` |
 | Common Lisp | SBCL | `brew install sbcl` | `sbcl` |
 | Perl (Advent of Code 2022) | Perl 5 | preinstalled | preinstalled |
-| Clojure (Advent of Code 2019-2021) | Clojure CLI | `brew install clojure` | [clojure.org install script](https://clojure.org/guides/install_clojure) |
+| C++ (Advent of Code 2020) | `c++` with C++20 (clang or gcc) | Xcode Command Line Tools | `build-essential` |
+| Clojure (Advent of Code 2019 and 2021) | Clojure CLI and a JDK | `brew install clojure openjdk` | [clojure.org install script](https://clojure.org/guides/install_clojure) |
 
 ## Running the tests
 
