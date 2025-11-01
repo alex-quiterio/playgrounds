@@ -1,6 +1,6 @@
 # Advent of Code 2015
 
-This edition has 25 puzzles. Days 1-5, 7, 9, 10 and part 1 of day 25 were solved elsewhere and have no code here; the days with code are in **Ruby**, each a `solution.rb` run by `exec ruby "$(dirname "$0")/solution.rb" "$@"`. Start a day with `bin/new-day N 2015` from `advent-of-code/`.
+This edition has 25 puzzles, all solved. Days 1-5, 7, 9 and 10 were solved elsewhere and have no code here; the days with code are in **Ruby**, each a `solution.rb` run by `exec ruby "$(dirname "$0")/solution.rb" "$@"`. Start a day with `bin/new-day N 2015` from `advent-of-code/`.
 
 | Day | Puzzle | Language | Part 1 | Part 2 |
 | --- | --- | --- | --- | --- |
@@ -20,12 +20,12 @@ This edition has 25 puzzles. Days 1-5, 7, 9, 10 and part 1 of day 25 were solved
 | 14 | [Reindeer Olympics](https://adventofcode.com/2015/day/14) | Ruby | ✅ | ✅ |
 | 15 | [Science for Hungry People](https://adventofcode.com/2015/day/15) | Ruby | ✅ | ✅ |
 | 16 | [Aunt Sue](https://adventofcode.com/2015/day/16) | Ruby | ✅ | ✅ |
-| 17 | [No Such Thing as Too Much](https://adventofcode.com/2015/day/17) |  |  |  |
-| 18 | [Like a GIF For Your Yard](https://adventofcode.com/2015/day/18) |  |  |  |
-| 19 | [Medicine for Rudolph](https://adventofcode.com/2015/day/19) |  |  |  |
-| 20 | [Infinite Elves and Infinite Houses](https://adventofcode.com/2015/day/20) |  |  |  |
-| 21 | [RPG Simulator 20XX](https://adventofcode.com/2015/day/21) |  |  |  |
-| 22 | [Wizard Simulator 20XX](https://adventofcode.com/2015/day/22) |  |  |  |
-| 23 | [Opening the Turing Lock](https://adventofcode.com/2015/day/23) |  |  |  |
-| 24 | [It Hangs in the Balance](https://adventofcode.com/2015/day/24) |  |  |  |
-| 25 | [Let It Snow](https://adventofcode.com/2015/day/25) | solved elsewhere | ✅ |  |
+| 17 | [No Such Thing as Too Much](https://adventofcode.com/2015/day/17) | Ruby | ✅ | ✅ |
+| 18 | [Like a GIF For Your Yard](https://adventofcode.com/2015/day/18) | Ruby | ✅ | ✅ |
+| 19 | [Medicine for Rudolph](https://adventofcode.com/2015/day/19) | Ruby | ✅ | ✅ |
+| 20 | [Infinite Elves and Infinite Houses](https://adventofcode.com/2015/day/20) | Ruby | ✅ | ✅ |
+| 21 | [RPG Simulator 20XX](https://adventofcode.com/2015/day/21) | Ruby | ✅ | ✅ |
+| 22 | [Wizard Simulator 20XX](https://adventofcode.com/2015/day/22) | Ruby | ✅ | ✅ |
+| 23 | [Opening the Turing Lock](https://adventofcode.com/2015/day/23) | Ruby | ✅ | ✅ |
+| 24 | [It Hangs in the Balance](https://adventofcode.com/2015/day/24) | Ruby | ✅ | ✅ |
+| 25 | [Let It Snow](https://adventofcode.com/2015/day/25) | Ruby | ✅ | ✅ |
