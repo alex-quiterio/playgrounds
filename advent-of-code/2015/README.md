@@ -19,7 +19,7 @@ This edition has 25 puzzles. Days 1-5, 7, 9, 10 and part 1 of day 25 were solved
 | 13 | [Knights of the Dinner Table](https://adventofcode.com/2015/day/13) | Ruby | ✅ | ✅ |
 | 14 | [Reindeer Olympics](https://adventofcode.com/2015/day/14) | Ruby | ✅ | ✅ |
 | 15 | [Science for Hungry People](https://adventofcode.com/2015/day/15) | Ruby | ✅ | ✅ |
-| 16 | [Aunt Sue](https://adventofcode.com/2015/day/16) |  |  |  |
+| 16 | [Aunt Sue](https://adventofcode.com/2015/day/16) | Ruby | ✅ | ✅ |
 | 17 | [No Such Thing as Too Much](https://adventofcode.com/2015/day/17) |  |  |  |
 | 18 | [Like a GIF For Your Yard](https://adventofcode.com/2015/day/18) |  |  |  |
 | 19 | [Medicine for Rudolph](https://adventofcode.com/2015/day/19) |  |  |  |
