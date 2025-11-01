@@ -34,9 +34,9 @@ Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp, p
 | [2019](advent-of-code/2019) | Haskell | all 25 days | ⭐ 50 / 50 |
 | 2018 | not in this repo | all 25 days, solved elsewhere | ⭐ 50 / 50 |
 | 2017 | not in this repo | all 25 days, solved elsewhere | ⭐ 50 / 50 |
-| [2015](advent-of-code/2015) | Ruby | days 6, 8, 11-14 (days 1-5, 7, 9, 10 and part of 25 solved elsewhere) | ⭐ 29 / 50 |
+| [2015](advent-of-code/2015) | Ruby | days 6, 8, 11-15 (days 1-5, 7, 9, 10 and part of 25 solved elsewhere) | ⭐ 31 / 50 |
 
-**453 stars** on the account, **334** of them with code in this repository. Each year's README has a ✅ per part, filled in from the Advent of Code calendar.
+**455 stars** on the account, **336** of them with code in this repository. Each year's README has a ✅ per part, filled in from the Advent of Code calendar.
 
 ### Quick start
 
