@@ -73,7 +73,7 @@ Advent of Code [asks](https://adventofcode.com/about) that puzzle inputs and puz
 | --- | --- |
 | 2017 | solved elsewhere, no code here: 50 stars |
 | 2018 | solved elsewhere, no code here: 50 stars |
-| [2019](2019) | Haskell: days 1-15, 30 stars |
+| [2019](2019) | Haskell: all 25 days, 50 stars |
 | [2020](2020) | C++: all 25 days, 50 stars |
 | [2021](2021) | Clojure: all days except day 6 (solved elsewhere), 50 stars |
 | [2022](2022) | C (days 1-3, 7-10, 14-17, 19, 23, 24) and Perl (days 4-6, 9-13, 18, 20-22, 25): all 25 days, 50 stars |

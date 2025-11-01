@@ -31,11 +31,11 @@ Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp, p
 | [2022](advent-of-code/2022) | C and Perl | all 25 days | ⭐ 50 / 50 |
 | [2021](advent-of-code/2021) | Clojure | all 25 days (day 6 solved elsewhere) | ⭐ 50 / 50 |
 | [2020](advent-of-code/2020) | C++ | all 25 days | ⭐ 50 / 50 |
-| [2019](advent-of-code/2019) | Haskell | days 1-15 | ⭐ 30 / 50 |
+| [2019](advent-of-code/2019) | Haskell | all 25 days | ⭐ 50 / 50 |
 | 2018 | not in this repo | all 25 days, solved elsewhere | ⭐ 50 / 50 |
 | 2017 | not in this repo | all 25 days, solved elsewhere | ⭐ 50 / 50 |
 
-**404 stars** on the account, **302** of them with code in this repository. Each year's README has a ✅ per part, filled in from the Advent of Code calendar.
+**424 stars** on the account, **322** of them with code in this repository. Each year's README has a ✅ per part, filled in from the Advent of Code calendar.
 
 ### Quick start
 
