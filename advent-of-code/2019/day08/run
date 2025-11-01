@@ -1,0 +1,8 @@
+#!/bin/sh
+# Usage: ./run INPUT. Compiles solution.hs (when it changed) and runs it.
+# Intcode days import the shared computer from ../intcode.
+dir="$(dirname "$0")"
+if [ ! -x "$dir/solution" ] || [ "$dir/solution.hs" -nt "$dir/solution" ] || [ "$dir/../intcode/Intcode.hs" -nt "$dir/solution" ]; then
+    ghc -O2 -v0 -i"$dir/../intcode" -outputdir "$dir/build" -o "$dir/solution" "$dir/solution.hs" || exit 1
+fi
+exec "$dir/solution" "$@"

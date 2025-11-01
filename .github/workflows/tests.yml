@@ -62,7 +62,9 @@ jobs:
           go-version-file: advent-of-code/2024/go.mod
       - name: Install SBCL (2025 is in Common Lisp)
         run: sudo apt-get update && sudo apt-get install -y sbcl
-      - name: Install the Clojure CLI (2019 and 2021 are in Clojure)
+      - name: Install GHC (2019 is in Haskell)
+        run: sudo apt-get install -y ghc
+      - name: Install the Clojure CLI (2021 is in Clojure)
         run: |
           curl -fsSL -o linux-install.sh https://github.com/clojure/brew-install/releases/latest/download/linux-install.sh
           chmod +x linux-install.sh && sudo ./linux-install.sh && rm linux-install.sh

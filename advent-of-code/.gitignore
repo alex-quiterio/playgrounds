@@ -5,6 +5,7 @@ input*.expected
 # Puzzle text is not ours to publish either; bin/fetch-puzzle saves it locally.
 puzzle.md
 
-# Compiled 2020 (C++) and 2022 (C) solutions
+# Compiled 2019 (Haskell), 2020 (C++) and 2022 (C) solutions
+2019/day*/solution
 2022/day*/solution
 2020/day*/solution

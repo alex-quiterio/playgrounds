@@ -55,7 +55,7 @@ bin/check 2027                 # every day of 2027; bin/check 2027 1 for one day
 
 Once an answer is accepted, it lives in `input.expected`. `bin/check` will then also re-check your real input, which is useful when you refactor.
 
-From the repository root, `make test-aoc` runs `bin/check` for every year. CI runs the same command against the examples only, because inputs are never committed. CI runs on `ubuntu-latest`, which comes with Python, Ruby and Node, and the job also installs Go (for 2024), SBCL (for 2025) and the Clojure CLI (for 2019 and 2021). If a day needs anything else, add a setup step to the `advent-of-code` job in [`.github/workflows/tests.yml`](../.github/workflows/tests.yml).
+From the repository root, `make test-aoc` runs `bin/check` for every year. CI runs the same command against the examples only, because inputs are never committed. CI runs on `ubuntu-latest`, which comes with Python, Ruby and Node, and the job also installs Go (for 2024), SBCL (for 2025), the Clojure CLI (for 2021) and GHC (for 2019). If a day needs anything else, add a setup step to the `advent-of-code` job in [`.github/workflows/tests.yml`](../.github/workflows/tests.yml).
 
 ## Puzzle text
 
@@ -73,7 +73,7 @@ Advent of Code [asks](https://adventofcode.com/about) that puzzle inputs and puz
 | --- | --- |
 | 2017 | solved elsewhere, no code here: 50 stars |
 | 2018 | solved elsewhere, no code here: 50 stars |
-| [2019](2019) | Clojure: day 1, 2 stars |
+| [2019](2019) | Haskell: days 1-15, 30 stars |
 | [2020](2020) | C++: all 25 days, 50 stars |
 | [2021](2021) | Clojure: all days except day 6 (solved elsewhere), 50 stars |
 | [2022](2022) | C (days 1-3, 7-10, 14-17, 19, 23, 24) and Perl (days 4-6, 9-13, 18, 20-22, 25): all 25 days, 50 stars |
