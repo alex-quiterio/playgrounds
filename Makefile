@@ -1,0 +1,30 @@
+# Run every playground's tests with `make test`, or one language with `make test-<lang>`.
+
+C_EXERCISES := c/cyk c/doubled-linked-lists c/rod
+RUBY_EXERCISES := ruby/backtracking-algos ruby/generational-algos
+
+.PHONY: test test-c test-go test-ruby test-prolog test-lisp format clean
+
+test: test-c test-go test-ruby test-prolog test-lisp
+
+test-c:
+	@for dir in $(C_EXERCISES); do echo "== $$dir"; $(MAKE) -s -C $$dir test || exit 1; done
+
+test-go:
+	cd go && go vet ./... && go test ./...
+
+test-ruby:
+	@for dir in $(RUBY_EXERCISES); do echo "== $$dir"; (cd $$dir && rake test) || exit 1; done
+
+test-prolog:
+	swipl -g run_tests -t halt prolog/tests/oscares_test.pl
+
+test-lisp:
+	sbcl --script lisp/tests/y-game-test.lisp
+
+format:
+	clang-format -i $$(find c -name '*.[ch]')
+	gofmt -w go
+
+clean:
+	@for dir in $(C_EXERCISES); do $(MAKE) -s -C $$dir clean; done

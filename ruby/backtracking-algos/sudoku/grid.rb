@@ -6,7 +6,7 @@ class Grid
   attr_reader :board
 
   def initialize(file_name)
-    @board = Array.new(DEFAULT_MATRIX_SIZE, false) do
+    @board = Array.new(DEFAULT_MATRIX_SIZE) do
       Array.new(DEFAULT_MATRIX_SIZE, false)
     end
     open(file_name) { |fn| parse(fn.read) }
@@ -19,7 +19,7 @@ class Grid
   def parse(string_puzzle)
     count = 0
     current_row = -1
-    string_puzzle.strip.gsub(/\n/, "").chars.each do |char|
+    string_puzzle.gsub(/\s/, "").chars.each do |char|
       if count % DEFAULT_MATRIX_SIZE == 0
         current_row +=1
       end
@@ -52,6 +52,7 @@ class Grid
         end
       end
     end
+    nil
   end
 
   def square_ok?(start_row, start_col, new_number)

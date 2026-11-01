@@ -36,15 +36,15 @@ removePrimeiro([_|Resto],Resto).
 
 removeUltimo([_|[]], []).
 removeUltimo([Elem|Resto], [Elem|Resultado]) :-
- removeUltimo(Resto,Resultado).
+    removeUltimo(Resto,Resultado).
 
 removeRepetidos([], []).
 removeRepetidos([Primeiro | Resto], Resultado) :-
- member(Primeiro, Resto),
- !,
- removeRepetidos(Resto, Resultado).
+    member(Primeiro, Resto),
+    !,
+    removeRepetidos(Resto, Resultado).
 removeRepetidos([Primeiro | Resto], [Primeiro | Resultado]) :-
- removeRepetidos(Resto, Resultado).
+    removeRepetidos(Resto, Resultado).
 
 %;;;;;;;;;;;;;;;;;;;;;;;;;
 %; 2) PREDICADOS BASICOS ;
@@ -60,10 +60,10 @@ removeRepetidos([Primeiro | Resto], [Primeiro | Resultado]) :-
 % ------------------------------------------------------------------------%
 
 todosFilmes(Ano) :-
- findall(Filme,filme(_, Filme, Ano, _),Bag),
- removeRepetidos(Bag, ListaFinal),
- imprimeLista(ListaFinal),
- !.
+    findall(Filme,filme(_, Filme, Ano, _),Bag),
+    removeRepetidos(Bag, ListaFinal),
+    imprimeLista(ListaFinal),
+    !.
 % ------------------------------------------------------------------------%
 %
 %       todosRealizadores()
@@ -74,14 +74,14 @@ todosFilmes(Ano) :-
 % ------------------------------------------------------------------------%
 
 todosRealizadores :-
- findall(Pessoa,realizador(Pessoa),Bag),
- removeRepetidos(Bag, Lista),
- imprimeLista(Lista),
- !.
+    findall(Pessoa,realizador(Pessoa),Bag),
+    removeRepetidos(Bag, Lista),
+    imprimeLista(Lista),
+    !.
 realizador(Pessoa) :-
- actividade(Id_act, 'realizador'),
- pessoa(Id_pessoa,Pessoa,_,_),
- participa(Id_pessoa,_,Id_act).
+    actividade(Id_act, 'realizador'),
+    pessoa(Id_pessoa,Pessoa,_,_),
+    participa(Id_pessoa,_,Id_act).
 
 % ------------------------------------------------------------------------%
 %
@@ -94,17 +94,17 @@ realizador(Pessoa) :-
 % ------------------------------------------------------------------------%
 
 maisQueNAnos(Num) :-
- findall(Pessoa,participouMaisQue(Pessoa,Num),Bag),
- removeRepetidos(Bag, Lista),
- imprimeLista(Lista),
- !.
+    findall(Pessoa,participouMaisQue(Pessoa,Num),Bag),
+    removeRepetidos(Bag, Lista),
+    imprimeLista(Lista),
+    !.
 participouMaisQue(Pessoa,Num) :-
- pessoa(Id_pessoa,Pessoa,_,_),
- participa(Id_pessoa,Id_filme1,_),
- participa(Id_pessoa,Id_filme2,_),
-        filme(Id_filme1,_,Ano1,_),
- filme(Id_filme2,_,Ano2,_),
- Ano2-Ano1 >= Num-1.
+    pessoa(Id_pessoa,Pessoa,_,_),
+    participa(Id_pessoa,Id_filme1,_),
+    participa(Id_pessoa,Id_filme2,_),
+    filme(Id_filme1,_,Ano1,_),
+    filme(Id_filme2,_,Ano2,_),
+    Ano2-Ano1 >= Num-1.
 
 
 %;;;;;;;;;;;;;;;;;;;;;;;;
@@ -121,21 +121,21 @@ participouMaisQue(Pessoa,Num) :-
 %
 % ------------------------------------------------------------------------%
 maisQueNOscares(Num, Actividade) :-
- actividade(Id_Act, Actividade),
- findall(Pessoa, ganhouOscar(Pessoa, Actividade), Pessoas),
- removeRepetidos(Pessoas, PessoasClean),
- auxMaisQueNOscares(Num, Id_Act, PessoasClean, Resultado),
- imprimeLista(Resultado),
- !.
+    actividade(Id_Act, Actividade),
+    findall(Pessoa, ganhouOscar(Pessoa, Actividade), Pessoas),
+    removeRepetidos(Pessoas, PessoasClean),
+    auxMaisQueNOscares(Num, Id_Act, PessoasClean, Resultado),
+    imprimeLista(Resultado),
+    !.
 auxMaisQueNOscares(_, _, [], []).
 auxMaisQueNOscares(Num, Id_Act, [Primeira|Resto], [Primeira|Resultado]) :-
- calculaNOscares(Primeira, Id_Act, N),
- N >= Num,
- auxMaisQueNOscares(Num, Id_Act, Resto, Resultado).
+    calculaNOscares(Primeira, Id_Act, N),
+    N >= Num,
+    auxMaisQueNOscares(Num, Id_Act, Resto, Resultado).
 auxMaisQueNOscares(Num, Id_Act, [Primeira|Resto], Resultado) :-
- calculaNOscares(Primeira, Id_Act, N),
- N < Num,
- auxMaisQueNOscares(Num, Id_Act, Resto, Resultado).
+    calculaNOscares(Primeira, Id_Act, N),
+    N < Num,
+    auxMaisQueNOscares(Num, Id_Act, Resto, Resultado).
 
 
 % ------------------------------------------------------------------------%
@@ -149,12 +149,12 @@ auxMaisQueNOscares(Num, Id_Act, [Primeira|Resto], Resultado) :-
 % ------------------------------------------------------------------------%
 
 maisOscares(Actividade) :-
- actividade(Id_Act, Actividade),
-        findall(Pessoa, ganhouOscar(Pessoa, Actividade), Vencedores),
- removeRepetidos(Vencedores, VencedoresClean),
- ganhouMaxOscares(Id_Act, VencedoresClean, 0, [], Resultado),
- imprimeLista(Resultado),
- !.
+    actividade(Id_Act, Actividade),
+    findall(Pessoa, ganhouOscar(Pessoa, Actividade), Vencedores),
+    removeRepetidos(Vencedores, VencedoresClean),
+    ganhouMaxOscares(Id_Act, VencedoresClean, 0, [], Resultado),
+    imprimeLista(Resultado),
+    !.
 
 % ------------------------------------------------------------------------%
 %
@@ -166,10 +166,10 @@ maisOscares(Actividade) :-
 % ------------------------------------------------------------------------%
 
 ganhouOscar(Pessoa, Actividade) :-
- pessoa(Id_Pessoa, Pessoa, _, _),
- actividade(Id_Act, Actividade),
- nomeada(Id_Pessoa, Id_Filme, Id_Act, 1),
- filme(Id_Filme, _, _, _).
+    pessoa(Id_Pessoa, Pessoa, _, _),
+    actividade(Id_Act, Actividade),
+    nomeada(Id_Pessoa, Id_Filme, Id_Act, 1),
+    filme(Id_Filme, _, _, _).
 
 % ------------------------------------------------------------------------%
 %
@@ -181,29 +181,30 @@ ganhouOscar(Pessoa, Actividade) :-
 % ------------------------------------------------------------------------%
 
 calculaNOscares(Pessoa, Id_Act, N) :-
- pessoa(Id_Pessoa, Pessoa, _, _),
- auxCalculaNOscares(Id_Pessoa, 0, Id_Act, [], N).
+    pessoa(Id_Pessoa, Pessoa, _, _),
+    % the first solution counts every film; later ones would undercount
+    once(auxCalculaNOscares(Id_Pessoa, 0, Id_Act, [], N)).
 auxCalculaNOscares(Id_Pessoa, N_Actual, Id_Actividade, Filmes, Resposta) :-
- nomeada(Id_Pessoa,Id_Filme,Id_Actividade, 1),
- filme(Id_Filme, _, _, _),
- not(member(Id_Filme, Filmes)),
- N_mais_um is N_Actual+1,
- auxCalculaNOscares(Id_Pessoa,N_mais_um, Id_Actividade, [Id_Filme|Filmes], Resposta).
+    nomeada(Id_Pessoa,Id_Filme,Id_Actividade, 1),
+    filme(Id_Filme, _, _, _),
+    not(member(Id_Filme, Filmes)),
+    N_mais_um is N_Actual+1,
+    auxCalculaNOscares(Id_Pessoa,N_mais_um, Id_Actividade, [Id_Filme|Filmes], Resposta).
 auxCalculaNOscares(_, N, _, _, N).
 
 ganhouMaxOscares(_,[], _, Resultado, Resultado).
 ganhouMaxOscares(Id_Act, [Primeiro|Resto], MaxActual, ListaTemp, ResultadoFinal) :-
- calculaNOscares(Primeiro, Id_Act, N),
- N < MaxActual,
-        ganhouMaxOscares(Id_Act, Resto, MaxActual, ListaTemp, ResultadoFinal).
+    calculaNOscares(Primeiro, Id_Act, N),
+    N < MaxActual,
+    ganhouMaxOscares(Id_Act, Resto, MaxActual, ListaTemp, ResultadoFinal).
 ganhouMaxOscares(Id_Act, [Primeiro|Resto], MaxActual, ListaTemp, ResultadoFinal) :-
- calculaNOscares(Primeiro, Id_Act, N),
- N == MaxActual,
- ganhouMaxOscares(Id_Act, Resto, MaxActual, [Primeiro|ListaTemp], ResultadoFinal).
+    calculaNOscares(Primeiro, Id_Act, N),
+    N == MaxActual,
+    ganhouMaxOscares(Id_Act, Resto, MaxActual, [Primeiro|ListaTemp], ResultadoFinal).
 ganhouMaxOscares(Id_Act, [Primeiro|Resto], MaxActual, _, ResultadoFinal) :-
- calculaNOscares(Primeiro, Id_Act, N),
- N > MaxActual,
- ganhouMaxOscares(Id_Act, Resto, N, [Primeiro], ResultadoFinal).
+    calculaNOscares(Primeiro, Id_Act, N),
+    N > MaxActual,
+    ganhouMaxOscares(Id_Act, Resto, N, [Primeiro], ResultadoFinal).
 
 % ------------------------------------------------------------------------%
 %
@@ -216,22 +217,22 @@ ganhouMaxOscares(Id_Act, [Primeiro|Resto], MaxActual, _, ResultadoFinal) :-
 % ------------------------------------------------------------------------%
 
 maisQueNFilmes(Num) :-
- findall(Pessoa, pessoa(_, Pessoa, _, _), Pessoas),
- removeRepetidos(Pessoas, PessoasClean),
- auxMaisQueNFilmes(PessoasClean, Num, Resultado),
- imprimeLista(Resultado),
- !.
+    findall(Pessoa, pessoa(_, Pessoa, _, _), Pessoas),
+    removeRepetidos(Pessoas, PessoasClean),
+    auxMaisQueNFilmes(PessoasClean, Num, Resultado),
+    imprimeLista(Resultado),
+    !.
 auxMaisQueNFilmes([], _, []).
 auxMaisQueNFilmes([Primeira|Resto], Num, [Primeira|Resultado]) :-
- pessoa(Id_Pessoa, Primeira, _, _),
- calculaNParticipacoes(Id_Pessoa, N),
- N >= Num,
- auxMaisQueNFilmes(Resto, Num, Resultado).
+    pessoa(Id_Pessoa, Primeira, _, _),
+    calculaNParticipacoes(Id_Pessoa, N),
+    N >= Num,
+    auxMaisQueNFilmes(Resto, Num, Resultado).
 auxMaisQueNFilmes([Primeira|Resto], Num, Resultado) :-
- pessoa(Id_Pessoa, Primeira, _, _),
- calculaNParticipacoes(Id_Pessoa, N),
- N < Num,
- auxMaisQueNFilmes(Resto, Num, Resultado).
+    pessoa(Id_Pessoa, Primeira, _, _),
+    calculaNParticipacoes(Id_Pessoa, N),
+    N < Num,
+    auxMaisQueNFilmes(Resto, Num, Resultado).
 
 % ------------------------------------------------------------------------%
 %
@@ -243,28 +244,28 @@ auxMaisQueNFilmes([Primeira|Resto], Num, Resultado) :-
 %
 % ------------------------------------------------------------------------%
 maisFilmes :-
- findall(Pessoa, pessoa(_, Pessoa, _, _), Pessoas),
- removeRepetidos(Pessoas, PessoasClean),
- participaMaxFilmes(PessoasClean, 0, [], Resultado),
- imprimeLista(Resultado),
- !.
+    findall(Pessoa, pessoa(_, Pessoa, _, _), Pessoas),
+    removeRepetidos(Pessoas, PessoasClean),
+    participaMaxFilmes(PessoasClean, 0, [], Resultado),
+    imprimeLista(Resultado),
+    !.
 
 participaMaxFilmes([], _, Resultado, Resultado).
 participaMaxFilmes([Primeira|Resto], MaxActual, ListaTemp, ResultadoFinal) :-
- pessoa(Id_Primeira, Primeira, _, _),
- calculaNParticipacoes(Id_Primeira, N),
- N < MaxActual,
- participaMaxFilmes(Resto, MaxActual, ListaTemp, ResultadoFinal).
+    pessoa(Id_Primeira, Primeira, _, _),
+    calculaNParticipacoes(Id_Primeira, N),
+    N < MaxActual,
+    participaMaxFilmes(Resto, MaxActual, ListaTemp, ResultadoFinal).
 participaMaxFilmes([Primeira|Resto], MaxActual, ListaTemp, ResultadoFinal) :-
- pessoa(Id_Primeira, Primeira, _, _),
- calculaNParticipacoes(Id_Primeira, N),
- N == MaxActual,
- participaMaxFilmes(Resto, MaxActual, [Primeira|ListaTemp], ResultadoFinal).
+    pessoa(Id_Primeira, Primeira, _, _),
+    calculaNParticipacoes(Id_Primeira, N),
+    N == MaxActual,
+    participaMaxFilmes(Resto, MaxActual, [Primeira|ListaTemp], ResultadoFinal).
 participaMaxFilmes([Primeira|Resto], MaxActual, _, ResultadoFinal) :-
- pessoa(Id_Primeira, Primeira, _, _),
- calculaNParticipacoes(Id_Primeira, N),
- N > MaxActual,
- participaMaxFilmes(Resto, N, [Primeira], ResultadoFinal).
+    pessoa(Id_Primeira, Primeira, _, _),
+    calculaNParticipacoes(Id_Primeira, N),
+    N > MaxActual,
+    participaMaxFilmes(Resto, N, [Primeira], ResultadoFinal).
 
 % ------------------------------------------------------------------------%
 %
@@ -278,23 +279,23 @@ participaMaxFilmes([Primeira|Resto], MaxActual, _, ResultadoFinal) :-
 % ------------------------------------------------------------------------%
 
 calculaNParticipacoes(Pessoa, N) :-
- findall(Actividade, actividade(Actividade, _), Actividades),
- removeRepetidos(Actividades, ActClean),
- auxCalculaNParticipacoes(Pessoa, ActClean, 0, N).
+    findall(Actividade, actividade(Actividade, _), Actividades),
+    removeRepetidos(Actividades, ActClean),
+    auxCalculaNParticipacoes(Pessoa, ActClean, 0, N).
 
 auxCalculaNParticipacoes(_, [], Ac, Ac).
 auxCalculaNParticipacoes(Pessoa, [Act|Resto], Ac, N) :-
- findall(Filme, participa(Pessoa, Filme, Act), Filmes),
- removeRepetidos(Filmes, FilmesFinal),
- auxAuxCalculaNParticipacoes(FilmesFinal, 0, M),
- Ac_Novo is Ac + M,
- auxCalculaNParticipacoes(Pessoa, Resto, Ac_Novo, N).
+    findall(Filme, participa(Pessoa, Filme, Act), Filmes),
+    removeRepetidos(Filmes, FilmesFinal),
+    auxAuxCalculaNParticipacoes(FilmesFinal, 0, M),
+    Ac_Novo is Ac + M,
+    auxCalculaNParticipacoes(Pessoa, Resto, Ac_Novo, N).
 
 auxAuxCalculaNParticipacoes([], Acumulador, Acumulador).
 auxAuxCalculaNParticipacoes([Filme1|Resto], Acumulador, M) :-
- filme(Filme1, _, _, _),
- Ac_mais_1 is Acumulador + 1,
- auxAuxCalculaNParticipacoes(Resto, Ac_mais_1, M).
+    filme(Filme1, _, _, _),
+    Ac_mais_1 is Acumulador + 1,
+    auxAuxCalculaNParticipacoes(Resto, Ac_mais_1, M).
 
 
 %;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -311,10 +312,10 @@ auxAuxCalculaNParticipacoes([Filme1|Resto], Acumulador, M) :-
 % ------------------------------------------------------------------------%
 
 redeSocial(Nome1, Nome2) :-
-        breadth_first([[Nome1]],Nome2,Caminho),
- removePrimeiro(Caminho, Temp),
- removeUltimo(Temp, ListaFinal),
- imprimeLista(ListaFinal).
+    breadth_first([[Nome1]],Nome2,Caminho),
+    removePrimeiro(Caminho, Temp),
+    removeUltimo(Temp, ListaFinal),
+    imprimeLista(ListaFinal).
 
 % ------------------------------------------------------------------------%
 %
@@ -325,15 +326,15 @@ redeSocial(Nome1, Nome2) :-
 %
 % ------------------------------------------------------------------------%
 edge(Pessoa1, Pessoa2) :-
- pessoa(Id_Pessoa1, Pessoa1, _, _),
- pessoa(Id_Pessoa2, Pessoa2, _, _),
- Pessoa1 \= Pessoa2,
- participamMesmoFilme(Id_Pessoa1,Id_Pessoa2).
+    pessoa(Id_Pessoa1, Pessoa1, _, _),
+    pessoa(Id_Pessoa2, Pessoa2, _, _),
+    Pessoa1 \= Pessoa2,
+    participamMesmoFilme(Id_Pessoa1,Id_Pessoa2).
 
 participamMesmoFilme(Id_Pessoa1,Id_Pessoa2) :-
- participa(Id_Pessoa1,Id_Filme,_),
- participa(Id_Pessoa2,Id_Filme,_),
- !.
+    participa(Id_Pessoa1,Id_Filme,_),
+    participa(Id_Pessoa2,Id_Filme,_),
+    !.
 
 %----------------------------------------------------------------------%
 %
@@ -361,19 +362,19 @@ breadth_first([Path|Queue],Goal,FinalPath) :-
 %
 %----------------------------------------------------------------------%
 extend([Node|Path],Queue,NewPaths):-
- findall([NewNode,Node|Path],
-  simplestPath(NewNode,[Node|Path], Queue),
-  NewPaths).
+    findall([NewNode,Node|Path],
+        simplestPath(NewNode,[Node|Path], Queue),
+        NewPaths).
 
 simplestPath(NewNode, [Node|Path], Queue) :-
- edge(Node,NewNode),
- not(member(NewNode,Path)),
- not(existeEmUmCaminho(NewNode,Queue)).
+    edge(Node,NewNode),
+    not(member(NewNode,Path)),
+    not(existeEmUmCaminho(NewNode,Queue)).
 
 existeEmUmCaminho(Node,[PrimeiroCaminho|_]):-
- member(Node,PrimeiroCaminho).
+    member(Node,PrimeiroCaminho).
 existeEmUmCaminho(Node,[_|Resto]):-
- existeEmUmCaminho(Node,Resto).
+    existeEmUmCaminho(Node,Resto).
 
 
 % ############################# Parte II ############################# %
@@ -390,13 +391,13 @@ existeEmUmCaminho(Node,[_|Resto]):-
 %
 %--------------------------------------------------------------------%
 questao(Questao) :-
- concat_atom(Lista , ' ', Questao),
- automato(Lista),
- !.
+    atomic_list_concat(Lista, ' ', Questao),
+    automato(Lista),
+    !.
 questao(_) :-
- write('frase desconhecida'),
- nl,
- !.
+    write('frase desconhecida'),
+    nl,
+    !.
 %--------------------------------------------------------------------%
 %
 %       automato(+Entrada)
@@ -406,8 +407,8 @@ questao(_) :-
 % o predicado a que se refere.
 %--------------------------------------------------------------------%
 automato(Entrada) :-
- estadoInicial(Estado),
- transita(Estado,Entrada, _).
+    estadoInicial(Estado),
+    transita(Estado,Entrada, _).
 %--------------------------------------------------------------------%
 %
 %       transita(+Estado, +Entrada, +EntradaAnterior)
@@ -420,10 +421,10 @@ automato(Entrada) :-
 %
 %--------------------------------------------------------------------%
 transita(Estado, [], EntradaAnterior) :-
- estadoFinal(Estado, EntradaAnterior).
+    estadoFinal(Estado, EntradaAnterior).
 transita(Estado, [Entrada|Resto], _) :-
- estado(Estado, [Entrada,NovoEstado]),
- transita(NovoEstado, Resto, Entrada).
+    estado(Estado, [Entrada,NovoEstado]),
+    transita(NovoEstado, Resto, Entrada).
 
 %--------------------------------------------------------------------%
 %
@@ -472,9 +473,9 @@ estado(15, []).
 estadoInicial(0).
 
 estadoFinal(6, Actividade) :-
- maisOscares(Actividade).
+    maisOscares(Actividade).
 estadoFinal(10, _) :-
- todosRealizadores.
+    todosRealizadores.
 estadoFinal(15, Entrada) :-
- term_to_atom(Ano, Entrada),
- todosFilmes(Ano).
+    term_to_atom(Ano, Entrada),
+    todosFilmes(Ano).

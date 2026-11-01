@@ -1,113 +1,109 @@
-#include"List.h"
+#include "List.h"
 
-void 
-addElement(int value, void* currentlist) {
+void addElement(int value, void *currentlist) {
 
-    item* buffer;
-    
-    List* list = (List*) currentlist;
-    
-    list->size +=1;
+    item *buffer;
 
-    buffer = (item*) malloc(sizeof(item));
+    List *list = (List *)currentlist;
+
+    list->size += 1;
+
+    buffer = (item *)malloc(sizeof(item));
     buffer->number = value;
-    buffer->next  = NULL;
-    
-    if(list->head != NULL) {
-    
+    buffer->next = NULL;
+
+    if (list->head != NULL) {
+
         buffer->previous = list->tail;
         list->tail->next = buffer;
         list->tail = buffer;
-   } 
-   else {
+    } else {
         buffer->previous = NULL;
         list->head = buffer;
         list->tail = buffer;
-     }
-}
-
-void 
-removeElement(int value, void* currentlist) {
-
-    List *list = (List*) currentlist;   
-    item* previous = list->head;
-    item* after = list->head;
-    list->size -=1;
-    
-    while(after->number != value) {
-    previous = after;
-    after = after->next;
     }
-    
-    previous->next = after->next;
-    after->next->previous = previous;   
-    
-    if(after->number == list->head->number) {
-        list->head = list->head->next;
+}
+
+void removeElement(int value, void *currentlist) {
+
+    List *list = (List *)currentlist;
+    item *node = list->head;
+
+    while (node != NULL && node->number != value) {
+        node = node->next;
     }
-    free(after);
+    if (node == NULL) {
+        return; /* value not in the list */
+    }
+
+    if (node->previous != NULL) {
+        node->previous->next = node->next;
+    } else {
+        list->head = node->next;
+    }
+    if (node->next != NULL) {
+        node->next->previous = node->previous;
+    } else {
+        list->tail = node->previous;
+    }
+
+    list->size -= 1;
+    free(node);
 }
 
-int
-getElement(int pos, void* currentlist) {
+int getElement(int pos, void *currentlist) {
 
-  List* list = (List*) currentlist;
-  item* node = list->head;
-  int position = 1;
+    List *list = (List *)currentlist;
+    item *node = list->head;
+    int position = 1;
 
-  while(pos != position) {
-    node = node->next;
-    position++;
-  }
+    while (pos != position) {
+        node = node->next;
+        position++;
+    }
 
-  return (int)node->number;
+    return (int)node->number;
 }
 
-void
-printElements(void* currentlist) {
+void printElements(void *currentlist) {
 
-    List *list = (List*) currentlist;
-    
-    item* currentPosition = list->head;
-    int index = 0;
-    
+    List *list = (List *)currentlist;
+    item *currentPosition = list->head;
+
     printf("[");
-    while(currentPosition->next != NULL) {
-    
-        printf("%d, ", currentPosition->number);
+    while (currentPosition != NULL) {
+        printf("%d", currentPosition->number);
+        if (currentPosition->next != NULL) {
+            printf(", ");
+        }
         currentPosition = currentPosition->next;
-        index +=1;
     }
-    
-    printf("%d]\n", currentPosition->number);
+    printf("]\n");
 }
 
-List*
-createList() {
+List *createList(void) {
 
-    List * newList;
-    
-    newList = (List*) malloc(sizeof(List));
+    List *newList;
+
+    newList = (List *)malloc(sizeof(List));
     newList->head = NULL;
     newList->tail = NULL;
     newList->size = 0;
     newList->add = &addElement;
-    newList->remove =&removeElement;
+    newList->remove = &removeElement;
     newList->print = &printElements;
     newList->get = &getElement;
     return newList;
 }
 
-void 
-removeList(List* list) {
+void removeList(List *list) {
 
-    item* currentPosition = list->head;
-    item* freePosition = NULL;
-    while(currentPosition != NULL) {
+    item *currentPosition = list->head;
+    item *freePosition = NULL;
+    while (currentPosition != NULL) {
         freePosition = currentPosition;
         currentPosition = currentPosition->next;
         free(freePosition);
     }
     free(list);
 }
-

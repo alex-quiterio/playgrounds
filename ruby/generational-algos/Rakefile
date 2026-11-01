@@ -1,13 +1,19 @@
-require 'pry'
-require 'rake/clean'
 require 'rake/testtask'
 require_relative 'n-queens/n_queens'
 
+Rake::TestTask.new(:test) do |t|
+  t.libs << '.'
+  t.test_files = FileList['test/**/*_test.rb']
+  t.warning = false
+end
+
+task default: :test
+
 namespace :generational do
-  desc "N-Queens solved by Generational Algorithm"
-  task :nqueens, :size, :maxgen do |t, args|
-    size = 10
-    maxgen = 10
+  desc 'N-Queens solved by a generational algorithm, e.g. rake "generational:nqueens[10,10]"'
+  task :nqueens, :size, :maxgen do |_t, args|
+    size = (args[:size] || 10).to_i
+    maxgen = (args[:maxgen] || 10).to_i
     solver = NQueens.new(size: size, max_generations: maxgen)
     population = solver.run
     best_match = solver.best(population)

@@ -4,9 +4,7 @@ import (
 	"fmt"
 )
 
-/*
- * Insertion Sort Algorithm
- */
+// sort orders array in place, ascending, using insertion sort.
 func sort(array []int) {
 	var key int
 	var j int
@@ -19,10 +17,14 @@ func sort(array []int) {
 		}
 		array[j] = key
 	}
-	fmt.Println(array)
 }
 
 func main() {
-	sort([]int{1, 5, 3, 4, 6, 7, 8})
-	sort([]int{2, 5, 1, 2, 3, 4, 7, 6})
+	for _, array := range [][]int{
+		{1, 5, 3, 4, 6, 7, 8},
+		{2, 5, 1, 2, 3, 4, 7, 6},
+	} {
+		sort(array)
+		fmt.Println(array)
+	}
 }

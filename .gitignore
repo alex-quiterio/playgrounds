@@ -1,0 +1,9 @@
+# C build output
+build/
+*.o
+*.dSYM/
+
+# Editors and OS
+*~
+.DS_Store
+*.swp
