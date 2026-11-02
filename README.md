@@ -34,9 +34,10 @@ Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp, p
 | [2019](advent-of-code/2019) | Haskell | all 25 days | ⭐ 50 / 50 |
 | 2018 | not in this repo | all 25 days, solved elsewhere | ⭐ 50 / 50 |
 | 2017 | not in this repo | all 25 days, solved elsewhere | ⭐ 50 / 50 |
+| [2016](advent-of-code/2016) | Lua | day 1 | ⭐ 2 / 50 |
 | [2015](advent-of-code/2015) | Ruby | all 25 days (days 1-5, 7, 9 and 10 solved elsewhere) | ⭐ 50 / 50 |
 
-**474 stars** on the account, **356** of them with code in this repository. Each year's README has a ✅ per part, filled in from the Advent of Code calendar.
+**476 stars** on the account, **358** of them with code in this repository. Each year's README has a ✅ per part, filled in from the Advent of Code calendar.
 
 ### Quick start
 
@@ -78,6 +79,7 @@ The tooling in [`advent-of-code/bin`](advent-of-code/bin) covers the whole loop:
 | Ruby | Ruby 3.4+ (`minitest` and `rake` ship with it) | `brew install ruby` | `ruby` |
 | Prolog | SWI-Prolog | `brew install swi-prolog` | `swi-prolog-nox` |
 | Common Lisp | SBCL | `brew install sbcl` | `sbcl` |
+| Lua (Advent of Code 2016) | Lua 5.4+ | `brew install lua` | `lua5.4` |
 | Perl (Advent of Code 2022) | Perl 5 | preinstalled | preinstalled |
 | C++ (Advent of Code 2020) | `c++` with C++20 (clang or gcc) | Xcode Command Line Tools | `build-essential` |
 | Haskell (Advent of Code 2019) | GHC (`base` and `containers`) | `brew install ghc` | `ghc` |
