@@ -1,6 +1,6 @@
 # Advent of Code 2016
 
-This edition has 25 puzzles; days 1 and 2 are solved here. Start a day with `bin/new-day N 2016` from `advent-of-code/`.
+This edition has 25 puzzles; days 1-3 are solved here. Start a day with `bin/new-day N 2016` from `advent-of-code/`.
 
 2016 is in **Lua**. Each day is a `solution.lua`, run by an executable `run` that uses `lua` (or `lua5.4` on Debian and Ubuntu).
 
@@ -8,7 +8,7 @@ This edition has 25 puzzles; days 1 and 2 are solved here. Start a day with `bin
 | --- | --- | --- | --- | --- |
 | 1 | [No Time for a Taxicab](https://adventofcode.com/2016/day/1) | Lua | ✅ | ✅ |
 | 2 | [Bathroom Security](https://adventofcode.com/2016/day/2) | Lua | ✅ | ✅ |
-| 3 | [Day 3](https://adventofcode.com/2016/day/3) |  |  |  |
+| 3 | [Squares With Three Sides](https://adventofcode.com/2016/day/3) | Lua | ✅ | ✅ |
 | 4 | [Day 4](https://adventofcode.com/2016/day/4) |  |  |  |
 | 5 | [Day 5](https://adventofcode.com/2016/day/5) |  |  |  |
 | 6 | [Day 6](https://adventofcode.com/2016/day/6) |  |  |  |
