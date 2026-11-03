@@ -1,6 +1,6 @@
 # Advent of Code 2016
 
-This edition has 25 puzzles; days 1-13 are solved here. Start a day with `bin/new-day N 2016` from `advent-of-code/`.
+This edition has 25 puzzles; all 25 days are solved here. Start a day with `bin/new-day N 2016` from `advent-of-code/`.
 
 2016 is in **Lua**. Each day is a `solution.lua`, run by an executable `run` that uses `lua` (or `lua5.4` on Debian and Ubuntu).
 
@@ -19,15 +19,15 @@ This edition has 25 puzzles; days 1-13 are solved here. Start a day with `bin/ne
 | 11 | [Radioisotope Thermoelectric Generators](https://adventofcode.com/2016/day/11) | Lua | ✅ | ✅ |
 | 12 | [Leonardo's Monorail](https://adventofcode.com/2016/day/12) | Lua | ✅ | ✅ |
 | 13 | [A Maze of Twisty Little Cubicles](https://adventofcode.com/2016/day/13) | Lua | ✅ | ✅ |
-| 14 | [One-Time Pad](https://adventofcode.com/2016/day/14) |  |  |  |
-| 15 | [Timing is Everything](https://adventofcode.com/2016/day/15) |  |  |  |
-| 16 | [Dragon Checksum](https://adventofcode.com/2016/day/16) |  |  |  |
-| 17 | [Two Steps Forward](https://adventofcode.com/2016/day/17) |  |  |  |
-| 18 | [Like a Rogue](https://adventofcode.com/2016/day/18) |  |  |  |
-| 19 | [An Elephant Named Joseph](https://adventofcode.com/2016/day/19) |  |  |  |
-| 20 | [Firewall Rules](https://adventofcode.com/2016/day/20) |  |  |  |
-| 21 | [Scrambled Letters and Hash](https://adventofcode.com/2016/day/21) |  |  |  |
-| 22 | [Grid Computing](https://adventofcode.com/2016/day/22) |  |  |  |
-| 23 | [Safe Cracking](https://adventofcode.com/2016/day/23) |  |  |  |
-| 24 | [Air Duct Spelunking](https://adventofcode.com/2016/day/24) |  |  |  |
-| 25 | [Clock Signal](https://adventofcode.com/2016/day/25) |  |  |  |
+| 14 | [One-Time Pad](https://adventofcode.com/2016/day/14) | Lua | ✅ | ✅ |
+| 15 | [Timing is Everything](https://adventofcode.com/2016/day/15) | Lua | ✅ | ✅ |
+| 16 | [Dragon Checksum](https://adventofcode.com/2016/day/16) | Lua | ✅ | ✅ |
+| 17 | [Two Steps Forward](https://adventofcode.com/2016/day/17) | Lua | ✅ | ✅ |
+| 18 | [Like a Rogue](https://adventofcode.com/2016/day/18) | Lua | ✅ | ✅ |
+| 19 | [An Elephant Named Joseph](https://adventofcode.com/2016/day/19) | Lua | ✅ | ✅ |
+| 20 | [Firewall Rules](https://adventofcode.com/2016/day/20) | Lua | ✅ | ✅ |
+| 21 | [Scrambled Letters and Hash](https://adventofcode.com/2016/day/21) | Lua | ✅ | ✅ |
+| 22 | [Grid Computing](https://adventofcode.com/2016/day/22) | Lua | ✅ | ✅ |
+| 23 | [Safe Cracking](https://adventofcode.com/2016/day/23) | Lua | ✅ | ✅ |
+| 24 | [Air Duct Spelunking](https://adventofcode.com/2016/day/24) | Lua | ✅ | ✅ |
+| 25 | [Clock Signal](https://adventofcode.com/2016/day/25) | Lua | ✅ | ✅ |
