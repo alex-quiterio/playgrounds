@@ -1,6 +1,6 @@
 -- Day 19: An Elephant Named Joseph
 local file = assert(io.open(arg[1] or "", "r"), "usage: solution.lua INPUT")
-local n = tonumber(file:read("a"):match("%d+"))
+local n = tonumber(file:read("*a"):match("%d+"))
 file:close()
 
 -- Part 1 is the Josephus problem with every second elf out: write n as

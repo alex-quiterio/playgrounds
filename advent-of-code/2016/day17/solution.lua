@@ -4,7 +4,7 @@ package.path = here .. "../lib/?.lua;" .. package.path
 local md5 = require("md5")
 
 local file = assert(io.open(arg[1] or "", "r"), "usage: solution.lua INPUT")
-local passcode = file:read("l"):match("%S+")
+local passcode = file:read("*l"):match("%S+")
 file:close()
 
 -- Doors up, down, left, right are open when the matching one of the first

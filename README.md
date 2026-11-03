@@ -79,7 +79,7 @@ The tooling in [`advent-of-code/bin`](advent-of-code/bin) covers the whole loop:
 | Ruby | Ruby 3.4+ (`minitest` and `rake` ship with it) | `brew install ruby` | `ruby` |
 | Prolog | SWI-Prolog | `brew install swi-prolog` | `swi-prolog-nox` |
 | Common Lisp | SBCL | `brew install sbcl` | `sbcl` |
-| Lua (Advent of Code 2016) | Lua 5.4+ | `brew install lua` | `lua5.4` |
+| Lua (Advent of Code 2016) | LuaJIT 2.1 | `brew install luajit` | `luajit` |
 | Perl (Advent of Code 2022) | Perl 5 | preinstalled | preinstalled |
 | C++ (Advent of Code 2020) | `c++` with C++20 (clang or gcc) | Xcode Command Line Tools | `build-essential` |
 | Haskell (Advent of Code 2019) | GHC (`base` and `containers`) | `brew install ghc` | `ghc` |

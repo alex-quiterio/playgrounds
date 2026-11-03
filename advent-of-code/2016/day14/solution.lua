@@ -4,7 +4,7 @@ package.path = here .. "../lib/?.lua;" .. package.path
 local md5 = require("md5")
 
 local file = assert(io.open(arg[1] or "", "r"), "usage: solution.lua INPUT")
-local salt = file:read("l"):match("%S+")
+local salt = file:read("*l"):match("%S+")
 file:close()
 
 -- Finds the index that produces the 64th key, hashing each index `times`

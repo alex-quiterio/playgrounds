@@ -1,5 +1,5 @@
 #!/bin/sh
-# Usage: ./run INPUT. Runs this day's Lua solution (lua, or lua5.4 on Debian/Ubuntu).
+# Usage: ./run INPUT. Runs this day's Lua solution with LuaJIT.
 dir="$(dirname "$0")"
-lua=$(command -v lua || command -v lua5.4) || { echo "Lua is not installed" >&2; exit 1; }
-exec "$lua" "$dir/solution.lua" "$@"
+command -v luajit >/dev/null || { echo "LuaJIT is not installed" >&2; exit 1; }
+exec luajit "$dir/solution.lua" "$@"

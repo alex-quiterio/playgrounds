@@ -62,8 +62,8 @@ jobs:
           go-version-file: advent-of-code/2024/go.mod
       - name: Install SBCL (2025 is in Common Lisp)
         run: sudo apt-get update && sudo apt-get install -y sbcl
-      - name: Install Lua (2016 is in Lua)
-        run: sudo apt-get install -y lua5.4
+      - name: Install LuaJIT (2016 is in Lua)
+        run: sudo apt-get install -y luajit
       - name: Install GHC (2019 is in Haskell)
         run: sudo apt-get install -y ghc
       - name: Install the Clojure CLI (2021 is in Clojure)

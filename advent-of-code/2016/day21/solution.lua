@@ -22,7 +22,7 @@ local function scramble(s)
       x, y = tonumber(x) + 1, tonumber(y) + 1
       local t = { s:byte(1, -1) }
       t[x], t[y] = t[y], t[x]
-      s = string.char(table.unpack(t))
+      s = string.char(unpack(t))
     end
     x, y = step:match("^swap letter (%a) with letter (%a)")
     if x then s = s:gsub("[" .. x .. y .. "]", { [x] = y, [y] = x }) end

@@ -13,7 +13,7 @@ local REGISTER = { a = true, b = true, c = true, d = true }
 
 local function run(a)
   local program = {}
-  for i, words in ipairs(source) do program[i] = { table.unpack(words) } end
+  for i, words in ipairs(source) do program[i] = { unpack(words) } end
   local reg = { a = a, b = 0, c = 0, d = 0 }
   local function value(x) return reg[x] or tonumber(x) end
 

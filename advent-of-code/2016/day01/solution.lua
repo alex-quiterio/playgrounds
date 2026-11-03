@@ -1,6 +1,6 @@
 -- Day 1: No Time for a Taxicab
 local file = assert(io.open(arg[1] or "", "r"), "usage: solution.lua INPUT")
-local text = file:read("a")
+local text = file:read("*a")
 file:close()
 
 -- Headings in clockwise order: north, east, south, west.

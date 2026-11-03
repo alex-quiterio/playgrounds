@@ -1,6 +1,6 @@
 -- Day 9: Explosives in Cyberspace
 local file = assert(io.open(arg[1] or "", "r"), "usage: solution.lua INPUT")
-local data = file:read("a"):gsub("%s", "")
+local data = file:read("*a"):gsub("%s", "")
 file:close()
 
 -- Length of data[from..to] once decompressed. A marker (AxB) repeats the

@@ -8,4 +8,4 @@ Puzzle: https://adventofcode.com/2016/day/5
 
 ## Notes
 
-Lua has no MD5, so `solution.lua` carries a one-block MD5 (RFC 1321) that only returns the first 32 bits of the digest, the only part the puzzle reads. The example takes about 40 seconds, the real input about 80.
+Lua has no MD5, so this uses `../lib/md5.lua`. Tens of millions of hashes are needed, so no string is built per hash: the index's digits are counted up in a byte array and MD5's single block is filled straight from it. The real input takes about 5 seconds.

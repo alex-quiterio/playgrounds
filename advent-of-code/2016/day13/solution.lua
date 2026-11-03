@@ -2,7 +2,7 @@
 -- The input is the office designer's favourite number. The example adds its
 -- own target after it ("10 7,4"); the real target is 31,39.
 local file = assert(io.open(arg[1] or "", "r"), "usage: solution.lua INPUT")
-local text = file:read("a")
+local text = file:read("*a")
 file:close()
 local favourite = tonumber(text:match("%d+"))
 local tx, ty = text:match("%d+%s+(%d+),(%d+)")
@@ -11,7 +11,7 @@ tx, ty = tonumber(tx) or 31, tonumber(ty) or 39
 local function open(x, y)
   if x < 0 or y < 0 then return false end
   local n, bits = x * x + 3 * x + 2 * x * y + y + y * y + favourite, 0
-  while n > 0 do bits, n = bits + (n & 1), n >> 1 end
+  while n > 0 do bits, n = bits + n % 2, math.floor(n / 2) end
   return bits % 2 == 0
 end
 

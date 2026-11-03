@@ -2,7 +2,7 @@
 
 This edition has 25 puzzles; all 25 days are solved here. Start a day with `bin/new-day N 2016` from `advent-of-code/`.
 
-2016 is in **Lua**. Each day is a `solution.lua`, run by an executable `run` that uses `lua` (or `lua5.4` on Debian and Ubuntu).
+2016 is in **Lua**, run with [LuaJIT](https://luajit.org) 2.1. Each day is a `solution.lua`, run by an executable `run` that calls `luajit`. LuaJIT follows Lua 5.1, so bit operations go through its `bit` library rather than Lua 5.4's `&`, `|` and `<<`. The whole year checks in about 30 seconds, against six minutes on plain Lua 5.4, because of the MD5 brute force in days 5 and 14.
 
 | Day | Puzzle | Language | Part 1 | Part 2 |
 | --- | --- | --- | --- | --- |

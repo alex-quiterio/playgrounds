@@ -36,7 +36,7 @@ end
 
 local function id(ex, ey, gx, gy) return ((ey * width + ex) * height + gy) * width + gx end
 local start = { empty.x, empty.y, width - 1, 0 }
-local seen = { [id(table.unpack(start))] = true }
+local seen = { [id(unpack(start))] = true }
 local frontier, steps = { start }, 0
 local answer
 while #frontier > 0 and not answer do

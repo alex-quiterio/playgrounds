@@ -2,7 +2,7 @@
 -- The input is the first row. The example adds its own row count after it
 -- (".^^.^.^^^^ 10"); the real room has 40 rows, then 400000 for part 2.
 local file = assert(io.open(arg[1] or "", "r"), "usage: solution.lua INPUT")
-local text = file:read("a")
+local text = file:read("*a")
 file:close()
 local first = text:match("[%.%^]+")
 local example_rows = tonumber(text:match("[%.%^]+%s+(%d+)"))
