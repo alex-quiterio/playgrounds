@@ -1,6 +1,6 @@
 # Advent of Code 2016
 
-This edition has 25 puzzles; days 1-3 are solved here, and days 4-8 have Lua solutions that pass the puzzle examples but have not been run on a real input yet. Start a day with `bin/new-day N 2016` from `advent-of-code/`.
+This edition has 25 puzzles; days 1-8 are solved here. Start a day with `bin/new-day N 2016` from `advent-of-code/`.
 
 2016 is in **Lua**. Each day is a `solution.lua`, run by an executable `run` that uses `lua` (or `lua5.4` on Debian and Ubuntu).
 
@@ -9,11 +9,11 @@ This edition has 25 puzzles; days 1-3 are solved here, and days 4-8 have Lua sol
 | 1 | [No Time for a Taxicab](https://adventofcode.com/2016/day/1) | Lua | ✅ | ✅ |
 | 2 | [Bathroom Security](https://adventofcode.com/2016/day/2) | Lua | ✅ | ✅ |
 | 3 | [Squares With Three Sides](https://adventofcode.com/2016/day/3) | Lua | ✅ | ✅ |
-| 4 | [Security Through Obscurity](https://adventofcode.com/2016/day/4) | Lua |  |  |
-| 5 | [How About a Nice Game of Chess?](https://adventofcode.com/2016/day/5) | Lua |  |  |
-| 6 | [Signals and Noise](https://adventofcode.com/2016/day/6) | Lua |  |  |
-| 7 | [Internet Protocol Version 7](https://adventofcode.com/2016/day/7) | Lua |  |  |
-| 8 | [Two-Factor Authentication](https://adventofcode.com/2016/day/8) | Lua |  |  |
+| 4 | [Security Through Obscurity](https://adventofcode.com/2016/day/4) | Lua | ✅ | ✅ |
+| 5 | [How About a Nice Game of Chess?](https://adventofcode.com/2016/day/5) | Lua | ✅ | ✅ |
+| 6 | [Signals and Noise](https://adventofcode.com/2016/day/6) | Lua | ✅ | ✅ |
+| 7 | [Internet Protocol Version 7](https://adventofcode.com/2016/day/7) | Lua | ✅ | ✅ |
+| 8 | [Two-Factor Authentication](https://adventofcode.com/2016/day/8) | Lua | ✅ | ✅ |
 | 9 | [Day 9](https://adventofcode.com/2016/day/9) |  |  |  |
 | 10 | [Day 10](https://adventofcode.com/2016/day/10) |  |  |  |
 | 11 | [Day 11](https://adventofcode.com/2016/day/11) |  |  |  |
