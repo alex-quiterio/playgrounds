@@ -72,7 +72,7 @@ Advent of Code [asks](https://adventofcode.com/about) that puzzle inputs and puz
 | Year | Progress |
 | --- | --- |
 | [2015](2015) | Ruby: days 6, 8 and 11-25 (days 1-5, 7, 9 and 10 solved elsewhere), 50 stars |
-| [2016](2016) | Lua: days 1-8, 16 stars |
+| [2016](2016) | Lua: days 1-13, 26 stars |
 | 2017 | solved elsewhere, no code here: 50 stars |
 | 2018 | solved elsewhere, no code here: 50 stars |
 | [2019](2019) | Haskell: all 25 days, 50 stars |
