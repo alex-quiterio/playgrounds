@@ -9,6 +9,8 @@
 # part 1 answer on line 1 and the part 2 answer on line 2. Only the lines in
 # the .expected file are compared, so one line is enough while part 2 is open.
 #
+# Each result shows how long the runner took on that file.
+#
 # Usage: bin/check [YEAR [DAY]]
 set -u
 
@@ -25,6 +27,17 @@ pass=0
 fail=0
 skip=0
 
+# Wall-clock time in seconds with fractions. BSD date on macOS has no
+# sub-second format, so ask Perl, which ships on macOS and Ubuntu alike.
+now() {
+    perl -MTime::HiRes=time -e 'printf "%.3f", time'
+}
+
+# How long since START, as "850ms" under a second and "12.3s" above it.
+since() {
+    perl -e '$t = $ARGV[1] - $ARGV[0]; printf($t < 1 ? "%dms" : "%.1fs", $t < 1 ? $t * 1000 : $t)' "$1" "$(now)"
+}
+
 check_case() {
     dir="$1"
     input="$2"
@@ -38,17 +51,21 @@ check_case() {
         echo "skip $name (no expected answer yet)"
         return
     fi
-    if actual="$(cd "$dir" && "./$runner" "$(basename "$input")" 2>/dev/null | head -n "$lines")" \
-        && [ "$actual" = "$(cat "$expected")" ]; then
+    start=$(now)
+    actual="$(cd "$dir" && "./$runner" "$(basename "$input")" 2>/dev/null | head -n "$lines")"
+    status=$?
+    took=$(since "$start")
+    if [ "$status" -eq 0 ] && [ "$actual" = "$(cat "$expected")" ]; then
         pass=$((pass + 1))
-        echo "ok   $name"
+        echo "ok   $name ($took)"
     else
         fail=$((fail + 1))
-        echo "FAIL $name"
+        echo "FAIL $name ($took)"
         echo "$actual" | diff "$expected" - | sed 's/^/     /'
     fi
 }
 
+started=$(now)
 for dir in $pattern; do
     [ -d "$dir" ] || continue
     # Folders with only a fetched puzzle.md are not started yet.
@@ -69,5 +86,5 @@ for dir in $pattern; do
     done
 done
 
-echo "$pass passed, $fail failed, $skip skipped"
+echo "$pass passed, $fail failed, $skip skipped in $(since "$started")"
 [ "$fail" -eq 0 ]
