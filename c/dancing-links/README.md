@@ -76,6 +76,24 @@ Split a board into rectangles so that each one holds exactly one number, equal t
 make run PUZZLE=rectangles
 ```
 
+### Spangram (Strands)
+
+Cover every letter of a grid with words traced through neighbouring cells, diagonals included, the way the NYT game [Strands](https://www.nytimes.com/games/strands) works. Each cell is used once and no two paths cross.
+
+**Model.** The word list goes into a trie. A depth-first search from every cell finds every way to trace every word, and each of those is a row. Every cell is a primary column. Each 2x2 block of cells adds a secondary column: its two diagonals cross, so at most one path may step through it diagonally.
+
+**Input.** The grid, one row of letters per line. Arguments can come in any order:
+
+- a number: the most words the solution may use
+- a name with a dot: the word list (default `words.txt`)
+- any other word: a word the solution must not use
+
+The output lists the words found, then draws their paths on the grid with each word's first letter in upper case. If the answer isn't the one you want, run it again with the unwanted words forbidden. The test uses a small word list, [`spangram/words.txt`](spangram/words.txt). For real puzzles, try a large list such as [english-words](https://github.com/dwyl/english-words/blob/master/words.txt).
+
+```sh
+./build/spangram spangram/words.txt 8 nori < spangram/example.in
+```
+
 ## Running
 
 ```sh
