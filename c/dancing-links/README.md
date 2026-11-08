@@ -26,7 +26,7 @@ dancing_links_free(links);
 
 ## Puzzles
 
-Each puzzle is in `<name>/<name>.c` and reads its puzzle from standard input. It turns the puzzle into a matrix, solves it, and prints the answer.
+Each puzzle is in `<name>/<name>.c` and reads its puzzle from standard input. Each one turns the puzzle into a matrix, solves it, and prints the answer.
 
 ### N-Queens
 
@@ -40,11 +40,23 @@ Count the ways to place N queens on an NxN board so that no two attack each othe
 echo "8 0" | ./build/nqueens    # 92
 ```
 
+### Sudoku
+
+Fill a 9x9 board so that every row, column and 3x3 box holds the digits 1 to 9 once each.
+
+**Model.** Placing digit d in cell (r, c) is a row: 729 in all. There are four groups of 81 primary columns: every cell holds one digit, and every row, column and box holds each digit once. Given digits are removed up front, along with every choice they rule out, so the matrix only holds what is still open.
+
+**Input.** The 81 cells row by row, with `0` for an empty cell.
+
+```sh
+make run PUZZLE=sudoku
+```
+
 ## Running
 
 ```sh
 make test                   # library unit tests, then every puzzle against its example
-make run PUZZLE=nqueens     # solve one puzzle's example
+make run PUZZLE=sudoku      # solve one puzzle's example
 make clean
 ```
 
