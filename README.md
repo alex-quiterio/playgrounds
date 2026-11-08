@@ -179,7 +179,7 @@ The arguments are the number of rings, player A, player B, and the time limit pe
 
 The code is split by concern: [`board.lisp`](lisp/y-game/board.lisp) (rings, neighbours, winning), [`state.lisp`](lisp/y-game/state.lisp) (moves and connected groups), [`heuristics.lisp`](lisp/y-game/heuristics.lisp), [`search.lisp`](lisp/y-game/search.lisp) (minimax and alpha-beta), [`players.lisp`](lisp/y-game/players.lisp), [`match.lisp`](lisp/y-game/match.lisp) and [`io.lisp`](lisp/y-game/io.lisp). [`y-game.lisp`](lisp/y-game/y-game.lisp) loads them all.
 
-Each file has its own specs in [`lisp/y-game/tests`](lisp/y-game/tests), named after it (`board-test.lisp` for `board.lisp`, and so on). `make test-lisp` runs them all through `run-all.lisp`, and any one runs on its own:
+Each file has its own specs in [`lisp/y-game/tests`](lisp/y-game/tests), named after it (`board-test.lisp` for `board.lisp`, and so on), and `y-game-test.lisp` checks the loader and plays whole matches end to end. `make test-lisp` runs them all through `run-all.lisp`, and any one runs on its own:
 
 ```sh
 sbcl --script lisp/y-game/tests/board-test.lisp

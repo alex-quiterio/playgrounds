@@ -3,7 +3,7 @@
 (defvar *running-all* t)
 (let ((here (or *load-truename* *default-pathname-defaults*)))
   (load (merge-pathnames "helper.lisp" here))
-  (dolist (file '("io" "board" "state" "heuristics" "search" "players" "match"))
+  (dolist (file '("io" "board" "state" "heuristics" "search" "players" "match" "y-game"))
     (format t "== ~a.lisp~%" file)
     (load (merge-pathnames (make-pathname :name (format nil "~a-test" file) :type "lisp") here))))
 (report-results)
