@@ -52,6 +52,18 @@ Fill a 9x9 board so that every row, column and 3x3 box holds the digits 1 to 9 o
 make run PUZZLE=sudoku
 ```
 
+### Dominosa
+
+Tile a board of numbers with dominoes so that no domino appears twice. Play it at [puzzle-dominosa.com](http://www.puzzle-dominosa.com/).
+
+**Model.** Every horizontal and vertical domino position is a row. Every cell must be covered once, and every pair of numbers must be used once. A `d-e` domino marks both the `(d, e)` and `(e, d)` columns, so each unordered pair is used exactly once.
+
+**Input.** The height H, then the H x (H+1) board row by row, using the numbers 0 to H-1. The output marks each cell with `-` or `|` for the domino covering it.
+
+```sh
+make run PUZZLE=dominosa
+```
+
 ## Running
 
 ```sh
