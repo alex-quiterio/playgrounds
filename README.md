@@ -17,7 +17,7 @@ Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp, p
 | [`go/twitter-puddle`](go/twitter-puddle/twitter_puddle.go) | Go | Twitter's "puddle" puzzle: how much water a skyline of walls holds |
 | [`ruby/backtracking-algos`](ruby/backtracking-algos) | Ruby | A generic backtracking engine, used for N-Queens and Sudoku |
 | [`ruby/generational-algos`](ruby/generational-algos) | Ruby | N-Queens with a genetic algorithm (cycle crossover plus swap mutation) |
-| [`prolog/oscars.pl`](prolog/oscars.pl) | Prolog | Queries over a film/Oscars database, a social-network search, and a tiny Portuguese question parser |
+| [`prolog/oscars`](prolog/oscars) | Prolog | Queries over a film/Oscars database, a social-network search, and a tiny Portuguese question parser |
 | [`lisp/y-game`](lisp/y-game) | Common Lisp | The game of Y on a ring board, with a minimax / alpha-beta computer player |
 
 ## Advent of Code
@@ -157,14 +157,20 @@ Sudoku puzzles are 81 cells, written row by row: digits for given cells, `.` for
 
 ### Prolog
 
-`oscars.pl` needs a database with these facts: `activity/2`, `person/4`, `film/4`, `took_part/3` and `nominated/4`. [`prolog/tests/fixtures.pl`](prolog/tests/fixtures.pl) is a small example database:
+`oscars.pl` needs a database with these facts: `activity/2`, `person/4`, `film/4`, `took_part/3` and `nominated/4`. [`prolog/oscars/tests/fixtures.pl`](prolog/oscars/tests/fixtures.pl) is a small example database:
 
 ```sh
-cd prolog
+cd prolog/oscars
 swipl tests/fixtures.pl oscars.pl
 ?- most_oscars(realizador).
 ?- social_network(bruno, duarte).
 ?- question('filmes de 1995').   % questions are asked in Portuguese
+```
+
+[`oscars.pl`](prolog/oscars/oscars.pl) loads the rest: [`lists.pl`](prolog/oscars/lists.pl), [`films.pl`](prolog/oscars/films.pl) (films, directors and who took part in what), [`awards.pl`](prolog/oscars/awards.pl) (Oscars), [`social_network.pl`](prolog/oscars/social_network.pl) and [`questions.pl`](prolog/oscars/questions.pl) (the Portuguese question parser). Each has its own specs in [`prolog/oscars/tests`](prolog/oscars/tests); `make test-prolog` runs them all through `all_tests.pl`, and any one runs on its own:
+
+```sh
+swipl -g run_tests -t halt prolog/oscars/tests/films_test.pl
 ```
 
 ### Common Lisp
