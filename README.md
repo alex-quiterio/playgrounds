@@ -17,7 +17,7 @@ Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp, p
 | [`go/twitter-puddle`](go/twitter-puddle/twitter_puddle.go) | Go | Twitter's "puddle" puzzle: how much water a skyline of walls holds |
 | [`ruby/backtracking-algos`](ruby/backtracking-algos) | Ruby | A generic backtracking engine, used for N-Queens and Sudoku |
 | [`ruby/generational-algos`](ruby/generational-algos) | Ruby | N-Queens with a genetic algorithm (cycle crossover plus swap mutation) |
-| [`prolog/oscares.pl`](prolog/oscares.pl) | Prolog | Queries over a film/Oscars database, a social-network search, and a tiny Portuguese question parser |
+| [`prolog/oscars.pl`](prolog/oscars.pl) | Prolog | Queries over a film/Oscars database, a social-network search, and a tiny Portuguese question parser |
 | [`lisp/y-game`](lisp/y-game) | Common Lisp | The game of Y on a ring board, with a minimax / alpha-beta computer player |
 
 ## Advent of Code
@@ -157,14 +157,14 @@ Sudoku puzzles are 81 cells, written row by row: digits for given cells, `.` for
 
 ### Prolog
 
-`oscares.pl` needs a database with these facts: `actividade/2`, `pessoa/4`, `filme/4`, `participa/3` and `nomeada/4`. [`prolog/tests/fixtures.pl`](prolog/tests/fixtures.pl) is a small example database:
+`oscars.pl` needs a database with these facts: `activity/2`, `person/4`, `film/4`, `took_part/3` and `nominated/4`. [`prolog/tests/fixtures.pl`](prolog/tests/fixtures.pl) is a small example database:
 
 ```sh
 cd prolog
-swipl tests/fixtures.pl oscares.pl
-?- maisOscares(realizador).
-?- redeSocial(bruno, duarte).
-?- questao('filmes de 1995').
+swipl tests/fixtures.pl oscars.pl
+?- most_oscars(realizador).
+?- social_network(bruno, duarte).
+?- question('filmes de 1995').   % questions are asked in Portuguese
 ```
 
 ### Common Lisp

@@ -17,7 +17,7 @@ test-ruby:
 	@for dir in $(RUBY_EXERCISES); do echo "== $$dir"; (cd $$dir && rake test) || exit 1; done
 
 test-prolog:
-	swipl -g run_tests -t halt prolog/tests/oscares_test.pl
+	swipl -g run_tests -t halt prolog/tests/oscars_test.pl
 
 test-lisp:
 	sbcl --script lisp/y-game/tests/run-all.lisp

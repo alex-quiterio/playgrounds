@@ -1,40 +1,40 @@
 % Small film database used by the tests.
 %
-%   actividade(Id, Nome)
-%   pessoa(Id, Nome, Genero, AnoNascimento)
-%   filme(Id, Titulo, Ano, Genero)
-%   participa(IdPessoa, IdFilme, IdActividade)
-%   nomeada(IdPessoa, IdFilme, IdActividade, Ganhou)   % Ganhou: 1 = won, 0 = nominated
+%   activity(Id, Name)
+%   person(Id, Name, Gender, BirthYear)
+%   film(Id, Title, Year, Genre)
+%   took_part(PersonId, FilmId, ActivityId)
+%   nominated(PersonId, FilmId, ActivityId, Won)   % Won: 1 = won, 0 = only nominated
 
-actividade(1, realizador).
-actividade(2, actor).
-actividade(3, argumentista).
+activity(1, realizador).
+activity(2, actor).
+activity(3, argumentista).
 
-pessoa(1, ana, f, 1950).
-pessoa(2, bruno, m, 1960).
-pessoa(3, carla, f, 1970).
-pessoa(4, duarte, m, 1980).
-pessoa(5, eva, f, 1990).
+person(1, ana, f, 1950).
+person(2, bruno, m, 1960).
+person(3, carla, f, 1970).
+person(4, duarte, m, 1980).
+person(5, eva, f, 1990).
 
-filme(1, alfa, 1990, drama).
-filme(2, beta, 1995, comedia).
-filme(3, gama, 1995, drama).
-filme(4, delta, 2000, accao).
+film(1, alfa, 1990, drama).
+film(2, beta, 1995, comedia).
+film(3, gama, 1995, drama).
+film(4, delta, 2000, accao).
 
-participa(1, 1, 1).
-participa(1, 2, 1).
-participa(1, 4, 2).
-participa(2, 1, 2).
-participa(2, 3, 2).
-participa(3, 3, 1).
-participa(3, 4, 2).
-participa(3, 4, 3).
-participa(4, 4, 2).
+took_part(1, 1, 1).
+took_part(1, 2, 1).
+took_part(1, 4, 2).
+took_part(2, 1, 2).
+took_part(2, 3, 2).
+took_part(3, 3, 1).
+took_part(3, 4, 2).
+took_part(3, 4, 3).
+took_part(4, 4, 2).
 
-nomeada(1, 1, 1, 1).
-nomeada(1, 2, 1, 1).
-nomeada(3, 3, 1, 1).
-nomeada(2, 1, 2, 1).
-nomeada(2, 3, 2, 1).
-nomeada(4, 4, 2, 1).
-nomeada(3, 4, 2, 0).
+nominated(1, 1, 1, 1).
+nominated(1, 2, 1, 1).
+nominated(3, 3, 1, 1).
+nominated(2, 1, 2, 1).
+nominated(2, 3, 2, 1).
+nominated(4, 4, 2, 1).
+nominated(3, 4, 2, 0).
