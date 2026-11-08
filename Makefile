@@ -1,6 +1,6 @@
 # Run every playground's tests with `make test`, or one language with `make test-<lang>`.
 
-C_EXERCISES := c/cyk c/doubled-linked-lists c/rod
+C_EXERCISES := c/cyk c/dancing-links c/doubled-linked-lists c/rod
 RUBY_EXERCISES := ruby/backtracking-algos ruby/generational-algos
 
 .PHONY: test test-c test-go test-ruby test-prolog test-lisp test-aoc format clean
