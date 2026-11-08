@@ -64,6 +64,18 @@ Tile a board of numbers with dominoes so that no domino appears twice. Play it a
 make run PUZZLE=dominosa
 ```
 
+### Rectangles (Shikaku)
+
+Split a board into rectangles so that each one holds exactly one number, equal to its area. Play it at [Simon Tatham's puzzles](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/rect.html).
+
+**Model.** Every rectangle around a number, with that number's area and no other number inside, is a row. Prefix sums make the "exactly one number" check constant time. Every cell must be covered exactly once.
+
+**Input.** The height and width, then the board row by row with `0` for an empty cell. The output labels every cell with the rectangle it belongs to.
+
+```sh
+make run PUZZLE=rectangles
+```
+
 ## Running
 
 ```sh

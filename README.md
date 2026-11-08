@@ -10,7 +10,7 @@ Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp, p
 | Exercise | Language | What it does |
 | --- | --- | --- |
 | [`c/cyk`](c/cyk/CYK.c) | C | CYK parser that checks whether binary strings belong to a grammar in Chomsky normal form |
-| [`c/dancing-links`](c/dancing-links) | C | Knuth's Algorithm X with Dancing Links for exact cover problems, solving N-Queens, Sudoku and Dominosa |
+| [`c/dancing-links`](c/dancing-links) | C | Knuth's Algorithm X with Dancing Links for exact cover problems, solving N-Queens, Sudoku, Dominosa and Rectangles |
 | [`c/doubled-linked-lists`](c/doubled-linked-lists) | C | Doubly linked list with "methods" stored as function pointers |
 | [`c/rod`](c/rod/rod.c) | C | Rod cutting: the best price from cutting a rod into pieces (dynamic programming) |
 | [`go/insertion-sort`](go/insertion-sort/insertion_sort.go) | Go | In-place insertion sort |
