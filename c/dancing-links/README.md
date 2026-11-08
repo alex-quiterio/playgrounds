@@ -24,11 +24,27 @@ dancing_links_free(links);
 
 [`puzzle.h`](puzzle.h) holds what the puzzles share: `fail()` for bad input, allocation that never returns `NULL`, and `solve_first()`, which builds the links, takes the first solution and frees them again.
 
+## Puzzles
+
+Each puzzle is in `<name>/<name>.c` and reads its puzzle from standard input. It turns the puzzle into a matrix, solves it, and prints the answer.
+
+### N-Queens
+
+Count the ways to place N queens on an NxN board so that no two attack each other, and optionally list them.
+
+**Model.** A queen on each square is a row. Each board row and each board column needs exactly one queen, so those are primary columns. Each of the 4N-2 diagonals can hold at most one queen, so those are secondary columns.
+
+**Input.** `N`, then `T`. With `T = 0` it prints only the count; otherwise it also lists every solution as `row column` pairs.
+
+```sh
+echo "8 0" | ./build/nqueens    # 92
+```
+
 ## Running
 
 ```sh
 make test                   # library unit tests, then every puzzle against its example
-make run PUZZLE=<name>      # solve one puzzle's example
+make run PUZZLE=nqueens     # solve one puzzle's example
 make clean
 ```
 

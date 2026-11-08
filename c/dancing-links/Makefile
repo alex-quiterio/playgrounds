@@ -3,7 +3,7 @@ CFLAGS ?= -std=c11 -Wall -Wextra -O2 -g -fsanitize=address,undefined
 BUILD := build
 
 # Each puzzle lives in <name>/<name>.c and is checked against <name>/example.in and .out.
-PUZZLES :=
+PUZZLES := nqueens
 
 # `make run PUZZLE=sudoku` solves that puzzle's example.
 PUZZLE ?= $(firstword $(PUZZLES))
