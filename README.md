@@ -18,7 +18,7 @@ Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp, p
 | [`ruby/backtracking-algos`](ruby/backtracking-algos) | Ruby | A generic backtracking engine, used for N-Queens and Sudoku |
 | [`ruby/generational-algos`](ruby/generational-algos) | Ruby | N-Queens with a genetic algorithm (cycle crossover plus swap mutation) |
 | [`prolog/oscares.pl`](prolog/oscares.pl) | Prolog | Queries over a film/Oscars database, a social-network search, and a tiny Portuguese question parser |
-| [`lisp/y_game.lisp`](lisp/y_game.lisp) | Common Lisp | The game of Y on a ring board, with a minimax / alpha-beta computer player |
+| [`lisp/y-game`](lisp/y-game) | Common Lisp | The game of Y on a ring board, with a minimax / alpha-beta computer player |
 
 ## Advent of Code
 
@@ -170,9 +170,11 @@ swipl tests/fixtures.pl oscares.pl
 ### Common Lisp
 
 ```sh
-cd lisp
-sbcl --load y_game.lisp
-* (executa-jogo 3 #'faz-jogador-manual #'faz-jogador-automatico 5)
+cd lisp/y-game
+sbcl --load y-game.lisp
+* (play-match 3 #'make-manual-player #'make-automatic-player 5)
 ```
 
 The arguments are the number of rings, player A, player B, and the time limit per move in seconds. The computer player searches deeper and deeper (alpha-beta) until it runs out of time. With a limit of `0` it searches every remaining move, which is only practical on 2 rings.
+
+The code is split by concern: [`board.lisp`](lisp/y-game/board.lisp) (rings, neighbours, winning), [`state.lisp`](lisp/y-game/state.lisp) (moves and connected groups), [`heuristics.lisp`](lisp/y-game/heuristics.lisp), [`search.lisp`](lisp/y-game/search.lisp) (minimax and alpha-beta), [`players.lisp`](lisp/y-game/players.lisp), [`match.lisp`](lisp/y-game/match.lisp) and [`io.lisp`](lisp/y-game/io.lisp). [`y-game.lisp`](lisp/y-game/y-game.lisp) loads them all.

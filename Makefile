@@ -20,7 +20,7 @@ test-prolog:
 	swipl -g run_tests -t halt prolog/tests/oscares_test.pl
 
 test-lisp:
-	sbcl --script lisp/tests/y-game-test.lisp
+	sbcl --script lisp/y-game/tests/y-game-test.lisp
 
 test-aoc:
 	advent-of-code/bin/check
