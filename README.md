@@ -17,6 +17,7 @@ Small algorithm and language exercises in C, Go, Ruby, Prolog and Common Lisp, p
 | [`go/twitter-puddle`](go/twitter-puddle/twitter_puddle.go) | Go | Twitter's "puddle" puzzle: how much water a skyline of walls holds |
 | [`ruby/backtracking-algos`](ruby/backtracking-algos) | Ruby | A generic backtracking engine, used for N-Queens and Sudoku |
 | [`ruby/generational-algos`](ruby/generational-algos) | Ruby | N-Queens with a genetic algorithm (cycle crossover plus swap mutation) |
+| [`ruby/human-design`](ruby/human-design) | Ruby | A Human Design chart and numerology reading from birth data, with a colour terminal report |
 | [`prolog/oscars`](prolog/oscars) | Prolog | Queries over a film/Oscars database, a social-network search, and a tiny Portuguese question parser |
 | [`lisp/y-game`](lisp/y-game) | Common Lisp | The game of Y on a ring board, with a minimax / alpha-beta computer player |
 
@@ -150,6 +151,11 @@ rake test
 
 cd ../generational-algos
 rake "generational:nqueens[8,1000]"  # board size, maximum number of generations
+rake test
+
+cd ../human-design
+gem install swe4r                 # needed to compute a chart; the specs skip without it
+ruby human_design.rb --with-num   # prompts for birth data and a name
 rake test
 ```
 
