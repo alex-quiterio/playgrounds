@@ -103,4 +103,14 @@ describe HumanDesign::ChartReport do
     colored_lines = render(chart, color: true).lines.size
     assert_equal plain_lines, colored_lines
   end
+
+  it 'renders a numerology name with accents typed under a US-ASCII locale' do
+    name = nil
+    with_input("José Quitério\n".dup.force_encoding(Encoding::US_ASCII)) do
+      capture_io { name = HumanDesign::Prompt.text('Name') }
+    end
+    numerology = HumanDesign::Numerology.new(name, chart.birth)
+    out = render(chart, numerology: numerology)
+    assert_includes out, 'NUMEROLOGY · José Quitério'
+  end
 end

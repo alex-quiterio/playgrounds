@@ -47,4 +47,29 @@ describe HumanDesign::Prompt do
     assert_equal 'Alex', result
     assert_equal 2, out.scan('Please enter a value.').size
   end
+
+  describe 'input encoding' do
+    # Ruby tags input as US-ASCII when LANG is unset; the bytes are still UTF-8.
+    def ascii_tagged(text)
+      text.dup.force_encoding(Encoding::US_ASCII)
+    end
+
+    it 'reads accented text typed under a US-ASCII locale as UTF-8' do
+      result, = ask_with(ascii_tagged("José Quitério\n")) { Prompt.text('Name') }
+      assert_equal Encoding::UTF_8, result.encoding
+      assert_equal 'José Quitério', result
+      assert result.valid_encoding?
+    end
+
+    it 'can be joined with UTF-8 text afterwards' do
+      result, = ask_with(ascii_tagged("é\n")) { Prompt.text('Name') }
+      assert_equal 'né ✦', "n#{result} ✦"
+    end
+
+    it 'drops bytes that are not valid UTF-8 instead of failing' do
+      result, = ask_with("Jos\xE9\n".b) { Prompt.text('Name') }
+      assert_equal 'Jos', result
+      assert result.valid_encoding?
+    end
+  end
 end

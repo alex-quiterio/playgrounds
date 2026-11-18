@@ -34,4 +34,23 @@ describe HumanDesign::Numerology do
   it 'ignores case, spaces and non-letters' do
     assert_equal numerology('Abe').expression_number, numerology('  a-b e! ').expression_number
   end
+
+  it 'counts accented letters as their plain letter' do
+    assert_equal numerology('Jose Quiterio').expression_number, numerology('José Quitério').expression_number
+    assert_equal numerology('Jose Quiterio').soul_urge_number, numerology('José Quitério').soul_urge_number
+    assert_equal numerology('Jose Quiterio').personality_number, numerology('José Quitério').personality_number
+  end
+
+  it 'handles accents written as a letter plus a combining mark' do
+    decomposed = "Jose\u0301" # e + combining acute
+    assert_equal numerology('Jose').expression_number, numerology(decomposed).expression_number
+  end
+
+  it 'handles other diacritics' do
+    assert_equal numerology('Joao Conceicao').expression_number, numerology('João Conceição').expression_number
+  end
+
+  it 'still ignores letters with no ASCII base' do
+    assert_equal numerology('Abe').expression_number, numerology('Abe 名前').expression_number
+  end
 end

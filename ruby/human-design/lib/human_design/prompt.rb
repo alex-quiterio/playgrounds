@@ -15,7 +15,9 @@ module HumanDesign
       def ask(prompt)
         print "#{prompt}: "
         $stdout.flush
-        input.gets&.strip
+        # Under a non-UTF-8 locale (LANG unset) Ruby tags input as US-ASCII, which
+        # breaks as soon as it meets the UTF-8 report text. Terminals send UTF-8.
+        input.gets&.dup&.force_encoding(Encoding::UTF_8)&.scrub("")&.strip
       end
 
       def integer(prompt, range)

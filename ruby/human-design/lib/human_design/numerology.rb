@@ -44,7 +44,8 @@ module HumanDesign
     private
 
     def letters
-      full_name.upcase.scan(/[A-Z]/)
+      # Strip accents first so "José" counts as JOSE rather than losing the é.
+      full_name.unicode_normalize(:nfd).gsub(/\p{Mn}/, "").upcase.scan(/[A-Z]/)
     end
 
     def letter_values(chars)
